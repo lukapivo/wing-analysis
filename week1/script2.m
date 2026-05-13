@@ -18,6 +18,9 @@ ny = 41;
 % Sheet length
 del = 1.5;
 
+% Approximate vortex count
+nv = 100;
+
 % Generate mesh grid
 xs = linspace(xmin, xmax, nx);
 ys = linspace(ymin, ymax, ny);
@@ -30,6 +33,18 @@ infb_est = zeros(size(xm));
 % Compute influence coefficients
 [infa, infb] = refpaninf(del, xm, ym);
 
+% Compute approximate influence coefficients
+X = linspace(del/(2*nv), del * (1 - 1/(2*nv)), nv);
+X
+% gamma_k = gamma_a * (1 - x/del) + gamma_b * (x/del)
+% Gamma_k = gamma_k * del/nv
+for i=1:nv
+    psi = psipv(X(i), 0, del/nv, xm, ym);
+    infa_est = infa_est + psi * (1 - X(i)/del);
+    infb_est = infb_est + psi * X(i)/del;
+end
+
+
 %%% Plot contours
 c = -0.15:0.05:0.15;
 
@@ -40,6 +55,10 @@ contour(xm,ym,infa,c)
 figure(2);
 contour(xm,ym,infb,c)
 
-% infa + infb
+% Approximate infa
 figure(3);
-contour(xm,ym,infa+infb,c)
+contour(xm,ym,infa_est,c)
+
+% Approximate infb
+figure(4);
+contour(xm,ym,infb_est,c)
