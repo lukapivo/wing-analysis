@@ -1,11 +1,13 @@
 function [infa, infb] = refpaninf(del,X,Yin)
 
 % Deal with panel boundary numerical issues
-if abs(Yin) < 1e-6
-    Y = 1e-6;
-else
-    Y = Yin;
-end
+% if abs(Yin) < 1e-6
+%     Y = 1e-6;
+% else
+%     Y = Yin;
+% end
+Y = Yin;
+Y((Y>-1e-6) & (Y<1e-6)) = 1e-6;
 
 I0 = - 1/(4*pi) * (log(X.^2 + Y.^2) ...
                 - (X - del) .* log((X - del).^2 + Y.^2) ...

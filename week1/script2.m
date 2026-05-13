@@ -23,25 +23,23 @@ xs = linspace(xmin, xmax, nx);
 ys = linspace(ymin, ymax, ny);
 
 [xm, ym] = meshgrid(xs, ys);
-% infa = zeros(size(xm));
-% infb = zeros(size(xm));
 
 infa_est = zeros(size(xm));
 infb_est = zeros(size(xm));
 
-% for i=1:ny
-%     for j=1:nx
-%         [infa(i,j), infb(i,j)] = refpaninf(del, xm(i,j), ym(i,j));
-%     end
-% end
-
+% Compute influence coefficients
 [infa, infb] = refpaninf(del, xm, ym);
 
+%%% Plot contours
 c = -0.15:0.05:0.15;
+
+% infa
 contour(xm,ym,infa,c)
 
+% infb
 figure(2);
 contour(xm,ym,infb,c)
 
+% infa + infb
 figure(3);
 contour(xm,ym,infa+infb,c)
