@@ -1,4 +1,5 @@
 function [infa, infb] = refpaninf(del,X,Yin)
+% REFPANINF Compute influence coefficients for a vortex-sheet panel on the x-axis.
 
 % Deal with panel boundary numerical issues
 Y = Yin;
