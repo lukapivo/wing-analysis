@@ -30,11 +30,7 @@ ys = linspace(ymin, ymax, ny);
 psi = zeros(size(xm));
 
 % Calculate streamfunction over meshgrid
-for i=1:ny
-    for j=1:nx
-        psi(i,j) = psipv(xc, yc, Gamma, xm(i,j), ym(i,j));
-    end
-end
+psi = psipv(xc, yc, Gamma, xm, ym);
 
 % Plot contour
 c = -0.4:0.2:1.2;
