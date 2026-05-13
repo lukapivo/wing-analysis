@@ -33,9 +33,10 @@ infb_est = zeros(size(xm));
 % Compute influence coefficients
 [infa, infb] = refpaninf(del, xm, ym);
 
-% Compute approximate influence coefficients
+%%% Compute approximate influence coefficients
 X = linspace(del/(2*nv), del * (1 - 1/(2*nv)), nv);
-X
+
+% Influence coefficients determined from:
 % gamma_k = gamma_a * (1 - x/del) + gamma_b * (x/del)
 % Gamma_k = gamma_k * del/nv
 for i=1:nv
