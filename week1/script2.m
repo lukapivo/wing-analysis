@@ -51,15 +51,27 @@ c = -0.15:0.05:0.15;
 
 % infa
 contour(xm,ym,infa,c)
+title("Analytical f_a")
+xlabel("x")
+ylabel("y")
 
 % infb
 figure(2);
 contour(xm,ym,infb,c)
+title("Analytical f_b")
+xlabel("x")
+ylabel("y")
 
 % Approximate infa
 figure(3);
 contour(xm,ym,infa_est,c)
+title("Discretised f_a")
+xlabel("x")
+ylabel("y")
 
 % Approximate infb
 figure(4);
 contour(xm,ym,infb_est,c)
+title("Discretised f_b")
+xlabel("x")
+ylabel("y")

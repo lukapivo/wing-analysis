@@ -35,3 +35,6 @@ psi = psipv(xc, yc, Gamma, xm, ym);
 % Plot contour
 c = -0.4:0.2:1.2;
 contour(xm,ym,psi,c)
+title("\psi")
+xlabel("x")
+ylabel("y")
