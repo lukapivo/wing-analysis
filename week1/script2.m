@@ -1,4 +1,4 @@
-% Script 1
+% Script 2
 % Plots the influence coefficient contours for a linear vortex sheet.
 
 clear;
@@ -34,15 +34,17 @@ infb_est = zeros(size(xm));
 [infa, infb] = refpaninf(del, xm, ym);
 
 %%% Compute approximate influence coefficients
-X = linspace(del/(2*nv), del * (1 - 1/(2*nv)), nv);
+L = linspace(del/(2*nv), del * (1 - 1/(2*nv)), nv);
 
 % Influence coefficients determined from:
-% gamma_k = gamma_a * (1 - x/del) + gamma_b * (x/del)
+% gamma_k = gamma_a * (1 - l/del) + gamma_b * (l/del)
 % Gamma_k = gamma_k * del/nv
+% fa = del/nv (1 - l/del)(-log(r^2)/4pi), etc for fb
+% Therefore use Gamma = del/nv with psipv to return -del/nv log(r^2)/4pi
 for i=1:nv
-    psi = psipv(X(i), 0, del/nv, xm, ym);
-    infa_est = infa_est + psi * (1 - X(i)/del);
-    infb_est = infb_est + psi * X(i)/del;
+    psi = psipv(L(i), 0, del/nv, xm, ym);
+    infa_est = infa_est + psi * (1 - L(i)/del);
+    infb_est = infb_est + psi * L(i)/del;
 end
 
 
