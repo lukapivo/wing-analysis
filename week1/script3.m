@@ -35,7 +35,7 @@ infa_est = zeros(size(xm));
 infb_est = zeros(size(xm));
 
 % Compute influence coefficients
-% [infa, infb] = refpaninf(del, xm, ym);
+[infa, infb] = panelinf(xa, ya, xb, yb, xm, ym);
 
 %%% Compute approximate influence coefficients
 % Calculate panel length for spacing.
@@ -67,18 +67,18 @@ end
 %%% Plot contours
 c = -0.15:0.05:0.15;
 
-% % infa
-% contour(xm,ym,infa,c)
-% title("Analytical f_a")
-% xlabel("x")
-% ylabel("y")
-% 
-% % infb
-% figure(2);
-% contour(xm,ym,infb,c)
-% title("Analytical f_b")
-% xlabel("x")
-% ylabel("y")
+% infa
+contour(xm,ym,infa,c)
+title("Analytical f_a")
+xlabel("x")
+ylabel("y")
+
+% infb
+figure(2);
+contour(xm,ym,infb,c)
+title("Analytical f_b")
+xlabel("x")
+ylabel("y")
 
 % Approximate infa
 figure(3);
