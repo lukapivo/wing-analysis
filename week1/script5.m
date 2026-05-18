@@ -52,6 +52,13 @@ for i=1:np
 
 end
 
+% Calculate total circulation
+
+Gamma1 = sum(gamma1) * 2 * pi / np;
+Gamma1
+Gamma2 = sum(gamma2) * 2 * pi / np;
+Gamma2
+
 %%% Plot contours
 c = -1.75:0.25:1.75;
 
@@ -78,3 +85,17 @@ ylabel("y")
 hold on
 plot(xs,ys)
 hold off
+
+% Velocity plots
+
+figure(3);
+plot(theta/pi, gamma1)
+title("Velocity plot for zero incidence")
+xlabel("theta/pi")
+ylabel("Velocity")
+
+figure(4);
+plot(theta/pi, gamma2)
+title(compose("Velocity plot for alpha = %.1f degrees", alpha*180/pi))
+xlabel("theta/pi")
+ylabel("Velocity")
