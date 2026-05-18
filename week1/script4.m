@@ -1,4 +1,4 @@
-% Script 3
+% Script 4
 % Plots the streamlines of flow past a unit radius cylinder.
 
 clear;
@@ -36,17 +36,10 @@ gamma = -2 * sin(theta);
 psi = ym; % Free stream
 
 for i=1:np
-
     % Compute influence coefficients
-    if i + 1 > np
-        ib = mod(i+1, np);
-    else
-        ib = i+1;
-    end
-    
-    [infa, infb] = panelinf(xs(i), ys(i), xs(ib), ys(ib), xm, ym);
+    [infa, infb] = panelinf(xs(i), ys(i), xs(i+1), ys(i+1), xm, ym);
 
-    psi = psi + gamma(i) * infa + gamma(ib) * infb;
+    psi = psi + gamma(i) * infa + gamma(i+1) * infb;
 
 end
 
