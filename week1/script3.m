@@ -26,10 +26,10 @@ yb = 1.1;
 nv = 100;
 
 % Generate mesh grid
-xs = linspace(xmin, xmax, nx);
-ys = linspace(ymin, ymax, ny);
+xg = linspace(xmin, xmax, nx);
+yg = linspace(ymin, ymax, ny);
 
-[xm, ym] = meshgrid(xs, ys);
+[xm, ym] = meshgrid(xg, yg);
 
 infa_est = zeros(size(xm));
 infb_est = zeros(size(xm));

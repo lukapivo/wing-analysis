@@ -23,10 +23,10 @@ yc = 0.25;
 Gamma = 3.0;
 
 % Generate mesh grid
-xs = linspace(xmin, xmax, nx);
-ys = linspace(ymin, ymax, ny);
+xg = linspace(xmin, xmax, nx);
+yg = linspace(ymin, ymax, ny);
 
-[xm, ym] = meshgrid(xs, ys);
+[xm, ym] = meshgrid(xg, yg);
 % psi = zeros(size(xm));
 
 % Calculate streamfunction over meshgrid
