@@ -91,11 +91,11 @@ hold off
 figure(3);
 plot(theta/pi, gamma1)
 title("Velocity plot for zero incidence")
-xlabel("theta/pi")
+xlabel("\theta/\pi")
 ylabel("Velocity")
 
 figure(4);
 plot(theta/pi, gamma2)
 title(compose("Velocity plot for alpha = %.1f degrees", alpha*180/pi))
-xlabel("theta/pi")
+xlabel("\theta/\pi")
 ylabel("Velocity")
