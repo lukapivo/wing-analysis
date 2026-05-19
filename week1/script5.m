@@ -64,7 +64,7 @@ c = -1.75:0.25:1.75;
 
 % psi at zero incidence
 contour(xm,ym,psi1,c)
-title("Streamfunction at zero incidence")
+%title("Streamfunction at zero incidence")
 axis equal
 xlabel("x")
 ylabel("y")
@@ -79,7 +79,7 @@ print -deps2c week1/Figures/script5.1.eps
 
 figure(2);
 contour(xm,ym,psi2,c)
-title(compose("Streamfunction at alpha = %.1f degrees", alpha*180/pi))
+%title(compose("Streamfunction at alpha = %.1f degrees", alpha*180/pi))
 axis equal
 xlabel("x")
 ylabel("y")
@@ -94,7 +94,7 @@ print -deps2c week1/Figures/script5.2.eps
 
 figure(3);
 plot(theta/pi, gamma1)
-title("Velocity plot for zero incidence")
+%title("Velocity plot for zero incidence")
 xlabel("\theta/\pi")
 ylabel("Velocity")
 
@@ -102,7 +102,7 @@ print -deps2c week1/Figures/script5.3.eps
 
 figure(4);
 plot(theta/pi, gamma2)
-title(compose("Velocity plot for alpha = %.1f degrees", alpha*180/pi))
+%title(compose("Velocity plot for alpha = %.1f degrees", alpha*180/pi))
 
 xlabel("\theta/\pi")
 ylabel("Velocity")

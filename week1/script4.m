@@ -48,7 +48,7 @@ c = -1.75:0.25:1.75;
 
 % psi
 contour(xm,ym,psi,c)
-title("Streamfunction")
+%title("Streamfunction")
 axis equal
 xlabel("x")
 ylabel("y")

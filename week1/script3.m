@@ -69,7 +69,7 @@ c = -0.15:0.05:0.15;
 
 % infa
 contour(xm,ym,infa,c)
-title("Analytical f_a")
+%title("Analytical f_a")
 xlabel("x")
 ylabel("y")
 
@@ -78,7 +78,7 @@ print -deps2c week1/Figures/script3.1.eps
 % infb
 figure(2);
 contour(xm,ym,infb,c)
-title("Analytical f_b")
+%title("Analytical f_b")
 xlabel("x")
 ylabel("y")
 
@@ -87,7 +87,7 @@ print -deps2c week1/Figures/script3.2.eps
 % Approximate infa
 figure(3);
 contour(xm,ym,infa_est,c)
-title("Discretised f_a")
+%title("Discretised f_a")
 xlabel("x")
 ylabel("y")
 
@@ -96,7 +96,7 @@ print -deps2c week1/Figures/script3.3.eps
 % Approximate infb
 figure(4);
 contour(xm,ym,infb_est,c)
-title("Discretised f_b")
+%title("Discretised f_b")
 xlabel("x")
 ylabel("y")
 
