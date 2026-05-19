@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
-\usepackage[a4paper, margin=1.2cm, bottom=2cm]{geometry}
+\usepackage[a4paper, margin=2.54cm, bottom=2cm]{geometry}
 \usepackage{graphicx} % Required for inserting images
+\usepackage{minted}
 
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -36,6 +37,12 @@
 \usepackage{nicefrac}
 
 % \AtBeginDocument{\RenewCommandCopy\qty\SI}
+\setminted{
+    linenos=true,
+    autogobble,
+    breaklines=true
+}
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}
 
 \setlength{\droptitle}{-5em}
 
@@ -50,4 +57,54 @@
 
 \begin{document}
 \maketitle
+\section{Exercise 1}
+\begin{listing}[H]
+    \centering
+    \inputminted{matlab}{../psipv.m}
+    \label{lst:psipv}
+    \caption{\texttt{psipv.m}}
+\end{listing}
+
+\begin{listing}[H]
+    \centering
+    \inputminted{matlab}{../script1.m}
+    \label{lst:script1}
+    \caption{\texttt{script1.m}}
+\end{listing}
+\section{Exercise 2}
+\begin{listing}[H]
+    \centering
+    \inputminted{matlab}{../refpaninf.m}
+    \label{lst:refpaninf}
+    \caption{\texttt{refpaninf.m}}
+\end{listing}
+
+\begin{longlisting}
+    \centering
+    \inputminted{matlab}{../script2.m}
+    \label{lst:script2}
+    \caption{\texttt{script2.m}}
+\end{longlisting}
+\section{Exercise 3}
+\begin{listing}[H]
+    \centering
+    \inputminted{matlab}{../panelinf.m}
+    \label{lst:panelinf}
+    \caption{\texttt{panelinf.m}}
+\end{listing}
+
+\begin{longlisting}
+    \centering
+    \inputminted{matlab}{../script3.m}
+    \label{lst:script3}
+    \caption{\texttt{script3.m}}
+\end{longlisting}
+\section{Exercise 4}
+\begin{longlisting}
+    \centering
+    \inputminted{matlab}{../script4.m}
+    \label{lst:script4}
+    \caption{\texttt{script4.m}}
+\end{longlisting}
+\section{Exercise 5}
 \end{document}
