@@ -56,3 +56,5 @@ ylabel("y")
 hold on
 plot(xs,ys)
 hold off
+
+print -deps2c week1/Figures/script4.eps

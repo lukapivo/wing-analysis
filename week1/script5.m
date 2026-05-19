@@ -73,6 +73,8 @@ hold on
 plot(xs,ys)
 hold off
 
+print -deps2c week1/Figures/script5.1.eps
+
 % psi at incidence
 
 figure(2);
@@ -86,6 +88,8 @@ hold on
 plot(xs,ys)
 hold off
 
+print -deps2c week1/Figures/script5.2.eps
+
 % Velocity plots
 
 figure(3);
@@ -94,8 +98,12 @@ title("Velocity plot for zero incidence")
 xlabel("theta/pi")
 ylabel("Velocity")
 
+print -deps2c week1/Figures/script5.3.eps
+
 figure(4);
 plot(theta/pi, gamma2)
 title(compose("Velocity plot for alpha = %.1f degrees", alpha*180/pi))
 xlabel("theta/pi")
 ylabel("Velocity")
+
+print -deps2c week1/Figures/script5.4.eps

@@ -38,3 +38,5 @@ contour(xm,ym,psi,c)
 title("\psi")
 xlabel("x")
 ylabel("y")
+
+print -deps2c week1/Figures/script1.eps
