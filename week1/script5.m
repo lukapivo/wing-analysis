@@ -95,7 +95,7 @@ print -deps2c week1/Figures/script5.2.eps
 figure(3);
 plot(theta/pi, gamma1)
 title("Velocity plot for zero incidence")
-xlabel("theta/pi")
+xlabel("\theta/\pi")
 ylabel("Velocity")
 
 print -deps2c week1/Figures/script5.3.eps
@@ -103,7 +103,9 @@ print -deps2c week1/Figures/script5.3.eps
 figure(4);
 plot(theta/pi, gamma2)
 title(compose("Velocity plot for alpha = %.1f degrees", alpha*180/pi))
-xlabel("theta/pi")
+
+xlabel("\theta/\pi")
 ylabel("Velocity")
 
 print -deps2c week1/Figures/script5.4.eps
+
