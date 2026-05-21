@@ -38,4 +38,4 @@ contour(xm,ym,psi,c)
 xlabel("x")
 ylabel("y")
 
-print -deps2c week1/Figures/script1.eps
+print -deps2c -loose week1/Figures/script1.eps
