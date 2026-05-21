@@ -27,7 +27,6 @@ xg = linspace(xmin, xmax, nx);
 yg = linspace(ymin, ymax, ny);
 
 [xm, ym] = meshgrid(xg, yg);
-% psi = zeros(size(xm));
 
 % Calculate streamfunction over meshgrid
 psi = psipv(xc, yc, Gamma, xm, ym);

@@ -29,9 +29,9 @@ theta = (0:np)*2*pi/np;
 xs = cos(theta);
 ys = sin(theta);
 
-alpha = pi/24;
+alpha = pi/24; % Non-zero incidence value
 
-% Find vortex sheet strengths for both incidences
+% Find vortex sheet strengths for zero and alpha incidence
 A = build_lhs(xs,ys);
 b1 = build_rhs(xs,ys,0);
 b2 = build_rhs(xs,ys,alpha);
