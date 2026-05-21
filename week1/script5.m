@@ -43,6 +43,9 @@ gamma2 = A\b2;
 psi1 = ym; % Free stream
 psi2 = ym*cos(alpha) - xm*sin(alpha); % Free stream at incidence
 
+% Generalising for possibility of uneven intervals
+lengths = zeros(np,1);
+
 for i=1:np
     % Compute influence coefficients
     [infa, infb] = panelinf(xs(i), ys(i), xs(i+1), ys(i+1), xm, ym);
@@ -50,13 +53,15 @@ for i=1:np
     psi1 = psi1 + gamma1(i) * infa + gamma1(i+1) * infb;
     psi2 = psi2 + gamma2(i) * infa + gamma2(i+1) * infb;
 
+    lengths(i) = sqrt((xs(i+1) - xs(i))^2 + (ys(i+1) - ys(i))^2 );
+
 end
 
 % Calculate total circulation
 
-Gamma1 = sum(gamma1) * 2 * pi / np;
+Gamma1 = dot(gamma1(1:np),lengths);
 Gamma1
-Gamma2 = sum(gamma2) * 2 * pi / np;
+Gamma2 = dot(gamma2(1:np),lengths);
 Gamma2
 
 %%% Plot contours
