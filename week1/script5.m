@@ -78,7 +78,7 @@ hold on
 plot(xs,ys)
 hold off
 
-print -deps2c week1/Figures/script5.1.eps
+print -deps2c -loose week1/Figures/script5.1.eps
 
 % psi at incidence
 
@@ -93,7 +93,7 @@ hold on
 plot(xs,ys)
 hold off
 
-print -deps2c week1/Figures/script5.2.eps
+print -deps2c -loose week1/Figures/script5.2.eps
 
 % Velocity plots
 
@@ -103,7 +103,7 @@ plot(theta/pi, gamma1)
 xlabel("\theta/\pi")
 ylabel("Velocity")
 
-print -deps2c week1/Figures/script5.3.eps
+print -deps2c -loose week1/Figures/script5.3.eps
 
 figure(4);
 plot(theta/pi, gamma2)
@@ -112,5 +112,5 @@ plot(theta/pi, gamma2)
 xlabel("\theta/\pi")
 ylabel("Velocity")
 
-print -deps2c week1/Figures/script5.4.eps
+print -deps2c -loose week1/Figures/script5.4.eps
 
