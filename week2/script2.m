@@ -7,10 +7,10 @@ close all;
 
 
 % Set the Reynolds number
-Re_L = 5e6;
+Re_L = 20e6;
 
 % Velocity gradient
-due_dx = -0.1;
+due_dx = 0.1;
 
 % Panel count
 n = 100;
@@ -29,9 +29,9 @@ thetas = zeros(size(x));
 ueint = 0;
 
 i = 1;
-while laminar && i < n
+while laminar && i <= n
     i = i + 1;
-    
+
     ueint = ueint + ueintbit(x(i-1),ue(i-1),x(i),ue(i));
     theta_sq = 0.45 / Re_L * (ue(i))^(-6) * ueint;
     thetas(i) = sqrt(theta_sq);
