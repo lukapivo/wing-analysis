@@ -13,7 +13,7 @@ t = tl / del;
 nl = [-(yb-ya) xb - xa];
 n = nl / norm(nl);
 
-% Projections onto tangent and normal
+% Projections onto tangent and normal vectors
 X  = dx * t(1) + dy * t(2);   % matrix, same size as x
 Yin = dx * n(1) + dy * n(2);
 

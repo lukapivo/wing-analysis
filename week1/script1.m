@@ -27,7 +27,6 @@ xg = linspace(xmin, xmax, nx);
 yg = linspace(ymin, ymax, ny);
 
 [xm, ym] = meshgrid(xg, yg);
-% psi = zeros(size(xm));
 
 % Calculate streamfunction over meshgrid
 psi = psipv(xc, yc, Gamma, xm, ym);
@@ -39,4 +38,4 @@ contour(xm,ym,psi,c)
 xlabel("x")
 ylabel("y")
 
-print -deps2c week1/Figures/script1.eps
+print -deps2c -loose week1/Figures/script1.eps

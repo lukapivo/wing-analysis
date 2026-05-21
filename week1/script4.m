@@ -57,4 +57,4 @@ hold on
 plot(xs,ys)
 hold off
 
-print -deps2c week1/Figures/script4.eps
+print -deps2c -loose week1/Figures/script4.eps

@@ -29,9 +29,9 @@ theta = (0:np)*2*pi/np;
 xs = cos(theta);
 ys = sin(theta);
 
-alpha = pi/24;
+alpha = pi/24; % Non-zero incidence value
 
-% Find vortex sheet strengths for both incidences
+% Find vortex sheet strengths for zero and alpha incidence
 A = build_lhs(xs,ys);
 b1 = build_rhs(xs,ys,0);
 b2 = build_rhs(xs,ys,alpha);
@@ -43,6 +43,9 @@ gamma2 = A\b2;
 psi1 = ym; % Free stream
 psi2 = ym*cos(alpha) - xm*sin(alpha); % Free stream at incidence
 
+% Generalising for possibility of uneven intervals
+lengths = zeros(np,1);
+
 for i=1:np
     % Compute influence coefficients
     [infa, infb] = panelinf(xs(i), ys(i), xs(i+1), ys(i+1), xm, ym);
@@ -50,13 +53,15 @@ for i=1:np
     psi1 = psi1 + gamma1(i) * infa + gamma1(i+1) * infb;
     psi2 = psi2 + gamma2(i) * infa + gamma2(i+1) * infb;
 
+    lengths(i) = sqrt((xs(i+1) - xs(i))^2 + (ys(i+1) - ys(i))^2 );
+
 end
 
 % Calculate total circulation
 
-Gamma1 = sum(gamma1) * 2 * pi / np;
+Gamma1 = dot(gamma1(1:np),lengths);
 Gamma1
-Gamma2 = sum(gamma2) * 2 * pi / np;
+Gamma2 = dot(gamma2(1:np),lengths);
 Gamma2
 
 %%% Plot contours
@@ -73,7 +78,7 @@ hold on
 plot(xs,ys)
 hold off
 
-print -deps2c week1/Figures/script5.1.eps
+print -deps2c -loose week1/Figures/script5.1.eps
 
 % psi at incidence
 
@@ -88,7 +93,7 @@ hold on
 plot(xs,ys)
 hold off
 
-print -deps2c week1/Figures/script5.2.eps
+print -deps2c -loose week1/Figures/script5.2.eps
 
 % Velocity plots
 
@@ -98,7 +103,7 @@ plot(theta/pi, gamma1)
 xlabel("\theta/\pi")
 ylabel("Velocity")
 
-print -deps2c week1/Figures/script5.3.eps
+print -deps2c -loose week1/Figures/script5.3.eps
 
 figure(4);
 plot(theta/pi, gamma2)
@@ -107,5 +112,5 @@ plot(theta/pi, gamma2)
 xlabel("\theta/\pi")
 ylabel("Velocity")
 
-print -deps2c week1/Figures/script5.4.eps
+print -deps2c -loose week1/Figures/script5.4.eps
 

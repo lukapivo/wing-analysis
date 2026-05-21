@@ -57,7 +57,7 @@ contour(xm,ym,infa,c)
 xlabel("x")
 ylabel("y")
 
-print -deps2c week1/Figures/script2.1.eps
+print -deps2c -loose week1/Figures/script2.1.eps
 
 % infb
 figure(2);
@@ -66,7 +66,7 @@ contour(xm,ym,infb,c)
 xlabel("x")
 ylabel("y")
 
-print -deps2c week1/Figures/script2.2.eps
+print -deps2c -loose week1/Figures/script2.2.eps
 
 % Approximate infa
 figure(3);
@@ -75,7 +75,7 @@ contour(xm,ym,infa_est,c)
 xlabel("x")
 ylabel("y")
 
-print -deps2c week1/Figures/script2.3.eps
+print -deps2c -loose week1/Figures/script2.3.eps
 
 % Approximate infb
 figure(4);
@@ -84,4 +84,4 @@ contour(xm,ym,infb_est,c)
 xlabel("x")
 ylabel("y")
 
-print -deps2c week1/Figures/script2.4.eps
+print -deps2c -loose week1/Figures/script2.4.eps
