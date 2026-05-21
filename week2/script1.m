@@ -1,0 +1,48 @@
+% Script 1
+% Zero pressure gradient laminar boundary layer
+
+clear;
+close all;
+
+
+% Set the Reynolds number
+Re_L = 1000;
+
+% Panel count
+np = 100;
+
+% Dimensionless x/L and ue/U
+x = linspace(0,1,np + 1);
+ue = ones(size(x));
+% True for zero pressure gradient
+
+% Blasius solution
+thetas_blas = 0.664 / Re_L^(1/2) .* x.^(1/2);
+
+% Dimensionless theta/L
+thetas = zeros(size(x));
+ueint = 0;
+
+for i=2:(np+1)
+    ueint = ueint + ueintbit(x(i-1),ue(i-1),x(i),ue(i));
+    theta_sq = 0.45 / Re_L * (ue(i))^(-6) * ueint;
+    thetas(i) = sqrt(theta_sq);
+end
+
+
+% Plot
+plot(x, thetas)
+%title("Momentum thickness variation with x")
+xlabel("x/L")
+ylabel("\theta/L")
+
+hold on
+plot(x,thetas_blas, "--")
+hold off
+
+legend('Thwaites solution','Blasius solution')
+
+print -deps2c -loose week2/Figures/script1.eps
+
+
+
