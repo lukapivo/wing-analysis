@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[a4paper, margin=2.54cm, bottom=2cm]{geometry}
+\usepackage[a4paper, margin=2cm, bottom=2cm]{geometry}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{epstopdf}
 \usepackage{minted}
@@ -157,7 +157,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.9\textwidth]{../Figures/script3.2}
+    \includegraphics[width=\textwidth]{../Figures/script3.2}
     \caption{Exact values of $f_b$ for a general vortex-sheet-panel, calculated analytically.}
     \label{fig:week3.2}
 \end{figure}
@@ -165,14 +165,14 @@
 \subsubsection{Discretised}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.9\textwidth]{../Figures/script3.3}
+    \includegraphics[width=\textwidth]{../Figures/script3.3}
     \caption{Approximate values of $f_a$ for a general vortex-sheet-panel, discretised using point vortices.}
     \label{fig:week3.3}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.9\textwidth]{../Figures/script3.4}
+    \includegraphics[width=\textwidth]{../Figures/script3.4}
     \caption{Approximate values of $f_b$ for a general vortex-sheet-panel, discretised using point vortices.}
     \label{fig:week3.4}
 \end{figure}
@@ -190,7 +190,7 @@
 \subsection{Streamfunction contour plot}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.9\textwidth]{../Figures/script4}
+    \includegraphics[width=\textwidth]{../Figures/script4}
     \caption{Streamfunction $\psi$ for zero incidence flow past a cylinder; vortex-sheet strengths calculated analytically.}
     \label{fig:week4}
 \end{figure}
@@ -221,37 +221,39 @@
     \caption{\texttt{script5.m}}
 \end{longlisting}
 
-\subsection{Total Circulation}
-For the case of $\alpha=\pi/24$, the calculated total circulation $\Gamma = -1.6408$. For a unit cylinder with unit freestream velocity, we would expect $\Gamma = - 4 \pi \sin \alpha$, which here yields $\Gamma = -1.6402$, agreeing with the panel method result to within \SI{0.04}{\percent}. Similarly as expected the zero incidence case has zero total circulation to within a factor of $10^{-15}$.
-
-\subsection{Streamfunction contour plots}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.9\textwidth]{../Figures/script5.1}
-    \caption{Contour plot of streamfunction $\psi$ for the flow past a cylinder of unit radius. Calculated using discretised panels for zero incidence.}
-    \label{fig:week5.1}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.9\textwidth]{../Figures/script5.2}
-    \caption{Contour plot of streamfunction $\psi$ for the flow past a cylinder of unit radius. Calculated using discretised panels for $\alpha = \pi / 24$.}
-    \label{fig:week5.2}
-\end{figure}
-
 \subsection{Surface velocity plots}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.9\textwidth]{../Figures/script5.3}
+    \includegraphics[width=\textwidth]{../Figures/script5.3}
     \caption{Surface velocity versus fractional angle for zero incidence.}
     \label{fig:week5.3}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.9\textwidth]{../Figures/script5.4}
+    \includegraphics[width=\textwidth]{../Figures/script5.4}
     \caption{Surface velocity versus fractional angle for $\alpha=\pi/24$.}
     \label{fig:week5.4}
 \end{figure}
+
+\subsection{Total Circulation}
+For the case of $\alpha=\pi/24$, the calculated total circulation $\Gamma = -1.6408$. For a unit cylinder with unit freestream velocity, we would expect $\Gamma = - 4 \pi \sin \alpha$, which here yields $\Gamma = -1.6402$, agreeing with the panel method result to within \SI{0.04}{\percent}. Similarly as expected the zero incidence case has zero total circulation to within a factor of $10^{-15}$.
+
+\subsection{Streamfunction contour plots}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../Figures/script5.1}
+    \caption{Contour plot of streamfunction $\psi$ for the flow past a cylinder of unit radius. Calculated using discretised panels for zero incidence.}
+    \label{fig:week5.1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../Figures/script5.2}
+    \caption{Contour plot of streamfunction $\psi$ for the flow past a cylinder of unit radius. Calculated using discretised panels for $\alpha = \pi / 24$.}
+    \label{fig:week5.2}
+\end{figure}
+
+
 
 \end{document}
