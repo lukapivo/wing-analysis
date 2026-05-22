@@ -1,4 +1,4 @@
-% Script 2
+% Script 3
 % Constant velocity gradient laminar boundary layer with test for
 % transition
 
@@ -7,10 +7,10 @@ close all;
 
 
 % Set the Reynolds number
-Re_L = 20e6;
+Re_L = 0.9e6;
 
 % Velocity gradient
-due_dx = 0.1;
+due_dx = -0.25;
 
 % Panel count
 n = 100;
@@ -28,6 +28,12 @@ thetas_blas = 0.664 / Re_L^(1/2) .* x.^(1/2);
 thetas = zeros(size(x));
 ueint = 0;
 
+% Transition location
+int = 0;
+
+% Laminar separation location
+ils = 0;
+
 i = 1;
 while laminar && i <= n
     i = i + 1;
@@ -35,7 +41,7 @@ while laminar && i <= n
     ueint = ueint + ueintbit(x(i-1),ue(i-1),x(i),ue(i));
     theta_sq = 0.45 / Re_L * (ue(i))^(-6) * ueint;
     thetas(i) = sqrt(theta_sq);
-    
+
     % Test for transition
     m = - Re_L * theta_sq * due_dx;
     H = thwaites_lookup(m);
@@ -43,10 +49,24 @@ while laminar && i <= n
     Rethet = Re_L * ue(i) * thetas(i);
 
     if log(Rethet) >= 18.4*He - 21.74
+        int = i;
         laminar = false;
         disp([x(i) Rethet/1000])
+    elseif m >= 0.09
+        laminar = false;
+        ils = i;
     end
-    
+
+end
+
+if int ~= 0
+    disp(['Natural transition at ' num2str(x(int)) ...
+        ' with Rethet ' num2str(Rethet)])
+end
+
+if ils ~= 0
+    disp(['Laminar separation at ' num2str(x(ils)) ...
+        ' with Rethet ' num2str(Rethet)])
 end
 
 
@@ -62,7 +82,7 @@ hold off
 
 legend('Thwaites solution','Blasius solution')
 
-print -deps2c -loose week2/Figures/script2.eps
+print -deps2c -loose week2/Figures/script3.eps
 
 
 
