@@ -16,7 +16,6 @@ for j=2:np
     psip(:,j) = (infa + infbp).';
 end
 
-[infa,infb] = panelinf(xs(np),ys(np),xs(np+1),ys(np+1),xs(1:np),ys(1:np));
 psip(:,np+1) = infb.';
 
 % A matrix
