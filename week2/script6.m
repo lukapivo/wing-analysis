@@ -1,6 +1,5 @@
-% Script 3
-% Constant velocity gradient laminar boundary layer with test for
-% transition
+% Script 6
+% Combined laminar and turbulent boundary layer evolution
 
 clear;
 close all;
@@ -27,13 +26,20 @@ thetas_blas = 0.664 / Re_L^(1/2) .* x.^(1/2);
 thetas = zeros(size(x));
 ueint = 0;
 
+% Initialise arrays
+He = zeros(size(x));
+
 % Transition location
 int = 0;
-
 % Laminar separation location
 ils = 0;
+% Turbulent reattachment location
+itr = 0;
+% Turbulent separation location
+its = 0;
 
 i = 1;
+He(i) = 1.57258;
 while laminar && i <= n
     i = i + 1;
 
@@ -44,16 +50,17 @@ while laminar && i <= n
     % Test for transition
     m = - Re_L * theta_sq * due_dx;
     H = thwaites_lookup(m);
-    He = laminar_He(H);
+    He(i) = laminar_He(H);
     Rethet = Re_L * ue(i) * thetas(i);
 
-    if log(Rethet) >= 18.4*He - 21.74
+    if log(Rethet) >= 18.4*He(i) - 21.74
         int = i;
         laminar = false;
-        disp([x(i) Rethet/1000])
     elseif m >= 0.09
         laminar = false;
         ils = i;
+        % Set He explicitly to laminar separation value
+        He(i) = 1.51509;
     end
 
 end
@@ -65,6 +72,37 @@ end
 
 if ils ~= 0
     disp(['Laminar separation at ' num2str(x(ils)) ...
+        ' with Rethet ' num2str(Rethet)])
+end
+
+delta_e = He(i) * thetas(i);
+
+thick0 = zeros(2,1);
+
+% Set the initial values
+thick0(1) = thetas(i);
+thick0(2) = delta_e;
+
+% Solve the differential equation
+
+[delx, thickhist] = ode45(@thickdash, [0 0.99], thick0);
+
+% Enters turbulent loop
+while its == 0 && i <= n
+    i = i + 1;
+
+
+
+end
+
+
+if itr ~= 0
+    disp(['Turbulent reattachment at ' num2str(x(itr)) ...
+        ' with Rethet ' num2str(Rethet)])
+end
+
+if its ~= 0
+    disp(['Turbulent separation at ' num2str(x(its)) ...
         ' with Rethet ' num2str(Rethet)])
 end
 
@@ -81,7 +119,6 @@ hold off
 
 legend('Thwaites solution','Blasius solution')
 
-print -deps2c -loose week2/Figures/script3.eps
 
 
 
