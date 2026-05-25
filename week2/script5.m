@@ -4,57 +4,67 @@
 clear;
 close all;
 
-global Re_L ue0 duedx
+global Re_L ue0 due_dx
 
-% Set the Reynolds number
-Re_L = 1e7;
+test_cases = [-0.25 1e7; -0.5 1e7; -0.95 1e7; -0.5 1e6; -0.5 1e8];
 
-% Velocity gradient
-duedx = -0.25;
+for i = 1:height(test_cases)
 
-% Starting velocity
-ue0 = 1;
+    % Velocity gradient
+    due_dx = test_cases(i,1);
+    
+    % Set the Reynolds number
+    Re_L = test_cases(i,2);
+    
+    % Starting velocity
+    ue0 = 1;
+    
+    thick0 = zeros(2,1);
+    
+    % Set the initial values
+    x0 = 0.01;
+    thick0(1) = 0.023 * x0 * (Re_L*x0) .^ (-1/6);
+    thick0(2) = 1.83 * thick0(1);
+    
+    % Solve the differential equation
+    
+    [delx, thickhist] = ode45(@thickdash, [0 0.99], thick0);
+    
+    % delx = x - x0
+    x = x0 + delx;
+    
+    theta = thickhist(:,1);
+    delta_e = thickhist(:,2);
+    
+    He = delta_e ./ theta;
+    
+    % Locates index of first He <= 1.46
+    sep = find(He<= 1.46, 1);
+    
+    if ~isempty(sep)
+        % Prints the x location of separation
+        fprintf("Re_L = %.1e, duedx = %.2f, separation location = %f \n",Re_L, due_dx, x(sep));
+    else
+        fprintf("Re_L = %.1e, duedx = %.2f, no separation in this interval \n",Re_L, due_dx);
+    end
 
-thick0 = zeros(2,1);
+    if Re_L == 1e7 && due_dx == -0.5
 
-% Set the initial values
-x0 = 0.01;
-thick0(1) = 0.023 * x0 * (Re_L*x0) .^ (-1/6);
-thick0(2) = 1.83 * thick0(1);
+        % Plot x/L and theta/L for due_dx = -0.50, Re_L = 1e7
+        plot(x, theta)
+        %title("Momentum thickness from ODE plotted with power law estimates)
+        xlabel("x/L")
+        ylabel("\theta/L")
 
-% Solve the differential equation
+        hold on
+        plot(x,delta_e)
+        hold off
 
-[delx, thickhist] = ode45(@thickdash, [0 0.99], thick0);
+        legend("\theta", "\delta_E")
 
-% delx = x - x0
-x = x0 + delx;
+        print -deps2c -loose week2/Figures/script5.eps
 
-theta = thickhist(:,1);
-delta_e = thickhist(:,2);
+    end
 
-He = delta_e ./ theta;
-
-% Locates index of first He >= 1.46
-sep = find(He>= 1.46, 1);
-
-if ~isempty(sep)
-    % Prints the x location of separation
-    x(sep);
-else
-    disp("No separation in this interval")
 end
-
-% Plot x/L and theta/L for duedx = -0.50, Re_L = 1e7
-plot(x, theta)
-%title("Momentum thickness from ODE plotted with power law estimates)
-xlabel("x/L")
-ylabel("\theta/L")
-
-hold on
-plot(x,delta_e)
-hold off
-
-legend("\theta", "\delta_E")
-
-print -deps2c -loose week2/Figures/script5.eps
 
