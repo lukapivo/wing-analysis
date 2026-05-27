@@ -24,9 +24,11 @@ He_full = zeros(length(Res), n+1);
 ax1 = gca;
 fig1 = gcf;
 set(gcf,'units', 'centimeters','position',[0,0,16,10])
+box on
 hold on
 figure(2);
 set(gcf,'units', 'centimeters','position',[0,0,16,10])
+box on
 hold on
 ax2 = gca;
 fig2 = gcf;
@@ -156,18 +158,18 @@ for k=1:length(Res)
     if int ~= 0
         disp(['Natural transition at ' num2str(x(int)) ...
             ' with Rethet ' num2str(Rethet)])
-        plot(ax1, x(int), thetas(int), ".", "MarkerSize",10, "Color", C)
+        plot(ax1, x(int), thetas(int), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax1, x(int)-dx1, thetas(int)+2*dy1, "Natural Transition", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
-        plot(ax2, x(int), He(int), ".", "MarkerSize",10, "Color", C)
+        plot(ax2, x(int), He(int), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax2, x(int)-dx2, He(int)+2*dy2, "Natural Transition", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
     end
     
     if ils ~= 0
         disp(['Laminar separation at ' num2str(x(ils)) ...
             ' with Rethet ' num2str(Rethet)])
-        plot(ax1, x(ils), thetas(ils), ".", "MarkerSize",10, "Color", C)
+        plot(ax1, x(ils), thetas(ils), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax1, x(ils)-0.01, thetas(ils)+0.0003, "Laminar Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
-        plot(ax2, x(ils), He(ils), ".", "MarkerSize",10, "Color", C)
+        plot(ax2, x(ils), He(ils), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax2, x(ils)+0.01, He(ils), "Laminar Separation", "FontSize", 10, "Color", C)
     end
     
@@ -175,18 +177,18 @@ for k=1:length(Res)
     if itr ~= 0
         disp(['Turbulent reattachment at ' num2str(x(itr)) ...
             ' with Rethet ' num2str(Rethet)])
-        plot(ax1, x(itr), thetas(itr), ".", "MarkerSize",10, "Color", C)
+        plot(ax1, x(itr), thetas(itr), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax1, x(itr)+0.005, thetas(itr)-0.0003, "Turbulent Reattachment", "FontSize", 10, "Color", C)
-        plot(ax2, x(itr), He(itr), ".", "MarkerSize",10, "Color", C)
+        plot(ax2, x(itr), He(itr), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax2, x(itr)+0.01, He(itr), "Turbulent Reattachment", "FontSize", 10, "Color", C)
     end
     
     if its ~= 0
         disp(['Turbulent separation at ' num2str(x(its)) ...
             ' with Rethet ' num2str(Rethet)])
-        plot(ax1, x(its), thetas(its), ".", "MarkerSize",10, "Color", C)
+        plot(ax1, x(its), thetas(its), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax1, x(its)-0.01, thetas(its)+0.0003, "Turbulent Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
-        plot(ax2, x(its), He(its), ".", "MarkerSize",10, "Color", C)
+        plot(ax2, x(its), He(its), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax2, x(its)-0.01, He(its), "Turbulent Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
     end
 end
@@ -197,18 +199,16 @@ end
 %title("Momentum thickness variation with x")
 xlabel(ax1, "x/L")
 ylabel(ax1, "\theta/L")
+legend(ax1, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
 saveas(fig1,'week2/figures/script6_theta2','epsc')
 
-% legend('Thwaites solution','Blasius solution')
+
 
 % Plot He
 %title("Energy shape factor variation with x")
 xlabel(ax2, "x/L")
 ylabel(ax2, "H_E")
+legend(ax2, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
 saveas(fig1,'week2/figures/script6_he2','epsc')
-
-
-
-
 
 
