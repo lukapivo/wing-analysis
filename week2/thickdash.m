@@ -6,10 +6,8 @@ global Re_L ue0 due_dx
 
 ue = ue0 + xmx0 * due_dx;
 
-% thick(1) = theta;
+% thick(1) = theta; thick(2) = delta_e;
 Rethet = Re_L * ue * thick(1);
-
-% thick(2) = delta_e;
 He = thick(2) / thick(1);
 
 if He >= 1.46
