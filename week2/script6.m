@@ -6,13 +6,14 @@ close all;
 
 global Re_L ue0 due_dx
 
-Res = [1e6 1e7];
-% Res = [1e4 1e5 1e6];
+% Res = [1e6 1e7];
+Res = [1e4 1e5 1e6];
 % Res = 1e5;
 
 % Velocity gradient
-% due_dx = -0.25;
-due_dx = 0;
+% due_dx = 0;
+due_dx = -0.25;
+% due_dx = -0.39;
 
 % Panel count
 n = 1000;
@@ -160,18 +161,18 @@ for k=1:length(Res)
         disp(['Natural transition at ' num2str(x(int)) ...
             ' with Rethet ' num2str(Rethet)])
         plot(ax1, x(int), thetas(int), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
-        text(ax1, x(int)-dx1, thetas(int)+2*dy1, "Natural Transition", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
+        text(ax1, x(int)-2*dx1, thetas(int)+2*dy1, "Natural Transition", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
         plot(ax2, x(int), He(int), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
-        text(ax2, x(int)-dx2, He(int)+2*dy2, "Natural Transition", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
+        text(ax2, x(int)-2*dx2, He(int)+2*dy2, "Natural Transition", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
     end
     
     if ils ~= 0
         disp(['Laminar separation at ' num2str(x(ils)) ...
             ' with Rethet ' num2str(Rethet)])
         plot(ax1, x(ils), thetas(ils), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
-        text(ax1, x(ils)-0.01, thetas(ils)+0.0003, "Laminar Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
+        text(ax1, x(ils)-2*dx1, thetas(ils)+2*dy1, "Laminar Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
         plot(ax2, x(ils), He(ils), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
-        text(ax2, x(ils)+0.01, He(ils), "Laminar Separation", "FontSize", 10, "Color", C)
+        text(ax2, x(ils)+dx2, He(ils), "Laminar Separation", "FontSize", 10, "Color", C)
     end
     
     
@@ -179,31 +180,31 @@ for k=1:length(Res)
         disp(['Turbulent reattachment at ' num2str(x(itr)) ...
             ' with Rethet ' num2str(Rethet)])
         plot(ax1, x(itr), thetas(itr), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
-        text(ax1, x(itr)+0.005, thetas(itr)-0.0003, "Turbulent Reattachment", "FontSize", 10, "Color", C)
+        text(ax1, x(itr)+dx1, thetas(itr)-2*dy1, "Turbulent Reattachment", "FontSize", 10, "Color", C)
         plot(ax2, x(itr), He(itr), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
-        text(ax2, x(itr)+0.01, He(itr), "Turbulent Reattachment", "FontSize", 10, "Color", C)
+        text(ax2, x(itr)+dx2, He(itr), "Turbulent Reattachment", "FontSize", 10, "Color", C)
     end
     
     if its ~= 0
         disp(['Turbulent separation at ' num2str(x(its)) ...
             ' with Rethet ' num2str(Rethet)])
         plot(ax1, x(its), thetas(its), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
-        text(ax1, x(its)-0.01, thetas(its)+0.0003, "Turbulent Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
+        text(ax1, x(its)-2*dx1, thetas(its)+2*dy1, "Turbulent Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
         plot(ax2, x(its), He(its), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
-        text(ax2, x(its)-0.01, He(its), "Turbulent Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
+        text(ax2, x(its)-2*dx2, He(its), "Turbulent Separation", "FontSize", 10, "Color", C, "HorizontalAlignment", "Right")
     end
 end
 
 % title("Momentum thickness variation with x")
 xlabel(ax1, "x/L")
 ylabel(ax1, "\theta/L")
-legend(ax1, "Re = 10^6", "Re = 10^7","Location","northwest")
-% legend(ax1, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
-saveas(fig1,'week2/figures/script6_theta1','epsc')
+% legend(ax1, "Re_L = 10^6", "Re_L = 10^7","Location","northwest")
+legend(ax1, "Re_L = 10^4", "Re_L = 10^5", "Re_L = 10^6","Location","northwest")
+saveas(fig1,'week2/figures/script6_theta2','epsc')
 
 % title("Energy shape factor variation with x")
 xlabel(ax2, "x/L")
 ylabel(ax2, "H_E")
-legend(ax2, "Re = 10^6", "Re = 10^7","Location","northwest")
-% legend(ax2, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
-saveas(fig2,'week2/figures/script6_he1','epsc')
+% legend(ax2, "Re_L = 10^6", "Re_L = 10^7","Location","northwest")
+legend(ax2, "Re_L = 10^4", "Re_L = 10^5", "Re_L = 10^6","Location","northwest")
+saveas(fig2,'week2/figures/script6_he2','epsc')
