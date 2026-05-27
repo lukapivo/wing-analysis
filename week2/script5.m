@@ -19,10 +19,9 @@ for i = 1:height(test_cases)
     % Starting velocity
     ue0 = 1;
     
-    thick0 = zeros(2,1);
-    
     % Set the initial values
     x0 = 0.01;
+    thick0 = zeros(2,1);
     thick0(1) = 0.023 * x0 * (Re_L*x0) .^ (-1/6);
     thick0(2) = 1.83 * thick0(1);
     
@@ -62,8 +61,5 @@ for i = 1:height(test_cases)
         legend("\theta/L", "\delta_E/L", "Location","northwest")
 
         saveas(gcf,'week2/figures/script5','epsc')
-
     end
-
 end
-
