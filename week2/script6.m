@@ -6,17 +6,25 @@ close all;
 
 global Re_L ue0 due_dx
 
-Res = [1e5];
+Res = [1e4 1e5 1e6];
+% Res = 1e5;
 
 % Velocity gradient
-due_dx = -0.125;
+due_dx = -0.25;
 
 % Panel count
-n = 100;
+n = 1000;
 
 % Set up matrices for collecting full results
 thetas_full = zeros(length(Res), n+1);
 He_full = zeros(length(Res), n+1);
+
+% Set up plotting axes
+ax1 = gca;
+hold on
+figure(2);
+hold on
+ax2 = gca;
 
 for k=1:length(Res)
     % Set the Reynolds number
@@ -93,7 +101,7 @@ for k=1:length(Res)
         % Update with theta and delta_e at end of panel
         thick0 = thickhist(end,:);
         thetas(i) = thickhist(end,1);
-        He(i) = thick0(end,1) / thick0(end,2);
+        He(i) = thick0(end,2) / thick0(end,1);
         
         % Test for turbulent reattachment
         if He(i) > 1.58
@@ -114,19 +122,23 @@ for k=1:length(Res)
     
         for j=i:n
             % Momentum integral solution assuming constant H
-            thetas(j+1) = thetas(j) * (ue(j+1) / ue(j)) ^ (H + 2);
+            thetas(j+1) = thetas(j) * (ue(j) / ue(j+1)) ^ (H + 2);
         end
     end
-    
-    % Record results
-    thetas_full(k, :) = thetas;
-    He_full(k, :) = He;
+
+    % Get current colour
+    order = colororder;
+    C = order(k, :);
 
     fprintf("Re_L = %.2e\n", Re_L)
     
     if int ~= 0
         disp(['Natural transition at ' num2str(x(int)) ...
             ' with Rethet ' num2str(Rethet)])
+        plot(ax1, x(int), thetas(int), ".", "MarkerSize",10, "Color", C)
+        text(ax1, x(int)+0.01, thetas(int), "Natural Transition", "FontSize", 12, "Color", C)
+        plot(ax2, x(int), He(int), "Color", C)
+        text(ax2, x(int)+0.01, He(int), "Natural Transition", "FontSize", 12, "Color", C)
     end
     
     if ils ~= 0
@@ -144,30 +156,24 @@ for k=1:length(Res)
         disp(['Turbulent separation at ' num2str(x(its)) ...
             ' with Rethet ' num2str(Rethet)])
     end
+    
+    plot(ax1, x, thetas, "Color", C)
+    plot(ax2, x, He, "Color", C)
 end
 
+
+
 % Plot theta/L
-for k=1:length(Res)
-    hold on
-    plot(x, thetas_full(k, :))
-    hold off
-end
 %title("Momentum thickness variation with x")
-xlabel("x/L")
-ylabel("\theta/L")
+xlabel(ax1, "x/L")
+ylabel(ax1, "\theta/L")
 
 % legend('Thwaites solution','Blasius solution')
 
 % Plot He
-figure(2);
-for k=1:length(Res)
-    hold on
-    plot(x, He_full(k, :))
-    hold off
-end
 %title("Energy shape factor variation with x")
-xlabel("x/L")
-ylabel("H_E")
+xlabel(ax2, "x/L")
+ylabel(ax2, "H_E")
 
 
 
