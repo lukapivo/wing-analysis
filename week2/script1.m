@@ -30,7 +30,8 @@ for i=2:(n+1)
 end
 
 
-% Plot
+% Momentum thickness plot
+set(gcf,'units', 'centimeters','position',[0,0,16,10])
 plot(x, thetas)
 %title("Momentum thickness variation with x")
 xlabel("x/L")
@@ -42,7 +43,4 @@ hold off
 
 legend('Thwaites solution','Blasius solution')
 
-print -deps2c -loose week2/Figures/script1.eps
-
-
-
+saveas(gcf,'week2/figures/script1','epsc')
