@@ -8,6 +8,7 @@
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \usepackage{listings}
+\usepackage{layouts}
 % \usepackage[dvipsnames]{xcolor}
 
 \usepackage[backend=biber]{biblatex}
@@ -89,8 +90,21 @@ $\frac{\dd{u_e / U}}{\dd{x/L}}$
 \caption{}
 \end{table}
 
+\section{Exercise 6}
+\subsection{Script listing}
+\begin{longlisting}
+    \centering
+    \inputminted{matlab}{../script6.m}
+    \label{lst:script5}
+    \caption{\texttt{script6.m}}
+\end{longlisting}
 
-
-
-
+\subsection{Plots}
+\printinunitsof{cm}\prntlen{\textwidth}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{../Figures/script6_theta1}
+    \caption{Surface velocity versus fractional angle for zero incidence.}
+    \label{fig:week5.3}
+\end{figure}
 \end{document}
