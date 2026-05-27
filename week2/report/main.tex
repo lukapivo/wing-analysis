@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{epstopdf}
+\usepackage{minted}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{listings}
+% \usepackage[dvipsnames]{xcolor}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows.meta,pgfplots.units}
+\usetikzlibrary{plotmarks,angles}
+\usepgfplotslibrary{colorbrewer}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{width=12cm}
+\pgfplotsset{compat=1.18}
+
+\usepackage{titling}
+\usepackage[separate-uncertainty=true,multi-part-units=single]{siunitx}
+\usepackage{amsmath, amssymb}
+\usepackage{physics}
+\usepackage{circuitikz}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{scalerel}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{titling}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage{nicefrac}
+\usepackage{diagbox}
+
+% \AtBeginDocument{\RenewCommandCopy\qty\SI}
+\setminted{
+    linenos=true,
+    autogobble,
+    breaklines=true
+}
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}
+
+\setlength{\droptitle}{-5em}
+
+\usetikzlibrary{math}
+
+\DeclareSIUnit\decade{decade}
+\DeclareSIUnit\div{div}
+
+\title{Week 2 Interim Report}
+\author{Luca Owen-Jones \& Luka Pivovarsky}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+\section{Exercise 2}
+\subsection{Tabulated Separation Points}
+
+$\frac{\dd{u_e / U}}{\dd{x/L}}$
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}cccc@{}}
+\toprule
+   & 5    & 10   & 20   \\ \midrule
+-0.1 & 0.48 & 0.29 & 0.17 \\
+0    & 0.74 & 0.37 & 0.19 \\
+0.1  & -    & 0.55 & 0.22 \\ \bottomrule
+\end{tabular}
+\caption{Locations}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}cccc@{}}
+\toprule
+     & 5      & 10     & 20     \\ \midrule
+-0.1 & 1.0802 & 1.1686 & 1.2532 \\
+0    & 1.2903 & 1.2903 & 1.3077 \\
+0.1  & -      & 1.5145 & 1.3848 \\ \bottomrule
+\end{tabular}
+\caption{}
+\end{table}
+
+
+
+
+
+\end{document}
