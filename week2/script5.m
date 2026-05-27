@@ -49,7 +49,7 @@ for i = 1:height(test_cases)
     end
 
     if Re_L == 1e7 && due_dx == -0.5
-
+        set(gcf,'units', 'centimeters','position',[0,0,16,10])
         % Plot x/L and theta/L for due_dx = -0.50, Re_L = 1e7
         plot(x, theta)
         %title("Momentum thickness from ODE plotted with power law estimates)
@@ -62,7 +62,7 @@ for i = 1:height(test_cases)
 
         legend("\theta", "\delta_E")
 
-        print -deps2c -loose week2/Figures/script5.eps
+        saveas(gcf,'week2/figures/script5','epsc')
 
     end
 
