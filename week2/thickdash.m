@@ -1,7 +1,6 @@
 function dthickdx = thickdash(xmx0, thick)
-% THICKDASH Compute f(x,y) for solution for ode45 solution of momentum and
-% kinetic energy integral equations with a linearly varying free-stream
-% velocity.
+% THICKDASH Compute f(x,y) for ode45 solution of momentum and kinetic 
+% energy integral equations with a linearly varying free-stream velocity.
 
 global Re_L ue0 due_dx
 
@@ -20,7 +19,6 @@ elseif He < 1.46
 end
 
 cf = 0.091416 * ((H - 1) * Rethet)^(-0.232) * exp(-1.26 * H);
-
 c_diss = 0.010026 * ((H - 1) * Rethet) ^(-1/6);
 
 % Returns f(x,y)

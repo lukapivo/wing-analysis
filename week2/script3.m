@@ -6,7 +6,7 @@ clear;
 close all;
 
 % Set the Reynolds number
-Re_L = 0.9e6;
+Re_L = 8.9e5;
 
 % Velocity gradient
 due_dx = -0.25;
@@ -45,7 +45,6 @@ while laminar && i <= n
     if log(Rethet) >= 18.4*He - 21.74
         int = i;
         laminar = false;
-        disp([x(i) Rethet/1000])
     elseif m >= 0.09
         laminar = false;
         ils = i;
