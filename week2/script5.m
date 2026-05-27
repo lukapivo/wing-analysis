@@ -60,7 +60,7 @@ for i = 1:height(test_cases)
         plot(x,delta_e)
         hold off
 
-        legend("\theta", "\delta_E")
+        legend("\theta", "\delta_E", "Location","northwest")
 
         saveas(gcf,'week2/figures/script5','epsc')
 
