@@ -73,7 +73,7 @@
 \begin{longlisting}
     \centering
     \inputminted{matlab}{../script1.m}
-    \label{lst:script5}
+    \label{lst:script1}
     \caption{\texttt{script1.m}}
 \end{longlisting}
 
@@ -81,40 +81,60 @@
 \begin{figure}[H]
     \centering
     \includegraphics[width=16cm]{../Figures/script1}
-    \caption{Surface velocity versus fractional angle for zero incidence.}
+    \caption{Momentum thickness variation for a zero pressure gradient laminar boundary layer.}
     \label{fig:ex1}
 \end{figure}
 
 \section{Exercise 2}
+\subsection{Script listing}
+\begin{longlisting}
+    \centering
+    \inputminted{matlab}{../script2.m}
+    \label{lst:script2}
+    \caption{\texttt{script2.m}}
+\end{longlisting}
 
-\subsection{Tabulated Separation Points}
+\subsection{Tabulated separation points}
 
-$\frac{\dd{u_e / U}}{\dd{x/L}}$
 
+% Re_L = 5.0e+06, duedx = -0.10, transition location = 0.480000, Rethet = 1.080189e+03 
+% Re_L = 5.0e+06, duedx = 0.00, transition location = 0.740000, Rethet = 1.290349e+03 
+% Re_L = 5.0e+06, duedx = 0.10, no transition, Rethet = 1.405774e+03 
+% Re_L = 1.0e+07, duedx = -0.10, transition location = 0.290000, Rethet = 1.168598e+03 
+% Re_L = 1.0e+07, duedx = 0.00, transition location = 0.370000, Rethet = 1.290349e+03 
+% Re_L = 1.0e+07, duedx = 0.10, transition location = 0.550000, Rethet = 1.514451e+03 
+% Re_L = 2.0e+07, duedx = -0.10, transition location = 0.170000, Rethet = 1.253209e+03 
+% Re_L = 2.0e+07, duedx = 0.00, transition location = 0.190000, Rethet = 1.307670e+03 
+% Re_L = 2.0e+07, duedx = 0.10, transition location = 0.220000, Rethet = 1.384823e+03
+\sisetup{
+round-mode = places,
+round-precision = 2
+}
 \begin{table}[H]
-\centering
-\begin{tabular}{@{}cccc@{}}
-\toprule
-   & 5    & 10   & 20   \\ \midrule
--0.1 & 0.48 & 0.29 & 0.17 \\
-0    & 0.74 & 0.37 & 0.19 \\
-0.1  & -    & 0.55 & 0.22 \\ \bottomrule
-\end{tabular}
-\caption{Locations}
+    \centering
+    \begin{tabular}{S[round-mode = none]cccccc}
+        \toprule
+        {\multirow{3}{*}{$\frac{\dd{u_e / U}}{\dd{x/L}}$}} & \multicolumn{6}{c}{$\mathrm{Re}_L$} \\ \cmidrule(lr){2-7}
+         & \multicolumn{2}{c}{\num{5e6}} & \multicolumn{2}{c}{\num{1e7}} & \multicolumn{2}{c}{\num{2e7}} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+         & {$x_\mathrm{tr}/L$} & {$\mathrm{Re}_\theta$} & {$x_\mathrm{tr}/L$} & {$\mathrm{Re}_\theta$} & {$x_\mathrm{tr}/L$} & {$\mathrm{Re}_\theta$} \\ \midrule
+         -0.1 & \num{0.480000} & \num{1.080189e+03} & \num{0.290000} & \num{1.168598e+03} & \num{0.170000} & \num{1.253209e+03} \\
+         0 & \num{0.740000} & \num{1.290349e+03} & \num{0.370000} & \num{1.290349e+03} & \num{0.190000} & \num{1.307670e+03} \\
+         0.1 & --- & --- & \num{0.550000} & \num{1.514451e+03} & \num{0.220000} & \num{1.384823e+03} \\
+         \bottomrule
+    \end{tabular}
+    \caption{Transition locations and $\mathrm{Re}_\theta$ locations for a constant velocity gradient laminar boundary layer.}
+    \label{tab:transition_locations}
 \end{table}
 
+\section{Exercise 3}
+\subsection{Script listing}
+\begin{longlisting}
+    \centering
+    \inputminted{matlab}{../script3.m}
+    \label{lst:script3}
+    \caption{\texttt{script3.m}}
+\end{longlisting}
 
-\begin{table}[H]
-\centering
-\begin{tabular}{@{}cccc@{}}
-\toprule
-     & 5      & 10     & 20     \\ \midrule
--0.1 & 1.0802 & 1.1686 & 1.2532 \\
-0    & 1.2903 & 1.2903 & 1.3077 \\
-0.1  & -      & 1.5145 & 1.3848 \\ \bottomrule
-\end{tabular}
-\caption{}
-\end{table}
 \section{Exercise 5}
 \subsection{Script listing}
 \begin{longlisting}
