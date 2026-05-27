@@ -6,12 +6,13 @@ close all;
 
 global Re_L ue0 due_dx
 
-% Res = [1e6 1e7];
-Res = [1e4 1e5 1e6];
+Res = [1e6 1e7];
+% Res = [1e4 1e5 1e6];
 % Res = 1e5;
 
 % Velocity gradient
-due_dx = -0.25;
+% due_dx = -0.25;
+due_dx = 0;
 
 % Panel count
 n = 1000;
@@ -199,8 +200,9 @@ end
 %title("Momentum thickness variation with x")
 xlabel(ax1, "x/L")
 ylabel(ax1, "\theta/L")
-legend(ax1, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
-saveas(fig1,'week2/figures/script6_theta2','epsc')
+legend(ax1, "Re = 10^6", "Re = 10^7","Location","northwest")
+% legend(ax1, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
+saveas(fig1,'week2/figures/script6_theta1','epsc')
 
 
 
@@ -208,7 +210,8 @@ saveas(fig1,'week2/figures/script6_theta2','epsc')
 %title("Energy shape factor variation with x")
 xlabel(ax2, "x/L")
 ylabel(ax2, "H_E")
-legend(ax2, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
-saveas(fig1,'week2/figures/script6_he2','epsc')
+legend(ax2, "Re = 10^6", "Re = 10^7","Location","northwest")
+% legend(ax2, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
+saveas(fig2,'week2/figures/script6_he1','epsc')
 
 
