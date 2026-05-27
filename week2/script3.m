@@ -1,6 +1,6 @@
 % Script 3
 % Constant velocity gradient laminar boundary layer with test for
-% transition
+% transition or separation
 
 clear;
 close all;
@@ -67,21 +67,3 @@ if ils ~= 0
     disp(['Laminar separation at ' num2str(x(ils)) ...
         ' with Rethet ' num2str(Rethet)])
 end
-
-
-% Plot
-plot(x, thetas)
-%title("Momentum thickness variation with x")
-xlabel("x/L")
-ylabel("\theta/L")
-
-hold on
-plot(x,thetas_blas, "--")
-hold off
-
-legend('Thwaites solution','Blasius solution')
-
-print -deps2c -loose week2/Figures/script3.eps
-
-
-
