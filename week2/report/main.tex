@@ -114,15 +114,14 @@ round-precision = 2
     \centering
     \begin{tabular}{S[round-mode = none]cccccc}
         \toprule
-        {\multirow{3}{*}{$\frac{\dd{u_e / U}}{\dd{x/L}}$}} & \multicolumn{6}{c}{$\mathrm{Re}_L$} \\ \cmidrule(lr){2-7}
-         & \multicolumn{2}{c}{\num{5e6}} & \multicolumn{2}{c}{\num{1e7}} & \multicolumn{2}{c}{\num{2e7}} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+         {\multirow{2}{*}{$\frac{\dd{u_e / U}}{\dd{x/L}}$}} & \multicolumn{2}{c}{$\mathrm{Re}_L = \num[round-mode=none]{5e6}$} & \multicolumn{2}{c}{$\mathrm{Re}_L = \num[round-mode=none]{1e7}$} & \multicolumn{2}{c}{$\mathrm{Re}_L = \num[round-mode=none]{2e7}$} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
          & {$x_\mathrm{tr}/L$} & {$\mathrm{Re}_\theta$} & {$x_\mathrm{tr}/L$} & {$\mathrm{Re}_\theta$} & {$x_\mathrm{tr}/L$} & {$\mathrm{Re}_\theta$} \\ \midrule
          -0.1 & \num{0.480000} & \num{1.080189e+03} & \num{0.290000} & \num{1.168598e+03} & \num{0.170000} & \num{1.253209e+03} \\
          0 & \num{0.740000} & \num{1.290349e+03} & \num{0.370000} & \num{1.290349e+03} & \num{0.190000} & \num{1.307670e+03} \\
          0.1 & --- & --- & \num{0.550000} & \num{1.514451e+03} & \num{0.220000} & \num{1.384823e+03} \\
          \bottomrule
     \end{tabular}
-    \caption{Transition locations and $\mathrm{Re}_\theta$ locations for a constant velocity gradient laminar boundary layer.}
+    \caption{Transition locations and $\mathrm{Re}_\theta$ values for a constant velocity gradient laminar boundary layer.}
     \label{tab:transition_locations}
 \end{table}
 
@@ -158,11 +157,9 @@ round-precision = 2
 \begin{figure}[H]
     \centering
     \includegraphics[width=16cm]{../Figures/script4}
-    \caption{Comparison of momentum thickness variation for a turbulent boundary layer, between the numerical solution, 1/7th power law, and 1/9th power law.}
-    \label{fig:week5.3}
+    \caption{Comparison of momentum thickness variation for a turbulent boundary layer, between the numerical solution, 1/7\textsuperscript{th} power law, and 1/9\textsuperscript{th} power law.}
+    \label{fig:ex4}
 \end{figure}
-
-
 
 \section{Exercise 5}
 \subsection{Script listing}
@@ -172,6 +169,47 @@ round-precision = 2
     \label{lst:script5}
     \caption{\texttt{script5.m}}
 \end{longlisting}
+
+\subsection{Tabulated separation points}
+% Re_L = 1.0e+07, duedx = -0.25, no separation in this interval 
+% Re_L = 1.0e+07, duedx = -0.50, separation location = 0.988736 
+% Re_L = 1.0e+07, duedx = -0.95, separation location = 0.523010 
+% Re_L = 1.0e+06, duedx = -0.50, separation location = 0.017303 
+% Re_L = 1.0e+08, duedx = -0.50, no separation in this interval 
+
+\begin{table}[H]
+    \centering
+    \begin{subtable}{.35\textwidth}
+        \centering
+        \begin{tabular}{S[round-mode = none]c}
+            \toprule
+            {\multirow{2}{*}{$\frac{\dd{u_e / U}}{\dd{x/L}}$}} & {$x_\mathrm{sep}/L$} \\ \cmidrule(lr){2-2}
+             & $\mathrm{Re}_L = 10^7$   \\ \midrule
+             -0.25 & --- \\
+             -0.50 & 0.989 \\
+             -0.95 & 0.523 \\
+             \bottomrule
+        \end{tabular}
+        \caption{Velocity gradient sweep}
+        \label{tab:sep1}
+    \end{subtable}
+    \hfill
+    \begin{subtable}{.6\textwidth}
+        \centering
+        \begin{tabular}{S[round-mode = none]ccc}
+            \toprule
+            {\multirow{2}{*}{$\frac{\dd{u_e / U}}{\dd{x/L}}$}} & \multicolumn{3}{c}{{$x_\mathrm{sep}/L$}} \\ \cmidrule(lr){2-4}
+             & $\mathrm{Re}_L = 10^6$ & $\mathrm{Re}_L = 10^7$ & $\mathrm{Re}_L = 10^8$ \\ \midrule
+             -0.50 & 0.017 & 0.989 & --- \\
+             \bottomrule
+        \end{tabular}
+        \caption{$\mathrm{Re}$ sweep}
+        \label{tab:sep2}
+    \end{subtable}
+    \caption{Separation locations and $\mathrm{Re}_\theta$ locations for a constant velocity gradient laminar boundary layer.}
+    \label{tab:placeholder}
+\end{table}
+
 
 \subsection{Graph}
 \begin{figure}[H]
