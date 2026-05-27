@@ -136,8 +136,8 @@ for k=1:length(Res)
     C = order(k, :);
     
     % Plot lines
-    plot(ax1, x, thetas, "Color", C, "LineWidth", 2)
-    plot(ax2, x, He, "Color", C, "LineWidth", 2)
+    plot(ax1, x, thetas, "Color", C)
+    plot(ax2, x, He, "Color", C)
 
     % Get reasonable offsets for text
     xl1 = xlim(ax1);
