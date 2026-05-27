@@ -136,18 +136,18 @@ round-precision = 2
 \subsection{Separation}
 \begin{table}[H]
     \centering
-    \begin{tabular}{S[round-mode = none]ccc}
+    \begin{tabular}{S[round-mode = none]cccccc}
         \toprule
-        {\multirow{2}{*}{$\frac{\dd{u_e / U}}{\dd{x/L}}$}} & \multicolumn{3}{c}{{$x_\mathrm{sep}/L$}} \\ \cmidrule(lr){2-4}
-         & $\mathrm{Re}_L = 10^6$ & $\mathrm{Re}_L = 10^7$ & $\mathrm{Re}_L = 10^8$ \\ \midrule
-         -0.50 & 0.017 & 0.989 & --- \\
+         {\multirow{2}{*}{$\frac{\dd{u_e / U}}{\dd{x/L}}$}} & \multicolumn{2}{c}{$\mathrm{Re}_L = 10^3$} & \multicolumn{2}{c}{$\mathrm{Re}_L = 10^4$} & \multicolumn{2}{c}{$\mathrm{Re}_L = 10^5$} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+         & {$x_\mathrm{sep}/L$} & {$\mathrm{Re}_\theta$} & {$x_\mathrm{sep}/L$} & {$\mathrm{Re}_\theta$} & {$x_\mathrm{sep}/L$} & {$\mathrm{Re}_\theta$} \\ \midrule
+         -0.25 & \num{0.50} & \num{16.7985} & \num{0.50} & \num{53.113} & \num{0.50} & \num{167.96} \\
          \bottomrule
     \end{tabular}
-    \caption{$\mathrm{Re}$ sweep}
-    \label{tab:sep2}
+    \caption{Laminar separation locations for $\mathrm{Re}_L = 10^3,\,10^4\text{ and }10^5$, with $\dd{(u_e/U)}/\dd{(x/L)}=-0.25$. Since the $\theta^2$ term in the Thwaites integral includes $1/\mathrm{Re_L}$, while the definition of $m$ includes $\mathrm{Re}_L$ and $\theta^2$, there is understandably no dependence on $\mathrm{Re_L}$ for the separation location (though $\mathrm{Re}_\theta$ at separation has a $\sqrt{\mathrm{Re}_L}$ dependence).}
+    \label{tab:transition_locations}
 \end{table}
 \subsection{Transition}
-
+Natural transition supplants separation when $\mathrm{Re}_L=\num{9e5}$ (with $\dd{(u_e/U)}/\dd{(x/L)}=-0.25$). For $\mathrm{Re}_L=\num{8.9e5}$ laminar separation still occurs.
 \section{Exercise 4}
 \subsection{\texttt{thickdash.m} listing}
 \begin{listing}[H]
