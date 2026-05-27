@@ -24,34 +24,36 @@ He_full = zeros(length(Res), n+1);
 % Set up plotting axes
 ax1 = gca;
 fig1 = gcf;
-set(gcf,'units', 'centimeters','position',[0,0,16,10])
+set(fig1,'units', 'centimeters','position',[0,0,16,10])
 box on
 hold on
+
 figure(2);
-set(gcf,'units', 'centimeters','position',[0,0,16,10])
-box on
-hold on
 ax2 = gca;
 fig2 = gcf;
+set(fig2,'units', 'centimeters','position',[0,0,16,10])
+box on
+hold on
+
 
 for k=1:length(Res)
     % Set the Reynolds number
     Re_L = Res(k);
     
     laminar = true;
+    ueint = 0;
+    i = 1;
     
-    % Dimensionless x/L and ue/U
+    % Dimensionless x/L, ue/U, theta/L
     x = linspace(0,1,n + 1);
     ue = ones(size(x)) + due_dx .* x;
-    
-    % Dimensionless theta/L
     thetas = zeros(size(x));
-    ueint = 0;
     
-    % Initialise arrays
+    % Initialise energy thickness (initial value from Blasius solution)
     He = zeros(size(x));
+    He(1) = 1.57258;
     
-    % Transition location
+    % Natural transition location
     int = 0;
     % Laminar separation location
     ils = 0;
@@ -60,8 +62,6 @@ for k=1:length(Res)
     % Turbulent separation location
     its = 0;
     
-    i = 1;
-    He(i) = 1.57258;
     while laminar && i <= n
         i = i + 1;
     
@@ -89,9 +89,9 @@ for k=1:length(Res)
     
     delta_e = He(i) * thetas(i);
     
+    % Set initial values
     thick0 = zeros(2,1);
-    
-    % Set the initial values
+
     thick0(1) = thetas(i);
     thick0(2) = delta_e;
     
@@ -194,24 +194,16 @@ for k=1:length(Res)
     end
 end
 
-
-
-% Plot theta/L
-%title("Momentum thickness variation with x")
+% title("Momentum thickness variation with x")
 xlabel(ax1, "x/L")
 ylabel(ax1, "\theta/L")
 legend(ax1, "Re = 10^6", "Re = 10^7","Location","northwest")
 % legend(ax1, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
 saveas(fig1,'week2/figures/script6_theta1','epsc')
 
-
-
-% Plot He
-%title("Energy shape factor variation with x")
+% title("Energy shape factor variation with x")
 xlabel(ax2, "x/L")
 ylabel(ax2, "H_E")
 legend(ax2, "Re = 10^6", "Re = 10^7","Location","northwest")
 % legend(ax2, "Re = 10^4", "Re = 10^5", "Re = 10^6","Location","northwest")
 saveas(fig2,'week2/figures/script6_he1','epsc')
-
-
