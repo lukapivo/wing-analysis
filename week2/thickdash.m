@@ -11,7 +11,6 @@ He = thick(2) / thick(1);
 
 if He >= 1.46
     H = (11 * He + 15) / (48 * He - 59);
-
 elseif He < 1.46
     H = 2.803;
 end
