@@ -36,7 +36,7 @@ set(fig2,'units', 'centimeters','position',[0,0,16,10])
 box on
 hold on
 
-
+% Iterate over Re values
 for k=1:length(Res)
     % Set the Reynolds number
     Re_L = Res(k);
@@ -154,7 +154,6 @@ for k=1:length(Res)
     dx2 = (xl2(2) - xl2(1)) * 0.01;
     dy2 = (yl2(2) - yl2(1)) * 0.01;
 
-
     fprintf("Re_L = %.2e\n", Re_L)
     
     if int ~= 0
@@ -174,7 +173,6 @@ for k=1:length(Res)
         plot(ax2, x(ils), He(ils), ".", "MarkerSize",10, "Color", C,'HandleVisibility','off')
         text(ax2, x(ils)+dx2, He(ils), "Laminar Separation", "FontSize", 10, "Color", C)
     end
-    
     
     if itr ~= 0
         disp(['Turbulent reattachment at ' num2str(x(itr)) ...
