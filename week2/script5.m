@@ -54,13 +54,12 @@ for i = 1:height(test_cases)
         plot(x, theta)
         %title("Momentum thickness from ODE plotted with power law estimates)
         xlabel("x/L")
-        ylabel("\theta/L")
 
         hold on
         plot(x,delta_e)
         hold off
 
-        legend("\theta", "\delta_E", "Location","northwest")
+        legend("\theta/L", "\delta_E/L", "Location","northwest")
 
         saveas(gcf,'week2/figures/script5','epsc')
 

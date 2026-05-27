@@ -60,8 +60,3 @@ for j = 1:length(Res)
     end
 
 end
-
-
-
-
-
