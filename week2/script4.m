@@ -35,6 +35,7 @@ theta7 = 0.037 * x .* (Re_L * x).^(-1/5);
 theta9 = 0.023 * x .* (Re_L * x).^(-1/6);
 
 % Plot
+set(gcf,'units', 'centimeters','position',[0,0,16,10])
 plot(x, theta)
 %title("Momentum thickness from ODE plotted with power law estimates)
 xlabel("x/L")
@@ -45,7 +46,7 @@ plot(x,theta7)
 plot(x,theta9)
 hold off
 
-legend("\theta", "\theta_7", "\theta_9")
+legend("Numerical solution", "1/7^{th} power law", "1/9^{th} power law", "Location","northwest")
 
-print -deps2c -loose week2/Figures/script4.eps
+saveas(gcf,'week2/figures/script4','epsc')
 
