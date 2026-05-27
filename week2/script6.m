@@ -18,10 +18,6 @@ due_dx = 0;
 % Panel count
 n = 1000;
 
-% Set up matrices for collecting full results
-thetas_full = zeros(length(Res), n+1);
-He_full = zeros(length(Res), n+1);
-
 % Set up plotting axes
 ax1 = gca;
 fig1 = gcf;
@@ -41,6 +37,7 @@ for k=1:length(Res)
     % Set the Reynolds number
     Re_L = Res(k);
     
+    % Initialise utility variables
     laminar = true;
     ueint = 0;
     i = 1;

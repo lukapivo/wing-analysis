@@ -15,22 +15,21 @@ duedx = 0;
 % Starting velocity
 ue0 = 1;
 
-thick0 = zeros(2,1);
-
 % Set the initial values
 x0 = 0.01;
+thick0 = zeros(2,1);
 thick0(1) = 0.023 * x0 * (Re_L*x0) .^ (-1/6);
 thick0(2) = 1.83 * thick0(1);
 
 % Solve the differential equation
-
 [delx, thickhist] = ode45(@thickdash, [0 0.99], thick0);
+
+theta = thickhist(:,1);
 
 % delx = x - x0
 x = x0 + delx;
 
-theta = thickhist(:,1);
-
+% Generate comparison values
 theta7 = 0.037 * x .* (Re_L * x).^(-1/5);
 theta9 = 0.023 * x .* (Re_L * x).^(-1/6);
 

@@ -26,18 +26,16 @@ for i = 1:height(test_cases)
     thick0(2) = 1.83 * thick0(1);
     
     % Solve the differential equation
-    
     [delx, thickhist] = ode45(@thickdash, [0 0.99], thick0);
+
+    theta = thickhist(:,1);
+    delta_e = thickhist(:,2);
+    He = delta_e ./ theta;
     
     % delx = x - x0
     x = x0 + delx;
-    
-    theta = thickhist(:,1);
-    delta_e = thickhist(:,2);
-    
-    He = delta_e ./ theta;
-    
-    % Locates index of first He <= 1.46
+
+    % Locate index of first He <= 1.46
     sep = find(He<= 1.46, 1);
     
     if ~isempty(sep)

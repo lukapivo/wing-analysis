@@ -5,7 +5,6 @@
 clear;
 close all;
 
-
 % Set the Reynolds number
 Re_L = 0.9e6;
 
@@ -14,26 +13,22 @@ due_dx = -0.25;
 
 % Panel count
 n = 100;
-laminar = true;
 
-% Dimensionless x/L and ue/U
+% Initialise utility variables
+laminar = true;
+ueint = 0;
+i = 1;
+
+% Dimensionless x/L, ue/U, theta/L
 x = linspace(0,1,n + 1);
 ue = ones(size(x)) + due_dx .* x;
-
-% Blasius solution
-thetas_blas = 0.664 / Re_L^(1/2) .* x.^(1/2);
-
-% Dimensionless theta/L
 thetas = zeros(size(x));
-ueint = 0;
 
 % Transition location
 int = 0;
-
 % Laminar separation location
 ils = 0;
 
-i = 1;
 while laminar && i <= n
     i = i + 1;
 
