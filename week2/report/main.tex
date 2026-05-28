@@ -38,6 +38,7 @@
 \usepackage{bm}
 \usepackage{nicefrac}
 \usepackage{diagbox}
+\usepackage{pdfpages}
 
 % \AtBeginDocument{\RenewCommandCopy\qty\SI}
 \setminted{
@@ -59,6 +60,8 @@
 \date{May 2026}
 
 \begin{document}
+\includepdf[pages={1,2}]{cover2.pdf}
+\setcounter{page}{1}
 \maketitle
 \section{Exercise 1}
 \subsection{\texttt{ueintbit.m} listing}
@@ -121,7 +124,7 @@ round-precision = 2
          0.1 & --- & --- & \num{0.550000} & \num{1.514451e+03} & \num{0.220000} & \num{1.384823e+03} \\
          \bottomrule
     \end{tabular}
-    \caption{Transition locations and $\mathrm{Re}_\theta$ values for a constant velocity gradient laminar boundary layer.}
+    \caption{Transition locations and $\mathrm{Re}_\theta$ values for a constant velocity gradient laminar boundary layer. Cells with dashes did not transition before $x/L=1$.}
     \label{tab:transition_locations}
 \end{table}
 
@@ -218,7 +221,7 @@ Natural transition supplants separation when $\mathrm{Re}_L=\num{9e5}$ (with $\d
         \caption{$\mathrm{Re}$ sweep}
         \label{tab:sep2}
     \end{subtable}
-    \caption{Separation locations and $\mathrm{Re}_\theta$ locations for a constant velocity gradient laminar boundary layer.}
+    \caption{Separation locations and $\mathrm{Re}_\theta$ locations for a constant velocity gradient laminar boundary layer. Cells with dashes did not separate before $x/L=1$.}
     \label{tab:placeholder}
 \end{table}
 
