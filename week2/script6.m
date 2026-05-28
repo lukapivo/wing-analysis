@@ -6,13 +6,13 @@ close all;
 
 global Re_L ue0 due_dx
 
-Res = [1e6 1e7];
-% Res = [1e4 1e5 1e6];
+% Res = [1e6 1e7];
+Res = [1e4 1e5 1e6];
 % Res = 1e5;
 
 % Velocity gradient
-due_dx = 0;
-% due_dx = -0.25;
+% due_dx = 0;
+due_dx = -0.25;
 % due_dx = -0.39;
 
 % Panel count
