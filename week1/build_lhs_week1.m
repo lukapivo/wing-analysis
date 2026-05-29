@@ -1,5 +1,5 @@
 function lhsmat = build_lhs(xs,ys)
-% BUILD_LHS Compute psi matrix for panel solution.
+% BUILD_LHS Compute psi matrix for panel solution. Unchanged from week 1.
 
 % Get number of panels
 np = length(xs) - 1;
@@ -21,8 +21,8 @@ psip(:,np+1) = infb.';
 % A matrix
 lhsmat = zeros(np+1,np+1); 
 
-lhsmat(1:np-1, :) = diff(psip);
-lhsmat(np,1) = 1;
-lhsmat(np+1,np+1) = 1; 
+lhsmat(3:np+1, :) = diff(psip);
+lhsmat(1,1) = 1;
+lhsmat(2,np+1) = 1; 
 
 end

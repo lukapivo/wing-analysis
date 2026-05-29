@@ -8,7 +8,7 @@ rhsvec = zeros(np+1,1);
 
 psifs = ys(1:np) * cos(alpha) - xs(1:np) * sin(alpha);
 
-% Final elements are already set to zero
-rhsvec(1:np-1,:) = -1 * diff(psifs).';
+% First elements are already set to zero
+rhsvec(3:np+1,:) = -1 * diff(psifs).';
 
 end

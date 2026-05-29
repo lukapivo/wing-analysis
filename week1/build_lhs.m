@@ -21,8 +21,24 @@ psip(:,np+1) = infb.';
 % A matrix
 lhsmat = zeros(np+1,np+1); 
 
-lhsmat(1:np-1, :) = diff(psip);
-lhsmat(np,1) = 1;
-lhsmat(np+1,np+1) = 1; 
+lhsmat(3:np+1, :) = diff(psip);
+
+% Panel length calculation
+Delta_1 = sqrt((xs(2) - xs(1))^2 + (ys(2) - ys(1))^2);
+Delta_2 = sqrt((xs(3) - xs(2))^2 + (ys(3) - ys(2))^2);
+Delta_npm1 = sqrt((xs(np) - xs(np-1))^2 + (ys(np) - ys(np-1))^2);
+Delta_np = sqrt((xs(np+1) - xs(np))^2 + (ys(np+1) - ys(np))^2);
+
+lhsmat(1,1) = 1;
+lhsmat(1,2) = -1/2 * (1 + Delta_1 / Delta_2);
+lhsmat(1,3) = -1/2 * Delta_1 / Delta_2;
+lhsmat(1,np - 1) = 1/2 * Delta_np / Delta_npm1;
+lhsmat(1,np) = 1/2 * (1 + Delta_np / Delta_npm1);
+
+lhsmat(2,np+1) = 1; 
+lhsmat(2,2) = 1/2 * (1 + Delta_1 / Delta_2); 
+lhsmat(2,3) = 1/2 * Delta_1 / Delta_2; 
+lhsmat(2,np - 1) = -1/2 * (1 + Delta_np / Delta_npm1); 
+lhsmat(2,np) = -1/2 * Delta_np / Delta_npm1; 
 
 end
