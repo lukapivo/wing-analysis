@@ -30,16 +30,18 @@ lhsmat = zeros(np+1,np+1);
 
 lhsmat(3:np+1, :) = diff(psip);
 
+% Upper trailing edge
 lhsmat(1,1) = 1;
 lhsmat(1,2) = -1/2 * (1 + Delta_1 / Delta_2);
-lhsmat(1,3) = -1/2 * Delta_1 / Delta_2;
-lhsmat(1,np - 1) = 1/2 * Delta_np / Delta_npm1;
+lhsmat(1,3) = 1/2 * Delta_1 / Delta_2;
+lhsmat(1,np - 1) = -1/2 * Delta_np / Delta_npm1;
 lhsmat(1,np) = 1/2 * (1 + Delta_np / Delta_npm1);
 
+% Lower trailing edge
 lhsmat(2,np+1) = 1; 
 lhsmat(2,2) = 1/2 * (1 + Delta_1 / Delta_2); 
-lhsmat(2,3) = 1/2 * Delta_1 / Delta_2; 
-lhsmat(2,np - 1) = -1/2 * (1 + Delta_np / Delta_npm1); 
-lhsmat(2,np) = -1/2 * Delta_np / Delta_npm1; 
+lhsmat(2,3) = - 1/2 * Delta_1 / Delta_2; 
+lhsmat(2,np - 1) = 1/2 * Delta_np / Delta_npm1; 
+lhsmat(2,np) = -1/2 * (1 + Delta_np / Delta_npm1); 
 
 end
