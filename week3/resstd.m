@@ -3,7 +3,7 @@
 %  Van de Vooren geometry parameters, see vdvfoil.m.
 
 %  free-stream incidence
-alpha = pi/12;
+alpha = 0;
 
 %  Van de Vooren geometry and pressure distribution
 npin = 2000;
@@ -69,12 +69,20 @@ legend('exact','100pans','200pans','400pans','800pans')
 
 figure(3)
 plot(xsin,-cpex,xs1,-cp1,'--')
+legend('exact','100pans')
 
 figure(4)
-plot(xsin,-cpex,xs2,-cp2,'--')
+plot(xsin,-cpex,xs2,-cp2,'-.')
+legend('exact','200pans')
 
 figure(5)
-plot(xsin,-cpex,xs4,-cp4,'--')
+plot(xsin,-cpex,xs4,-cp4,'-+')
+legend('exact','400pans')
 
 figure(6)
-plot(xsin,-cpex,xs8,-cp8,'--')
+plot(xsin,-cpex,xs8,-cp8,'-x')
+legend('exact','800pans')
+
+figure(7)
+plot(xsin,-cpex)
+legend('exact')
