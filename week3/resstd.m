@@ -38,19 +38,6 @@ gams = inv(A) * b;
 xs2 = xs;
 cp2 = 1 - gams.^2;
 
-u_eu_te = -gams(2) -gams(2)+gams(3);
-u_el_te = gams(np) + gams(np)-gams(np-1);
-ue_te = 0.5 * (u_eu_te + u_el_te);
-ue_te_full = - gams(2) + 0.5 * gams(3) + gams(np) + gams(np)-gams(np-1); 
-
-u_eu_te
-ue_te_full
-u_el_te
-ue_te
-gams(1)
-gams(np+1)
-
-
 disp('Starting 400 panel calculation ...')
 np = 400;
 [xs ys] = make_upanels( xsin, ysin, np );
