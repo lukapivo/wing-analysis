@@ -40,7 +40,7 @@ while laminar && i <= n
     else
         ueint = ueint + ueintbit(x(i-1),ue(i-1),x(i),ue(i));
     end
-    
+
     theta_sq = 0.45 / Re_L * (ue(i))^(-6) * ueint;
     theta(i) = sqrt(theta_sq);
 
@@ -107,12 +107,12 @@ if its ~= 0
     H = 2.803;
     He(i+1:end) = He(i);
 
-    for j=i:n
+    for j=i:n-1
         % Momentum integral solution assuming constant H
         theta(j+1) = theta(j) * (ue(j) / ue(j+1)) ^ (H + 2);
     end
 
-    delstar(i+1:n+1) = H * theta(i+1:n+1);
+    delstar(i+1:n) = H * theta(i+1:n);
 end
 
 end
