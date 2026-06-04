@@ -21,4 +21,9 @@ xlabel('x')
 ylabel('\theta')
 legend('Blasius','blsolv')
 
+figure(2);
+plot(x,delstar./theta,'-')
+xlabel('x')
+ylabel('H')
+% legend('Blasius','blsolv')
 
