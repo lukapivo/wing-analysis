@@ -16,9 +16,9 @@ title('Lift and Drag Coefficients vs. Angle of Attack');
 hold off;
 
 figure(2);
-plot(cdswp, clswp)
-xlabel('C_D');
-ylabel('C_L');
+plot(clswp, cdswp)
+xlabel('C_L');
+ylabel('C_D');
 
 figure(3);
 plot(alpha, lovdswp);

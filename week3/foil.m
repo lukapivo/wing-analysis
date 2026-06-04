@@ -7,13 +7,13 @@
 clear
 close all
 
-global Re
+global Re_L
 
 %  Read in the parameter file
 caseref = input('\nEnter case reference: ','s');
 parfile = ['Parfiles/' caseref '.txt'];
 fprintf(1, '%s\n\n', ['Reading in parameter file: ' parfile])
-[section np Re alpha] = par_read(parfile);
+[section np Re_L alpha] = par_read(parfile);
 
 %  Read in the section geometry
 secfile = ['Geometry/' section '.surf'];
