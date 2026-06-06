@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/naca4412.mat";
+caseref = "Data/naca632415.mat";
 load(caseref);
 
 % C_L alpha and C_D alpha
@@ -21,6 +21,7 @@ xlabel('C_L');
 ylabel('C_D');
 
 figure(3);
+grid on
 plot(alpha, lovdswp);
 xlabel('Angle of Attack (degrees)');
 ylabel('L/D');
