@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/naca632415.mat";
+caseref = "Data/naca0012.mat";
 load(caseref);
 
 % C_L alpha and C_D alpha

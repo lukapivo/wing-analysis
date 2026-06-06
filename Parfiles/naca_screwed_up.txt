@@ -1,0 +1,4 @@
+Section identifier              : naca_screwed_up
+Number of panels                : 400
+Reynolds number                 : 0.5e6
+Range of incidences (degrees)   : -20:0.5:20
