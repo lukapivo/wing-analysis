@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/naca632415_5.8.mat";
+caseref = "Data/naca_screwed_up_5.mat";
 load(caseref);
 
 function [] = plot_points(int, ils, itr, its, ax1, x, thetas, color)
@@ -63,10 +63,12 @@ figure(2);
 hold on
 plot(sl, delstarl);
 plot(su, delstaru);
-legend("Lower", "Upper");
+% legend("Lower", "Upper");
 xlabel('s');
 ylabel('\delta*');
 ax_delstar = gca;
+plot_points(ilnt, ills, iltr, ilts, ax_delstar, sl, delstarl, 1);
+plot_points(iunt, iuls, iutr, iuts, ax_delstar, su, delstaru, 2);
 
 
 figure(3);
@@ -74,9 +76,12 @@ figure(3);
 hold on
 plot(sl, delstarl./thetal);
 plot(su, delstaru./thetau);
-legend("Lower", "Upper");
+% legend("Lower", "Upper");
 xlabel('s');
 ylabel('H');
+ax_h = gca;
+plot_points(ilnt, ills, iltr, ilts, ax_h, sl, delstarl./thetal, 1);
+plot_points(iunt, iuls, iutr, iuts, ax_h, su, delstaru./thetau, 2);
 
 figure(4);
 
@@ -85,6 +90,32 @@ plot(xs, cp);
 set(gca, 'Ydir', 'reverse')
 xlabel('s');
 ylabel('cp');
+
+xsu = flip(xs(1:length(su)));
+cpu = flip(cp(1:length(su)));
+xsl = xs(length(su)+1:end);
+cpl = cp(length(su)+1:end);
+
+ax_cp = gca;
+
+plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 1);
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 1);
+
+figure(5);
+
+ue = sqrt(1-cpu);
+mu = - 500000 * thetau.^2 .* [ue(1)/su(1) diff(ue)./diff(su)];
+
+mu_stop = max([iunt iuls]);
+
+hold on
+plot(su(1:mu_stop), mu(1:mu_stop));
+xlabel('s');
+ylabel('m');
+ax_m = gca;
+% plot_points(iunt, iuls, iutr, iuts, ax_m, su, mu, 1);
+
+
 
 
 
@@ -100,7 +131,44 @@ legend("Lower 5.9", "Upper 5.9", "Lower 6", "Upper 6");
 % plot_points(ilnt, ills, iltr, ilts, ax_theta, sl, thetal, 1);
 plot_points(iunt, iuls, iutr, iuts, ax_theta, su, thetau, 2);
 
+figure(2);
+
+plot(sl, delstarl, 'LineStyle', '--');
+plot(su, delstaru, 'LineStyle', '--');
+
+% plot_points(ilnt, ills, iltr, ilts, ax_delstar, sl, delstarl, 1);
+plot_points(iunt, iuls, iutr, iuts, ax_delstar, su, delstaru, 2);
+legend("Lower 5.9", "Upper 5.9", "Lower 6", "Upper 6");
+
+figure(3);
+
+plot(sl, delstarl./thetal, 'LineStyle', '--');
+plot(su, delstaru./thetau, 'LineStyle', '--');
+% plot_points(ilnt, ills, iltr, ilts, ax_h, sl, delstarl./thetal, 1);
+plot_points(iunt, iuls, iutr, iuts, ax_h, su, delstaru./thetau, 2);
+legend("Lower 5.9", "Upper 5.9", "Lower 6", "Upper 6");
+
 figure(4);
 
 plot(xs, cp);
+
+xsu = flip(xs(1:length(su)));
+cpu = flip(cp(1:length(su)));
+xsl = xs(length(su)+1:end);
+cpl = cp(length(su)+1:end);
+
+% plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 2);
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 2);
+
+
+
 legend('5.8', '5.9');
+
+figure(5);
+
+ue = sqrt(1-cpu);
+mu = - 500000 * thetau.^2 .* [ue(1)/su(1) diff(ue)./diff(su)];
+
+mu_stop = max([iunt iuls]);
+plot(su(1:mu_stop), mu(1:mu_stop));
+legend('5.8', '5.9')
