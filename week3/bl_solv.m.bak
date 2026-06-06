@@ -32,7 +32,7 @@ itr = 0;
 % Turbulent separation location
 its = 0;
 
-while laminar && i < n
+while laminar && i <= n
     i = i + 1;
 
     if i == 1
@@ -87,7 +87,7 @@ while its == 0 && i < n
     theta(i) = thickhist(end,1);
     He(i) = thick0(end,2) / thick0(end,1);
     
-    
+    delstar(i) = theta(i) * (11*He(i)+15) / (48*He(i)-59);
 
     
     % Test for turbulent reattachment
@@ -98,12 +98,7 @@ while its == 0 && i < n
     % Test for turbulent separation
     if He(i) < 1.46
         its = i;
-        H = (11*1.46+15) / (48*1.46-59);
-    else
-        H = (11*He(i)+15) / (48*He(i)-59);
     end
-
-    delstar(i) = theta(i) * H;
 end
 
 % Complete thetas if turbulent separation occurred
@@ -117,7 +112,7 @@ if its ~= 0
         theta(j+1) = theta(j) * (ue(j) / ue(j+1)) ^ (H + 2);
     end
 
-    delstar(i+1:n) = H * theta(i+1:n);
+    delstar(i:n) = H * theta(i+1:n);
 end
 
 end

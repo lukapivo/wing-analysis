@@ -5,14 +5,10 @@ cl = - 2 * circ;
 
 theta_te = thetal(end) + thetau(end);
 H_te = (delstarl(end) + delstaru(end)) / theta_te;
-H_te
 
 % cp(1) and cp(np+1) constrained to be the same.
-ue_te = sqrt(1-cp(1));
+ue_te = sqrt(1-cp(end));
 
 
 cd = 2 * theta_te * ue_te^((H_te+5)/2);
-theta_te
-cd
-
 end
