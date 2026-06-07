@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/naca0012_7.6.mat";
+caseref = "Data/LLL06_3.5.mat";
 load(caseref);
 
 function [] = plot_points(int, ils, itr, its, ax1, x, thetas, color)

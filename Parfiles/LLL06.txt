@@ -1,4 +1,4 @@
 Section identifier              : LLL06
 Number of panels                : 400
 Reynolds number                 : 0.5e6
-Range of incidences (degrees)   : 0:0.02:20
+Range of incidences (degrees)   : -20:0.1:20
