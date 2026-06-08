@@ -326,18 +326,19 @@ uicontrol('style','text','Fontsize',10, ...
                 end
 
             case 'p'
-                disp('You pressed p!');
-                % Create a new invisible figure
-                fig_temp = figure('Visible', 'off');
-                % Copy the axes content from the main figure
-                copyobj(a, fig_temp);
-                % Adjust the new figure size to match the original
-                set(fig_temp, 'units', 'centimeters', 'position', get(h, 'position'));
-                set(fig_temp, 'PaperUnits', 'centimeters', 'PaperPosition', get(h, 'position'));
-                % Save
-                print(fig_temp, 'week3/Figures/curvature', '-depsc', '-loose');
-                % Close temporary figure
-                close(fig_temp);
+            % Temporarily hide the UI control
+            uih = findobj(h, 'Type', 'uicontrol');
+            if ~isempty(uih), set(uih, 'Visible', 'off'); drawnow; end
+            
+            % Ensure output folder exists
+            if ~exist('week3/Figures', 'dir'), mkdir('week3/Figures'); end
+            
+            % Use exportgraphics – produces crisp vector graphics, no cropping
+            exportgraphics(gcf, 'week3/Figures/curvature.eps', 'ContentType', 'vector');
+            
+            % Restore UI
+            if ~isempty(uih), set(uih, 'Visible', 'on'); drawnow; end
+            disp('Saved as vector EPS (exportgraphics).');
 
 
             case 'leftarrow'
