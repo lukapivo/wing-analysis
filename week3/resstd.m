@@ -15,6 +15,7 @@ axis('equal')
 xlabel('x/c')
 ylabel('y/c')
 title('Van de Vooren aerofoil')
+saveas(gfc,'week3/Figures/resstd_airfoil','epsc')
 
 disp('Starting 100 panel calculation ...')
 np = 100;
@@ -66,23 +67,29 @@ xlabel('x/c')
 ylabel('-c_p')
 title('Van de Vooren cps; varying panel size')
 legend('exact','100pans','200pans','400pans','800pans')
+saveas(gfc,'week3/Figures/resstd_all','epsc')
 
 figure(3)
 plot(xsin,-cpex,xs1,-cp1,'--')
 legend('exact','100pans')
+saveas(gfc,'week3/Figures/resstd_100','epsc')
 
 figure(4)
 plot(xsin,-cpex,xs2,-cp2,'-.')
 legend('exact','200pans')
+saveas(gfc,'week3/Figures/resstd_200','epsc')
 
 figure(5)
 plot(xsin,-cpex,xs4,-cp4,'-+')
 legend('exact','400pans')
+saveas(gfc,'week3/Figures/resstd_400','epsc')
 
 figure(6)
 plot(xsin,-cpex,xs8,-cp8,'-x')
 legend('exact','800pans')
+saveas(gfc,'week3/Figures/resstd_800','epsc')
 
 figure(7)
 plot(xsin,-cpex)
 legend('exact')
+saveas(gfc,'week3/Figures/resstd_exact','epsc')
