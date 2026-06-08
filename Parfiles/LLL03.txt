@@ -1,4 +1,4 @@
-Section identifier              : LLL03
+Section identifier              : LLL03_low
 Number of panels                : 400
 Reynolds number                 : 0.5e6
 Range of incidences (degrees)   : -20:0.1:20
