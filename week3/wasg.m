@@ -85,6 +85,26 @@ uicontrol('style','text','Fontsize',10, ...
               'b-back up';'t-restore';'d-delta'},...
     'foregroundcolor','k');
 
+    function plot_curvature(xs, ys);
+        if c == 1
+            dx = gradient(xs);
+            dy = gradient(ys);
+            ddx = gradient(dx);
+            ddy = gradient(dy);
+
+            kappa = abs(dx.*ddy - dy.*ddx) ./ (dx.^2 + dy.^2).^(1.5);
+            scale = 0.01; 
+            comb_length = kappa * scale;
+
+            nx = -dy ./ sqrt(dx.^2 + dy.^2);
+
+            ny = dx ./ sqrt(dx.^2 + dy.^2);
+            hold on
+            quiver(xs(1:20:end), ys(1:20:end), -comb_length(1:20:end).*nx(1:20:end), -comb_length(1:20:end).*ny(1:20:end), 0, 'r', 'ShowArrowHead', 'off');
+            hold off
+        end
+    end
+
 
     %%% @Down - what happens when a mouse button is pressed
     function Down(varargin);
@@ -128,6 +148,7 @@ uicontrol('style','text','Fontsize',10, ...
                     plot(xs,ys,'k', ...
                          [1;x],[0;y],'.k', ...
                          x(I),y(I),'xk','markersize',13)
+                    plot_curvature(xs,ys);
                     axis equal
                     axis([0 1 -.2 .2])
                     t=text(x(I)+deltxt,y(I)-deltxt, ...
@@ -143,6 +164,7 @@ uicontrol('style','text','Fontsize',10, ...
                 plot(xs,ys,'k', ...
                      [1;x],[0;y],'.k', ...
                      x(I),y(I),'xk','markersize',13)
+                plot_curvature(xs,ys);
                 axis equal
                 axis([0 1 -.2 .2])
                 t=text(x(I)+deltxt,y(I)-deltxt, ...
@@ -165,6 +187,7 @@ uicontrol('style','text','Fontsize',10, ...
                 try delete(t);end;
                 plot(xs,ys,'k', ...
                      [1;x],[0;y],'.k','markersize',13)
+                plot_curvature(xs,ys);
                 axis equal
                 axis([0 1 -.2 .2])
                 drawnow
@@ -191,6 +214,8 @@ uicontrol('style','text','Fontsize',10, ...
             plot(xs,ys,'k', ...
                  [1;x],[0;y],'.k', ...
                  x(I),y(I),'xk','markersize',13)
+            plot_curvature(xs,ys);
+            
             axis equal
             axis([0 1 -.2 .2])
             t=text(x(I)+deltxt,y(I)-deltxt, ...
@@ -292,6 +317,7 @@ uicontrol('style','text','Fontsize',10, ...
                 plot(xs,ys,'k', ...
                      [1;x],[0;y],'.k', ...
                      x(I),y(I),'xk','markersize',13)
+                plot_curvature(xs,ys);
                 axis equal
                 axis(axisZ)
                 drawnow
@@ -346,6 +372,7 @@ uicontrol('style','text','Fontsize',10, ...
                 set(0, 'CurrentFigure', h)
                 try delete(t); end
                 plot(xs, ys, 'k', [1; x], [0; y], '.k', x(I), y(I), 'xk', 'markersize', 13)
+                plot_curvature(xs,ys);
                 axis equal; axis([0 1 -.2 .2])
                 t = text(x(I)+deltxt, y(I)-deltxt, ...
                     sprintf('(%8.4f,%8.4f)', x(I), y(I)), ...
@@ -372,28 +399,13 @@ uicontrol('style','text','Fontsize',10, ...
         [xs ys] = splinefit([1;x;1],[0;y;0],0);
         set(0, 'CurrentFigure', h)
         try delete(t);end;
+
         plot(xs,ys,'k', ...
              [1;x],[0;y],'.k', ...
              x(I),y(I),'xk','markersize',13)
 
         % Curvature comb
-        if c == 1
-            dx = gradient(xs);
-            dy = gradient(ys);
-            ddx = gradient(dx);
-            ddy = gradient(dy);
-
-            kappa = abs(dx.*ddy - dy.*ddx) ./ (dx.^2 + dy.^2).^(1.5);
-            scale = 0.01; 
-            comb_length = kappa * scale;
-
-            nx = -dy ./ sqrt(dx.^2 + dy.^2);
-
-            ny = dx ./ sqrt(dx.^2 + dy.^2);
-            hold on
-            quiver(xs(1:20:end), ys(1:20:end), -comb_length(1:20:end).*nx(1:20:end), -comb_length(1:20:end).*ny(1:20:end), 0, 'r', 'ShowArrowHead', 'off');
-            hold off
-        end
+        plot_curvature(xs,ys);
 
         axis equal
         axis([0 1 -.2 .2])
@@ -456,6 +468,7 @@ uicontrol('style','text','Fontsize',10, ...
                          [1;x],[0;y],'.k', ...
                          x(I),y(I),'xk', ...
                          'markersize',13);
+                    plot_curvature(xs,ys);
                     axis equal
                     axis(axisZ)
                     t=text(x(I)+deltxtZ,y(I)-deltxtZ, ...
@@ -481,6 +494,7 @@ uicontrol('style','text','Fontsize',10, ...
                      [1;x],[0;y],'.k', ...
                      x(I),y(I),'xk', ...
                      'markersize',13);
+                plot_curvature(xs,ys);
                 axis equal
                 axis(axisZ)
                 t=text(x(I)+deltxtZ,y(I)-deltxtZ, ...
@@ -502,6 +516,8 @@ uicontrol('style','text','Fontsize',10, ...
                 plot(xs,ys,'k', ...
                      [1;x],[0;y],'.k', ...
                      'markersize',13);
+
+                plot_curvature(xs,ys);
                 axis equal
                 axis([0 1 -.2 .2])
                 %drawnow
