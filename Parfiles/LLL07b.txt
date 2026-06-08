@@ -1,4 +1,4 @@
 Section identifier              : LLL07b
 Number of panels                : 400
 Reynolds number                 : 0.5e6
-Range of incidences (degrees)   : -20:0.1:20
+Range of incidences (degrees)   : 0:0.1:20
