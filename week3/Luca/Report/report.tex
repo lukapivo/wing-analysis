@@ -75,6 +75,8 @@ The boundary layer solver is validated through comparison with the exact Blasius
 
 Further validation is completed using two standard NACA airfoils: 0012 and 4412. Experimental data for these is widely available for comparison.
 
+** These graphs are generated using plot-graphs and need to be improved**
+
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -88,7 +90,11 @@ Further validation is completed using two standard NACA airfoils: 0012 and 4412.
         \includegraphics[width=\linewidth]{../../Figures/naca4412_clalpha.eps}
         \label{fig:}
     \end{minipage}
+    \caption{$C_L - \alpha$ curves}
+    \label{fig:cl alpha}
 \end{figure}
+
+The lift coefficient is calculated from the circulation via $C_L = -2\frac{\Gamma}{Uc}$, which is entirely based on inviscid potential flow theory. It is therefore unsurprising that neither $C_L-\alpha$ curves show no stall characteristics - they receive no feedback from the boundary layer calculations.
 
 \begin{figure}[H]
     \centering
@@ -103,6 +109,8 @@ Further validation is completed using two standard NACA airfoils: 0012 and 4412.
         \includegraphics[width=\linewidth]{../../Figures/naca4412_cdalpha.eps}
         \label{fig:}
     \end{minipage}
+        \caption{$C_D - \alpha$ curves}
+    \label{fig:cd alpha}
 \end{figure}
 
 \begin{figure}[H]
@@ -118,6 +126,8 @@ Further validation is completed using two standard NACA airfoils: 0012 and 4412.
         \includegraphics[width=\linewidth]{../../Figures/naca4412_clcd.eps}
         \label{fig:}
     \end{minipage}
+        \caption{$C_D - C_L$ curves}
+    \label{fig:cl cd}
 \end{figure}
 
 
