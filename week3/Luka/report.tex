@@ -58,13 +58,16 @@
 \subsection{Panel Count}
 \subsection{NACA Foil Comparison}
 \subsection{Viscous Coupling}
+The assumption that a boundary layer always remains much thinner than the section under study is not always valid - by the trailing edge of an airfoil, at low Reynolds numbers, the displacement thickness can be on the order of \qty{1}{\percent} of the chord, which is of similar order to 
 \subsection{Transition Modelling}
 \subsection{Laminar Separation Bubbles}
 \subsection{Turbulent Separation}
 Due to the lack of inviscid to viscous coupling, the modelling of turbulent separation is fundamentally inaccurate, as there is no impact on the inviscid lift coefficient, meaning that the stall behaviour seen in real airfoils is completely absent. 
 \section{Design Process}
 \subsection{Tools}
-The WASG tool was modified with the ability to determine the local curvature at any point on the airfoil, shown as a curvature comb. This proved very necessary due to the sensitivity of the boundary model to very small changes in the rate of change of curvature around the 
+The WASG tool was modified with the ability to determine the local curvature at any point on the airfoil, shown as a curvature comb. This proved very necessary due to the sensitivity of the boundary model to very small changes in the rate of change of curvature around the airfoil. Since the cubic splines used to construct the profile are only $C^2$ continuous, explicit care had to be taken to ensure that spline induced curvature variation did not cause premature laminar separation.
+
+This was much more of an issue at low Reynolds numbers, as the turbulent boundary layer present at higher Reynolds numbers was much more resistant to curvature variations. This sensitivity does however indicate that the performance of the low speed laminar section would in reality be very sensitive to surface imperfections, as even very small variations caused substantial variations in $m$ and hence premature separation.
 \subsection{Low Speed}
 At a Reynolds number as low as \num{5e5}, it is possible to retain laminar flow over a substantial fraction of the airfoil. In order to take advantage of the slow growth of the laminar boundary layer, it is desirable to delay the presence of any adverse pressure gradients that might destabilise the laminar boundary layer to as far to the rear of the airfoil as possible.
 
