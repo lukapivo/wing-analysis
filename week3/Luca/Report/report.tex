@@ -45,20 +45,41 @@ Steps:
 \section{Discussion of model}
 Brief description of the model, limitations?
 
-\subsection{Panel number choice}
 
-Talk about the resolution study and the effect of panel number.
+Include the modified TE kutta condition
 
-\subsection{Comparison with Xfoil}
+\section{Model validation}
 
-Why Xfoil is better, industry standard panel method solver. Takes into account BL effects for lift etc, used in industry for inverse design.
+\subsection{Panel number resolution}
 
-\subsection{Program testing}
+To compare the variation of solution fidelity with panel number, results for Van de Vooren airfoil were compared. This airfoil geometry is obtained from conformal mapping of a cylinder, therefore an exact analytical solution exists.
+
+This exact solution is plotted against the model output for various panel counts. The model is most inaccurate close to the suction peak where there is a large adverse pressure gradient. This inaccuracy is more pronounced for the 'thin' section than the 'thick', as the adverse pressure gradient experienced is higher. For panel counts larger than 400, the model output matches the exact solution sufficiently well; therefore, future investigations** will use 400 panels.
+
+However, these results highlight a disadvantage of the model. Rather than using evenly spaced panels, it would be advantageous to increase the density close to the leading edge, where a higher resolution has a larger effect. This would allow a lower overall panel count while preserving accuracy, and is implemented in other, industry standard, panel method solvers.
+
+**Plots for both thin and thick**
+
+\subsection{Boundary layer validation}
+
+The boundary layer solver is validated through comparison with the exact Blasius solution.
+
+\subsection{Comparison with NACA 0012 and NACA 4412 foils}
+
 
 Testing of software on Naca 0012 and 4412 airfoils with plots. Can also use xfoil to compare. L obviously stays too high after stall.
 
 Large number of questions on p30 of the handout to discuss here. 
 Key issue in comparison of CL will be the lack of boundary layer consideration in calc of lift- does not consider stall
+
+----------------------------
+
+
+
+\subsection{Comparison with Xfoil}
+
+Why Xfoil is better, industry standard panel method solver. Takes into account BL effects for lift etc, used in industry for inverse design.
+
 
 \section{High L/D airfoil design}
 
