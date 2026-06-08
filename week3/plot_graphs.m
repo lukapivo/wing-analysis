@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/naca4412.mat";
+caseref = "Data/naca0012.mat";
 load(caseref);
 
 % % C_L alpha and C_D alpha
@@ -34,26 +34,26 @@ figure(1);
 hold on
 plot(alpha, clswp);
 xlabel('Angle of Attack (degrees)');
-ylabel('Lift coefficient C_L');
-legend('NACA 4412');
+ylabel('C_L');
+legend('NACA 0012');
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-saveas(gcf,'week3/Figures/naca4412_clalpha','epsc2')
+saveas(gcf,'week3/Figures/naca0012_clalpha','epsc2')
 hold off;
 
 figure(2);
 plot(clswp, cdswp)
 xlabel('C_L');
 ylabel('C_D');
-legend('NACA 4412');
+legend('NACA 0012');
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-saveas(gcf,'week3/Figures/naca4412_clcd','epsc2')
+saveas(gcf,'week3/Figures/naca0012_clcd','epsc2')
 
 figure(3);
 grid on
 plot(alpha, cdswp);
 xlabel('Angle of Attack (degrees)');
-ylabel('Drag coefficient C_D');
-legend('NACA 4412');
+ylabel('C_D');
+legend('NACA 0012');
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-saveas(gcf,'week3/Figures/naca4412_cdalpha','epsc2')
+saveas(gcf,'week3/Figures/naca0012_cdalpha','epsc2')
 
