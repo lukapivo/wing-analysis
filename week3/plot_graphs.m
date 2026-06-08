@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/LLL05.mat";
+caseref = "Data/LLL08b.mat";
 load(caseref);
 
 % C_L alpha and C_D alpha
