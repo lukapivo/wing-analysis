@@ -92,7 +92,7 @@ uicontrol('style','text','Fontsize',10, ...
             ddx = gradient(dx);
             ddy = gradient(dy);
 
-            kappa = abs(dx.*ddy - dy.*ddx) ./ (dx.^2 + dy.^2).^(1.5);
+            kappa = (dx.*ddy - dy.*ddx) ./ (dx.^2 + dy.^2).^(1.5);
             scale = 0.01; 
             comb_length = kappa * scale;
 
