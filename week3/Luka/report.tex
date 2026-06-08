@@ -61,11 +61,14 @@
 \subsection{Transition Modelling}
 \subsection{Laminar Separation Bubbles}
 \subsection{Turbulent Separation}
+Due to the lack of inviscid to viscous coupling, the modelling of turbulent separation is fundamentally inaccurate, as there is no impact on the inviscid lift coefficient, meaning that the stall behaviour seen in real airfoils is completely absent. 
 \section{Design Process}
+\subsection{Tools}
+The WASG tool was modified with the ability to determine the local curvature at any point on the airfoil, shown as a curvature comb. This proved very necessary due to the sensitivity of the boundary model to very small changes in the rate of change of curvature around the 
 \subsection{Low Speed}
 At a Reynolds number as low as \num{5e5}, it is possible to retain laminar flow over a substantial fraction of the airfoil. In order to take advantage of the slow growth of the laminar boundary layer, it is desirable to delay the presence of any adverse pressure gradients that might destabilise the laminar boundary layer to as far to the rear of the airfoil as possible.
 
-Since there is no substantial downside of a strong favourable pressure gradient, and, for a given amount of drag, we should want the lowest $c_p$ value achievable over the widest possible range of positions on the upper surface of the airfoil, it is desirable to reach the minimum $c_p$ very close to the nose of the airfoil, then remain at constant $c_p$ for a substantial fraction of the chord length, and then, to reach the trailing edge with minimum instantaneous adverse pressure gradient magnitude, by 
+Since there is no substantial downside of a strong favourable pressure gradient, and, for a given amount of drag, we should want the lowest $c_p$ value achievable over the widest possible range of positions on the upper surface of the airfoil, it is desirable to reach the minimum $c_p$ very close to the nose of the airfoil, then remain at constant $c_p$ for a substantial fraction of the chord length, and then, to reach the trailing edge with minimum instantaneous adverse pressure gradient magnitude, by linear increase in $c_p$. Between these two sections, there is a ``transition ramp'' where the two are joined smoothly; for low Reynolds numbers the properties of this ramp can have a significant impact, as they determine whether transition will occur naturally or by laminar separation with turbulent reattachment. This is similar reasoning to that used to produce the NACA 6- and 7-series airfoils, and many other modern laminar airfoils.
 \subsection{High Speed}
 \subsection{Inverse Design}
 \section{Optimal Sections}
