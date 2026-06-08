@@ -62,7 +62,7 @@ However, these results highlight a disadvantage of the model. Rather than using 
 
 \subsection{Boundary layer validation}
 
-The boundary layer solver is validated through comparison with the exact Blasius solution, valid for laminar flow. Until natural transition, which occurs at $\text{x/L} = 0.38$, the calculated $\theta$ value matches closes with Blasius.
+The boundary layer solver is validated through comparison with the exact Blasius solution, valid for laminar flow in a zero pressure gradient. Until natural transition, which occurs at $\text{x/L} = 0.38$, the calculated momentum thickness ($\theta$ value) matches closely with Blasius.
 
 \begin{figure}[H]
     \centering
@@ -73,13 +73,18 @@ The boundary layer solver is validated through comparison with the exact Blasius
 
 \subsection{Comparison with NACA 0012 and NACA 4412 foils}
 
+Further validation is completed using two standard NACA airfoils: 0012 and 4412. Experimental data for these is widely available for comparison.
 
+
+
+
+----------------------------
 Testing of software on Naca 0012 and 4412 airfoils with plots. Can also use xfoil to compare. L obviously stays too high after stall.
 
 Large number of questions on p30 of the handout to discuss here. 
 Key issue in comparison of CL will be the lack of boundary layer consideration in calc of lift- does not consider stall
 
-----------------------------
+
 
 
 
