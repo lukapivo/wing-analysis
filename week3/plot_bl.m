@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/LLL08_2.9.mat";
+caseref = "Data/LLL06b_2.5.mat";
 load(caseref);
 
 function [] = plot_points(int, ils, itr, its, ax1, x, thetas, color)
@@ -119,8 +119,8 @@ ax_m = gca;
 
 
 
-% % Load 6 
-% caseref = "Data/naca632415_5.9.mat";
+% Load 6 
+% caseref = "Data/LLL05_2.3.mat";
 % load(caseref);
 % 
 % figure(1);
@@ -157,7 +157,7 @@ ax_m = gca;
 % xsl = xs(length(su)+1:end);
 % cpl = cp(length(su)+1:end);
 % 
-% % plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 2);
+% plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 2);
 % plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 2);
 % 
 % 
