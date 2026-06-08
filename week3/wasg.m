@@ -300,6 +300,57 @@ uicontrol('style','text','Fontsize',10, ...
             case 'd'
                 delta=str2double(inputdlg('enter delta'));
                 deltaZ=.2*delta;
+            
+            case 'm'
+                % Ensure inputs are column vectors before smoothing
+                x = x(:);
+                y = y(:);
+
+                % Smoothing tolerance – smaller = closer fit, larger = smoother
+                % Start with a moderate value (adjust as needed)
+                tol = 1e-6 * length(x) * var(y);
+
+                try
+                    % spaps returns a spline structure; evaluate at original x
+                    spl = spaps(x, y, tol);
+                    yy_smoothed = fnval(spl, x);
+
+                    % Force smoothed y to be a column vector
+                    y = yy_smoothed(:);
+                catch
+                    % Fallback to loess if spaps fails
+                    warning('spaps failed, using loess smoothing.');
+                    span = 0.5;
+                    y = smoothdata(y, 'loess', span);
+                    y = y(:);
+                end
+
+                % x remains the same, but ensure it's a column
+                x = x(:);
+                L = length(x);          % update number of points
+
+                % Recompute I (index of trailing edge point – x closest to 1)
+                [~, I] = min((x-1).^2 + y.^2);
+
+                % Redraw airfoil
+                [xs, ys] = splinefit([1; x; 1], [0; y; 0], 0);
+                set(0, 'CurrentFigure', h)
+                try delete(t); end
+                plot(xs, ys, 'k', [1; x], [0; y], '.k', x(I), y(I), 'xk', 'markersize', 13)
+                axis equal; axis([0 1 -.2 .2])
+                t = text(x(I)+deltxt, y(I)-deltxt, ...
+                    sprintf('(%8.4f,%8.4f)', x(I), y(I)), ...
+                    'color','k','fontweight','bold');
+                drawnow
+
+                % Push onto undo stack
+                xundo = [[x; zeros(Lmax-length(x),1)], xundo(:,1:min(end,max_undo-1))];
+                yundo = [[y; zeros(Lmax-length(y),1)], yundo(:,1:min(end,max_undo-1))];
+                Lundo = [L, Lundo(1:min(end,max_undo-1))];
+                Iundo = [I, Iundo(1:min(end,max_undo-1))];
+                xredo = []; yredo = []; Lredo = []; Iredo = [];
+
+
             case 'leftarrow'
                 x(I)=max([x(I)-delta,xmin]);
             case 'rightarrow'
