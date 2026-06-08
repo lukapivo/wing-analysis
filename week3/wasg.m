@@ -39,6 +39,7 @@ xmax = 1.0;
 xmin = 0.0;
 ymax =  .2;
 ymin = -.2;
+c=0; 
 
 pathin=[pwd,'/Geometry/'];
 [filein,pathin]=uigetfile([pathin '*.surf']);
@@ -300,7 +301,15 @@ uicontrol('style','text','Fontsize',10, ...
             case 'd'
                 delta=str2double(inputdlg('enter delta'));
                 deltaZ=.2*delta;
-            
+
+            case 'c'
+                if c==0
+                    
+                    c = 1;
+                else
+                    c = 0;
+                end
+
             case 'm'
                 % Ensure inputs are column vectors before smoothing
                 x = x(:);
@@ -366,11 +375,33 @@ uicontrol('style','text','Fontsize',10, ...
         plot(xs,ys,'k', ...
              [1;x],[0;y],'.k', ...
              x(I),y(I),'xk','markersize',13)
+
+        % Curvature comb
+        if c == 1
+            dx = gradient(xs);
+            dy = gradient(ys);
+            ddx = gradient(dx);
+            ddy = gradient(dy);
+
+            kappa = abs(dx.*ddy - dy.*ddx) ./ (dx.^2 + dy.^2).^(1.5);
+            scale = 0.01; 
+            comb_length = kappa * scale;
+
+            nx = -dy ./ sqrt(dx.^2 + dy.^2);
+
+            ny = dx ./ sqrt(dx.^2 + dy.^2);
+            hold on
+            quiver(xs(1:20:end), ys(1:20:end), -comb_length(1:20:end).*nx(1:20:end), -comb_length(1:20:end).*ny(1:20:end), 0, 'r', 'ShowArrowHead', 'off');
+            hold off
+        end
+
         axis equal
         axis([0 1 -.2 .2])
         t=text(x(I)+deltxt,y(I)-deltxt, ...
                ['(',num2str(x(I),'%8.4f'),',',num2str(y(I),'%8.4f'),')'], ...
                'color','k','fontweight','bold');
+
+        
         drawnow
     end
 
