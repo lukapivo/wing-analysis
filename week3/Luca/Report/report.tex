@@ -62,7 +62,14 @@ However, these results highlight a disadvantage of the model. Rather than using 
 
 \subsection{Boundary layer validation}
 
-The boundary layer solver is validated through comparison with the exact Blasius solution.
+The boundary layer solver is validated through comparison with the exact Blasius solution, valid for laminar flow. Until natural transition, which occurs at $\text{x/L} = 0.38$, the calculated $\theta$ value matches closes with Blasius.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../../Figures/bl_valid.eps}
+    \caption{Comparison with the exact Blasius solution.}
+    \label{fig:bl_valid}
+\end{figure}
 
 \subsection{Comparison with NACA 0012 and NACA 4412 foils}
 
