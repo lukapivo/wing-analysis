@@ -39,7 +39,8 @@ xmax = 1.0;
 xmin = 0.0;
 ymax =  .2;
 ymin = -.2;
-c=0; 
+c=0;
+full=0;
 
 pathin=[pwd,'/Geometry/'];
 [filein,pathin]=uigetfile([pathin '*.surf']);
@@ -85,7 +86,7 @@ uicontrol('style','text','Fontsize',10, ...
               'b-back up';'t-restore';'d-delta'},...
     'foregroundcolor','k');
 
-    function plot_curvature(xs, ys);
+    function plot_curvature(xs, ys)
         if c == 1
             dx = gradient(xs);
             dy = gradient(ys);
@@ -103,6 +104,27 @@ uicontrol('style','text','Fontsize',10, ...
             quiver(xs(1:20:end), ys(1:20:end), -comb_length(1:20:end).*nx(1:20:end), -comb_length(1:20:end).*ny(1:20:end), 0, 'r', 'ShowArrowHead', 'off');
             hold off
         end
+    end
+
+
+    function plot_all(x, y)
+        [xs ys] = splinefit([1;x;1],[0;y;0],0);
+        try delete(t);end;
+        plot(xs,ys,'k', ...
+            [1;x],[0;y],'.k', ...
+            x(I),y(I),'xk','markersize',13)
+        plot_curvature(xs,ys);
+        
+        axis equal
+        if full==1
+            axis([-0.5 1 -.2 .2])
+        else
+            axis([0 1 -.2 .2])
+        end
+        t=text(x(I)+deltxt,y(I)-deltxt, ...
+            ['(',num2str(x(I),'%8.4f'),',',num2str(y(I),'%8.4f'),')'], ...
+            'color','k','fontweight','bold');
+        drawnow
     end
 
 
@@ -143,34 +165,13 @@ uicontrol('style','text','Fontsize',10, ...
                     Lredo=[];
                     Iredo=[];
                     b=1;
-                    [xs ys] = splinefit([1;x;1],[0;y;0],0);
-                    try delete(t);end;
-                    plot(xs,ys,'k', ...
-                         [1;x],[0;y],'.k', ...
-                         x(I),y(I),'xk','markersize',13)
-                    plot_curvature(xs,ys);
-                    axis equal
-                    axis([0 1 -.2 .2])
-                    t=text(x(I)+deltxt,y(I)-deltxt, ...
-                           ['(',num2str(x(I),'%8.4f'),',',num2str(y(I),'%8.4f'),')'], ...
-                           'color','k','fontweight','bold');
-                    drawnow
+                    plot_all(x,y);
+                    
                 end
             %%% Select a knot if left-click is close to it:
             else
                 b=1;
-                %[xs ys] = splinefit([1;x;1],[0;y;0],0);%redundant?
-                try delete(t);end;
-                plot(xs,ys,'k', ...
-                     [1;x],[0;y],'.k', ...
-                     x(I),y(I),'xk','markersize',13)
-                plot_curvature(xs,ys);
-                axis equal
-                axis([0 1 -.2 .2])
-                t=text(x(I)+deltxt,y(I)-deltxt, ...
-                       ['(',num2str(x(I),'%8.4f'),',',num2str(y(I),'%8.4f'),')'], ...
-                       'color','k','fontweight','bold');
-                drawnow
+                plot_all(x,y);
             end
         %%% Mouse right click:
         case 'alt'
@@ -183,14 +184,7 @@ uicontrol('style','text','Fontsize',10, ...
                 yredo=[];
                 Lredo=[];
                 Iredo=[];
-                [xs ys] = splinefit([1;x;1],[0;y;0],0);
-                try delete(t);end;
-                plot(xs,ys,'k', ...
-                     [1;x],[0;y],'.k','markersize',13)
-                plot_curvature(xs,ys);
-                axis equal
-                axis([0 1 -.2 .2])
-                drawnow
+                plot_all(x,y);
             end
       end
     end
@@ -209,19 +203,7 @@ uicontrol('style','text','Fontsize',10, ...
             y(I)=max([min([p(3),ymax]),ymin]);
             xredo=[];
             yredo=[];
-            [xs ys] = splinefit([1;x;1],[0;y;0],0);
-            try delete(t);end;
-            plot(xs,ys,'k', ...
-                 [1;x],[0;y],'.k', ...
-                 x(I),y(I),'xk','markersize',13)
-            plot_curvature(xs,ys);
-            
-            axis equal
-            axis([0 1 -.2 .2])
-            t=text(x(I)+deltxt,y(I)-deltxt, ...
-                ['(',num2str(x(I),'%8.4f'),',',num2str(y(I),'%8.4f'),')'], ...
-                'color','k','fontweight','bold');
-            drawnow
+            plot_all(x,y);
         end
     end
 
@@ -336,6 +318,13 @@ uicontrol('style','text','Fontsize',10, ...
                     c = 0;
                 end
 
+            case 'f'
+                if full==0
+                    full = 1;
+                else
+                    full = 0;
+                end
+
             case 'm'
                 % Ensure inputs are column vectors before smoothing
                 x = x(:);
@@ -396,25 +385,8 @@ uicontrol('style','text','Fontsize',10, ...
             case 'uparrow'
                 y(I)=min([y(I)+delta,ymax]);
         end
-        [xs ys] = splinefit([1;x;1],[0;y;0],0);
         set(0, 'CurrentFigure', h)
-        try delete(t);end;
-
-        plot(xs,ys,'k', ...
-             [1;x],[0;y],'.k', ...
-             x(I),y(I),'xk','markersize',13)
-
-        % Curvature comb
-        plot_curvature(xs,ys);
-
-        axis equal
-        axis([0 1 -.2 .2])
-        t=text(x(I)+deltxt,y(I)-deltxt, ...
-               ['(',num2str(x(I),'%8.4f'),',',num2str(y(I),'%8.4f'),')'], ...
-               'color','k','fontweight','bold');
-
-        
-        drawnow
+        plot_all(x,y);
     end
 
 
@@ -454,13 +426,8 @@ uicontrol('style','text','Fontsize',10, ...
                     xredo=[];
                     yredo=[];
                     b=1;
-                    [xs ys] = splinefit([1;x;1],[0;y;0],0);%redundant?
                     set(0, 'CurrentFigure', h)
-                    plot(xs,ys,'k', ...
-                         [1;x],[0;y],'.k', ...
-                         x(I),y(I),'xk','markersize',13);
-                    axis equal
-                    axis([0 1 -.2 .2])
+                    plot_all(x,y);
                     %drawnow
                     figure(hZ)
                     try delete(t);end;
@@ -479,14 +446,8 @@ uicontrol('style','text','Fontsize',10, ...
             %%% Select a knot if left-click is close to it:
             else
                 b=1;
-                [xs ys] = splinefit([1;x;1],[0;y;0],0);%redundant?
                 set(0, 'CurrentFigure', h)
-                plot(xs,ys,'k', ...
-                     [1;x],[0;y],'.k', ...
-                     x(I),y(I),'xk', ...
-                     'markersize',13);
-                axis equal
-                axis([0 1 -.2 .2])
+                plot_all(x,y);
                 %drawnow
                 figure(hZ)
                 try delete(t);end;
@@ -511,21 +472,15 @@ uicontrol('style','text','Fontsize',10, ...
                 y=yy;
                 xredo=[];
                 yredo=[];
-                [xs ys] = splinefit([1;x;1],[0;y;0],0);
                 set(0, 'CurrentFigure', h)
-                plot(xs,ys,'k', ...
-                     [1;x],[0;y],'.k', ...
-                     'markersize',13);
-
-                plot_curvature(xs,ys);
-                axis equal
-                axis([0 1 -.2 .2])
+                plot_all(x,y);
                 %drawnow
                 figure(hZ)
                 try delete(t);end;
                 plot(xs,ys,'k', ...
                      [1;x],[0;y],'.k', ...
                      'markersize',13);
+                plot_curvature(xs,ys);
                 axis equal
                 axis(axisZ)
                 drawnow
@@ -547,13 +502,8 @@ uicontrol('style','text','Fontsize',10, ...
             y(I)=max([min([p(3),ymax]),ymin]);
             xredo=[];
             yredo=[];
-            [xs ys] = splinefit([1;x;1],[0;y;0],1);
             set(0, 'CurrentFigure', h)
-            plot(xs,ys,'k', ...
-                 [1;x],[0;y],'.k', ...
-                 x(I),y(I),'xk','markersize',13);
-            axis equal
-            axis([0 1 -.2 .2])
+            plot_all(x,y);
             %drawnow
             set(0, 'CurrentFigure', hZ)
             try delete(t);end;
@@ -561,6 +511,7 @@ uicontrol('style','text','Fontsize',10, ...
                  [1;x],[0;y],'.k', ...
                  x(I),y(I),'xk', ...
                  'markersize',13);
+            plot_curvature(xs,ys);
             axis equal
             axis(axisZ)
             t=text(x(I)+deltxtZ,y(I)-deltxtZ, ...
@@ -638,14 +589,8 @@ uicontrol('style','text','Fontsize',10, ...
         elseif I>L
             I=L;
         end
-        [xs ys] = splinefit([1;x;1],[0;y;0],1);
         set(0, 'CurrentFigure', h)
-        plot(xs,ys,'k', ...
-             [1;x],[0;y],'.k', ...
-             x(I),y(I),'xk', ...
-             'markersize',13);
-        axis equal
-        axis([0 1 -.2 .2])
+        plot_all(x,y);
         %drawnow
         set(0, 'CurrentFigure', hZ)
         try delete(t);end;
@@ -653,6 +598,7 @@ uicontrol('style','text','Fontsize',10, ...
              [1;x],[0;y],'.k', ...
              x(I),y(I),'xk', ...
              'markersize',13);
+        plot_curvature(xs,ys);
         axis equal
         axis(axisZ)
         t=text(x(I)+deltxtZ,y(I)-deltxtZ, ...
