@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=2cm, top=1.5cm]{geometry}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{../../references/references.bib}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows.meta,pgfplots.units}
+\usetikzlibrary{plotmarks,angles}
+\usetikzlibrary{math}
+\usepgfplotslibrary{colorbrewer}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{width=12cm}
+\pgfplotsset{compat=1.18}
+
+\usepackage{titling}
+\usepackage[separate-uncertainty=true,multi-part-units=single]{siunitx}
+\usepackage{amsmath, amssymb}
+\usepackage{physics}
+\usepackage{circuitikz}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{scalerel}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{titling}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage{nicefrac}
+\usepackage{diagbox}
+\usepackage{minted}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+
+
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
+\setlength{\droptitle}{-5em}
+
+\title{Aircraft Wing Analysis Report}
+\author{Luka Pivovarsky}
+\date{June 2026}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\section{Model Validity}
+\subsection{Panel Count}
+\subsection{NACA Foil Comparison}
+\subsection{Viscous Coupling}
+The assumption that a boundary layer always remains much thinner than the section under study is not always valid - by the trailing edge of an airfoil, at low Reynolds numbers, the displacement thickness can be on the order of \qty{1}{\percent} of the chord, which is of similar order to 
+\subsection{Transition Modelling}
+The natural transition model used is not physically based, but instead empirical. Given that the turbulent portion of the boundary layer, in general, contributes substantially more than the laminar section to the profile drag, accurately assessing the transition point is very important for drag prediction accuracy. A more accurate method would be to use a form of the $e^n$ model, which considers the boundary layer to have transitioned when the present Tollmien-Schilling waves reach a disturbance amplification factor of $e^{n_\mathrm{crit}}$, where $n_\mathrm{crit}$ is user-set and dependent on the expected conditions of the incoming freestream flow (a more turbulent freestream will have larger disturbances that could be amplified to cause transition, and so require a lower $n_\mathrm{crit}$; for an undisturbed flow, $n_\mathrm{crit} \approx 11$, for a typical wind tunnel flow $n_\mathrm{crit} \approx 9$) \cite{boundarylayersyoung}. 
+\subsection{Laminar Separation Bubbles}
+Our current treatment of laminar separation bubbles considers them to be no different to attached turbulent flow. This is a dubious assumption, especially given the importance of laminar separation bubble contributions to drag on a mostly laminar airfoil \cite{lowspeeddesign}. This necessitates accurate modelling in order to give good results at low speeds.
+\subsection{Turbulent Separation}
+Due to the lack of inviscid to viscous coupling, the modelling of turbulent separation is fundamentally inaccurate, as there is no impact on the inviscid lift coefficient, meaning that the stall behaviour seen in real airfoils is completely absent. 
+
+This effect also accounts for the abscence of very strong adverse pressure gradient near the trailing edge, as the finite thickness of the wake means that the outer flow does not stagnate, as it does not come to a sharp point. This particular effect is handled explicitly by the model, but there is no further.
+\subsection{NACA Airfoil Comparison}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/naca0012_cdalpha.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/naca4412_cdalpha.eps}
+    \end{minipage}
+        \caption{$C_D - \alpha$ curves}
+    \label{fig:cd alpha}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/naca0012_clcd.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/naca4412_clcd.eps}
+    \end{minipage}
+        \caption{$C_D - C_L$ curves}
+    \label{fig:cl cd}
+\end{figure}
+\section{Design Process}
+\subsection{Tools}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\linewidth]{../Figures/curvature}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
+The WASG tool was modified with the ability to determine the local curvature at any point on the airfoil, shown as a curvature comb. This proved very necessary due to the sensitivity of the boundary model to very small changes in the rate of change of curvature around the airfoil. Since the cubic splines used to construct the profile are only $C^2$ continuous, explicit care had to be taken to ensure that spline induced curvature variation did not cause premature laminar separation.
+
+This was much more of an issue at low Reynolds numbers, as the turbulent boundary layer present at higher Reynolds numbers was much more resistant to curvature variations. This sensitivity does however indicate that the performance of the low speed laminar section would in reality be very sensitive to surface imperfections, as even very small variations caused substantial variations in $m$ and hence premature separation.
+\subsection{Low Speed}
+At a Reynolds number as low as \num{5e5}, it is possible to retain laminar flow over a substantial fraction of the airfoil. In order to take advantage of the slow growth of the laminar boundary layer, it is desirable to delay the presence of any adverse pressure gradients that might destabilise the laminar boundary layer to as far to the rear of the airfoil as possible.
+
+Since there is no substantial downside of a strong favourable pressure gradient, and, for a given amount of drag, we should want the lowest $c_p$ value achievable over the widest possible range of positions on the upper surface of the airfoil, it is desirable to reach the minimum $c_p$ very close to the nose of the airfoil, then remain at constant $c_p$ for a substantial fraction of the chord length, and then, to reach the trailing edge with minimum instantaneous adverse pressure gradient magnitude, by linear increase in $c_p$. Between these two sections, there is a ``transition ramp'' where the two are joined smoothly; for low Reynolds numbers the properties of this ramp can have a significant impact, as they determine whether transition will occur naturally or by laminar separation with turbulent reattachment. This is similar reasoning to that used to produce the NACA 6- and 7-series airfoils \cite{naca6seriessummary}, and many other modern laminar airfoils.
+\subsection{High Speed}
+\subsection{Inverse Design}
+\section{Optimal Sections}
+\section{Physical Processes}
+\section{Result Reliability}
+Not
+\section{Optimisation}
+
+\subsection{NACA0012}
+Starting point. Max L/D is 58.826 at 7.6 deg at Cl = 0.9145
+\subsection{LLL01}
+\printbibliography
+
+\end{document}
