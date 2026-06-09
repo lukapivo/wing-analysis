@@ -88,7 +88,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('NACA0012', 'LLL01')
+legend('NACA0012', 'LLL01', 'Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL01','epsc2')
 
@@ -133,7 +133,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLL01', 'LLL02')
+legend('LLL01', 'LLL02','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL02','epsc2')
 
@@ -177,7 +177,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLL02', 'LLL03')
+legend('LLL02', 'LLL03','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL03','epsc2')
 
@@ -221,7 +221,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLL03', 'LLL04')
+legend('LLL03', 'LLL04','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 
@@ -265,7 +265,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLL04', 'LLL05')
+legend('LLL04', 'LLL05','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL05','epsc2')
 
@@ -309,7 +309,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLL05', 'LLL06')
+legend('LLL05', 'LLL06','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL06','epsc2')
 
@@ -353,7 +353,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLL06', 'LLL07')
+legend('LLL06', 'LLL07','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL07','epsc2')
 
@@ -397,7 +397,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLL07', 'LLL08')
+legend('LLL07', 'LLL08','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL08','epsc2')
 
