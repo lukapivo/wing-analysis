@@ -46,8 +46,30 @@ end
 caseref = "Data/NACA0012_3.mat";
 load(caseref);
 
-% Airfoils
 figure(1);
+box on 
+hold on
+plot(xs, cp, 'r');
+set(gca, 'Ydir', 'reverse')
+xlabel('s');
+ylabel('c_p');
+
+xsu = flip(xs(1:length(su)));
+cpu = flip(cp(1:length(su)));
+xsl = xs(length(su)+1:end);
+cpl = cp(length(su)+1:end);
+
+ax_cp = gca;
+
+plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
+
+legend('NACA0012', 'Location','south')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
+saveas(gcf,'week3/Figures/cp_NACA0012','epsc2')
+
+% Airfoils
+figure(2);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -70,7 +92,7 @@ caseref = "Data/LLL_3.mat";
 load(caseref);
 
 
-figure(1);
+figure(2);
 box on 
 hold on
 plot(xs, cp, 'r');
@@ -93,7 +115,7 @@ set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL01','epsc2')
 
 
-figure(2);
+figure(3);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -115,7 +137,7 @@ caseref = "Data/LLL02_3.mat";
 load(caseref);
 
 
-figure(2);
+figure(3);
 box on 
 hold on
 plot(xs, cp, 'r');
@@ -137,7 +159,7 @@ legend('LLL01', 'LLL02','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL02','epsc2')
 
-figure(3);
+figure(4);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -159,7 +181,7 @@ caseref = "Data/LLL03_3.mat";
 load(caseref);
 
 
-figure(3);
+figure(4);
 box on 
 hold on
 plot(xs, cp, 'r');
@@ -181,7 +203,7 @@ legend('LLL02', 'LLL03','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL03','epsc2')
 
-figure(4);
+figure(5);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -203,7 +225,7 @@ caseref = "Data/LLL04_3.mat";
 load(caseref);
 
 
-figure(4);
+figure(5);
 box on 
 hold on
 plot(xs, cp, 'r');
@@ -225,7 +247,7 @@ legend('LLL03', 'LLL04','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 
-figure(5);
+figure(6);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -247,7 +269,7 @@ caseref = "Data/LLL05_3.mat";
 load(caseref);
 
 
-figure(5);
+figure(6);
 box on 
 hold on
 plot(xs, cp, 'r');
@@ -269,7 +291,7 @@ legend('LLL04', 'LLL05','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL05','epsc2')
 
-figure(6);
+figure(7);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -291,7 +313,7 @@ caseref = "Data/LLL06b_3.mat";
 load(caseref);
 
 
-figure(6);
+figure(7);
 box on 
 hold on
 plot(xs, cp, 'r');
@@ -313,7 +335,7 @@ legend('LLL05', 'LLL06','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL06','epsc2')
 
-figure(7);
+figure(8);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -335,7 +357,7 @@ caseref = "Data/LLL07b_3.mat";
 load(caseref);
 
 
-figure(7);
+figure(8);
 box on 
 hold on
 plot(xs, cp, 'r');
@@ -357,7 +379,7 @@ legend('LLL06', 'LLL07','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL07','epsc2')
 
-figure(8);
+figure(9);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -379,7 +401,7 @@ caseref = "Data/LLL08b_3.mat";
 load(caseref);
 
 
-figure(8);
+figure(9);
 box on 
 hold on
 plot(xs, cp, 'r');
