@@ -45,7 +45,7 @@ Steps:
 \section{Discussion of model}
 Brief description of the model
 
-\subsection{Limitations}
+\subsection{Limitations}\label{sec:limit}
 
 The pressure distribution is calculated entirely from inviscid potential, through a Bernouilli relation with the circulation-derived surface velocities. In reality, the boundary layer displacement thickness affects the outer flow curvature, however no feedback from the boundary layer calculations is implemented. This means that the variation of lift with boundary layer progression (and subsequent stall) is not captured. The effect of laminar separation bubbles on the pressure distribution is also not analysed.
 
@@ -104,9 +104,7 @@ The boundary layer solver is validated through comparison with the exact Blasius
 
 \subsection{Comparison with NACA 0012 and NACA 4412 foils}\label{sec:naca}
 
-Further validation is completed using two standard NACA airfoils: 0012 and 4412. Experimental data for these was digitised from \cite{theoryofwingsections}.
-
-**Re = 3e6
+Further validation is completed using two standard NACA airfoils at $Re = 3 \cdot 10^6$: 0012 and 4412. Experimental data was digitised from \cite{theoryofwingsections}.
 
 \begin{figure}[H]
     \centering
@@ -122,6 +120,11 @@ Further validation is completed using two standard NACA airfoils: 0012 and 4412.
     \caption{$C_L - \alpha$ curves}
     \label{fig:cl alpha}
 \end{figure}
+
+Figure \ref{fig:cl alpha} shows the variation in lift over typical incidence angles for both airfoils. Both curves start approximately linearly, however the experimental lift curve decreases at higher incidences and stall.
+
+As discussed in \ref{sec:limit}, no feedback from the boundary layer calculations is used in the pressure distribution. Therefore, the effect of turbulent separation and stall on 
+
 
 The lift coefficient is calculated from the circulation via $C_L = -2\Gamma/(Uc)$, which is entirely based on inviscid potential flow theory. $C_L$ therefore receives no feedback from the boundary layer calculations; the $C_L-\alpha$ curves thus exhibit no stall characteristics, but continue to rise. This rise is not linear, 
 

@@ -71,12 +71,12 @@ This effect also accounts for the abscence of very strong adverse pressure gradi
 Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwingsections}.
 \begin{figure}[H]
     \centering
-    \begin{minipage}{0.49\textwidth}
+    \begin{minipage}{8cm}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca0012_clalpha.eps}
     \end{minipage}
     \hfill
-    \begin{minipage}{0.49\textwidth}
+    \begin{minipage}{8cm}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca4412_clalpha.eps}
     \end{minipage}
@@ -85,12 +85,12 @@ Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwings
 \end{figure}
 \begin{figure}[H]
     \centering
-    \begin{minipage}{0.49\textwidth}
+    \begin{minipage}{8cm}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca0012_cdalpha.eps}
     \end{minipage}
     \hfill
-    \begin{minipage}{0.49\textwidth}
+    \begin{minipage}{8cm}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca4412_cdalpha.eps}
     \end{minipage}
@@ -100,12 +100,12 @@ Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwings
 
 \begin{figure}[H]
     \centering
-    \begin{minipage}{0.49\textwidth}
+    \begin{minipage}{8cm}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca0012_clcd.eps}
     \end{minipage}
     \hfill
-    \begin{minipage}{0.49\textwidth}
+    \begin{minipage}{8cm}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca4412_clcd.eps}
     \end{minipage}
@@ -113,7 +113,15 @@ Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwings
     \label{fig:cl cd}
 \end{figure}
 \subsubsection{$C_L - \alpha$}
-Close to but not entirely straight over typical incidences; at higher incidences, turbulent separation leads to a slight decrease in lift curve slope, eventually leading to a peak and then decrease before stall. Because there is no viscous-to-inviscid coupling in our panel method, the changes to the $c_p$ distribution and hence $C_L$ due to turbulent separation are not accounted for, and so no drop-off in lift is predicted.
+Close to but not entirely straight over typical incidences; at higher incidences, turbulent separation starts to occur near the trailing edge, with the separation point moving forward with increasing incidence. The effect of the separation is to cause early pressure recovery on the upper surface, as shown in Fig. \ref{fig:separation_cp}.
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.5\linewidth]{}
+    \caption{*** Extract from Xfoil}
+    \label{fig:separation_cp}
+\end{figure}
+turbulent separation leads to a slight decrease in lift curve slope, eventually leading to a peak and then decrease before stall. Because there is no viscous-to-inviscid coupling in our panel method, the changes to the $c_p$ distribution and hence $C_L$ due to turbulent separation are not accounted for, and so no drop-off in lift is predicted.
 
 Positive camber shifts the zero lift incidence to some negative angle; the panel method matches experiment well, as this is mostly an inviscid effect, and in fact was historically quite accurately accounted for by use of thin aerofoil theory, as in the design of the NACA 6-series \cite{naca6seriessummary}.
 \subsubsection{$C_D - \alpha$}
