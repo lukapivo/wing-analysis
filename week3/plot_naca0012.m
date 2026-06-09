@@ -22,6 +22,7 @@ scatter(cl_alpha.Var1, cl_alpha.Var2, 'X')
 %plot(0,0,'o');
 xlabel('\alpha (degrees)');
 ylabel('C_L');
+ylim([-2.5,2.5]);
 title('NACA 0012');
 legend('Panel result', 'Experiment', 'Location','northwest')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
