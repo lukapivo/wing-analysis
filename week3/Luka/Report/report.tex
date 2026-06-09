@@ -68,6 +68,7 @@ Due to the lack of inviscid to viscous coupling, the modelling of turbulent sepa
 
 This effect also accounts for the abscence of very strong adverse pressure gradient near the trailing edge, as the finite thickness of the wake means that the outer flow does not stagnate, as it does not come to a sharp point. This particular effect is handled explicitly by the model, but there is no further.
 \subsection{NACA Airfoil Comparison}
+Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwingsections}.
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -111,11 +112,17 @@ This effect also accounts for the abscence of very strong adverse pressure gradi
         \caption{$C_D - C_L$ curves}
     \label{fig:cl cd}
 \end{figure}
+\subsubsection{$C_L - \alpha$}
+Close to but not entirely straight over typical incidences; at higher incidences, turbulent separation leads to a slight decrease in lift curve slope, eventually leading to a peak and then decrease before stall. Because there is no viscous-to-inviscid coupling in our panel method, the changes to the $c_p$ distribution and hence $C_L$ due to turbulent separation are not accounted for, and so no drop-off in lift is predicted.
+
+Positive camber shifts the zero lift incidence to some negative angle; the panel method matches experiment well, as this is mostly an inviscid effect, and in fact was historically quite accurately accounted for by use of thin aerofoil theory, as in the design of the NACA 6-series \cite{naca6seriessummary}.
+\subsubsection{$C_D - \alpha$}
+\subsubsection{$C_D - C_L$}
 \section{Design Process}
 \subsection{Tools}
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\linewidth]{../Figures/curvature}
+    \includegraphics[width=0.95\linewidth]{../../Figures/curvature}
     \caption{Caption}
     \label{fig:placeholder}
 \end{figure}
