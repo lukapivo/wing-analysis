@@ -38,6 +38,7 @@ xlabel('C_L');
 ylabel('C_D');
 title('NACA 0012');
 legend('Panel result', 'Experiment','Location','north')
+xlim([-2.5,2.5]);
 ylim([0,0.055]);
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/naca0012_clcd','epsc2')
