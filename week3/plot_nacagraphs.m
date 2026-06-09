@@ -23,7 +23,7 @@ ylabel('C_L');
 title('NACA 4412');
 legend('Panel result', 'Experiment')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-%saveas(gcf,'week3/Figures/naca4412_clalpha','epsc2')
+saveas(gcf,'week3/Figures/naca4412_clalpha','epsc2')
 hold off;
 
 figure(2);
@@ -34,8 +34,9 @@ xlabel('C_L');
 ylabel('C_D');
 title('NACA 4412');
 legend('Panel result', 'Experiment')
+ylim([0,0.055]);
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-%saveas(gcf,'week3/Figures/naca4412_clcd','epsc2')
+saveas(gcf,'week3/Figures/naca4412_clcd','epsc2')
 hold off;
 
 figure(3);
@@ -46,7 +47,8 @@ scatter(alphas_cd, cd_cl.Var2, 'X')
 xlabel('\alpha (degrees)');
 ylabel('C_D');
 title('NACA 4412');
+ylim([0,0.055]);
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-%saveas(gcf,'week3/Figures/naca4412_cdalpha','epsc2')
+saveas(gcf,'week3/Figures/naca4412_cdalpha','epsc2')
 hold off;
 
