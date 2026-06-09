@@ -9,7 +9,7 @@ load(caseref);
 cd_cl = readtable('4412 cd cl 6e6.csv');
 cl_alpha = readtable('4412 CL alpha 6e6.csv');
 
-alphas_cd = interp1(cl_alpha.Var2, cl_alpha.Var1, cd_cl.Var1);
+%alphas_cd = interp1(cl_alpha.Var2, cl_alpha.Var1, cd_cl.Var1);
 
 % C_L alpha
 figure(1);
@@ -48,7 +48,8 @@ grid on
 box on
 hold on
 plot(alpha, cdswp);
-scatter(alphas_cd, cd_cl.Var2, 'X')
+%scatter(alphas_cd, cd_cl.Var2, 'X')
+scatter(cl_alpha.Var1(1:length(cd_cl.Var2)), cd_cl.Var2, 'X')
 xlabel('\alpha (degrees)');
 ylabel('C_D');
 title('NACA 4412');
