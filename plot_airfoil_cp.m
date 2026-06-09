@@ -43,7 +43,7 @@ if its ~= 0
 end
 end
 
-caseref = "Data/NACA0012_1.mat";
+caseref = "Data/NACA0012_3.mat";
 load(caseref);
 
 % Airfoils
@@ -66,7 +66,7 @@ plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
 
 
-caseref = "Data/LLL_1.mat";
+caseref = "Data/LLL_3.mat";
 load(caseref);
 
 
@@ -111,7 +111,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
 
-caseref = "Data/LLL02_1.mat";
+caseref = "Data/LLL02_3.mat";
 load(caseref);
 
 
@@ -155,7 +155,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
 
-caseref = "Data/LLL03_1.mat";
+caseref = "Data/LLL03_3.mat";
 load(caseref);
 
 
@@ -199,7 +199,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
 
-caseref = "Data/LLL04_1.mat";
+caseref = "Data/LLL04_3.mat";
 load(caseref);
 
 
@@ -243,7 +243,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
 
-caseref = "Data/LLL05_1.mat";
+caseref = "Data/LLL05_3.mat";
 load(caseref);
 
 
@@ -287,7 +287,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
 
-caseref = "Data/LLL06_1.mat";
+caseref = "Data/LLL06b_3.mat";
 load(caseref);
 
 
@@ -331,7 +331,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
 
-caseref = "Data/LLL07_1.mat";
+caseref = "Data/LLL07b_3.mat";
 load(caseref);
 
 
@@ -375,7 +375,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
 
-caseref = "Data/LLL08_1.mat";
+caseref = "Data/LLL08b_3.mat";
 load(caseref);
 
 
