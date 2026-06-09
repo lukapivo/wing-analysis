@@ -67,9 +67,9 @@ Xfoil is an example of an industry-standard panel method solver. Due to its coup
 
 Initial attempts to use \texttt{wasg} were challenging, as any `bumpiness' introduced by spline manipulation triggered laminar separation. 
 
-An attempt was made to implement a least-squares spline tool, however issues arose due to the non-monotonic nature of y variation with x. Splitting the upper and lower surfaces into different splines prevented leading edge smoothness, and fixing this removed the LE and TE position constraint. Instead, we decided to reduce the number of spline `knots'; this also helped to smooth the pressure distribution, and reduce oscillations in $m$.
+A least-squares spline tool was implemented to resolve this, however the non-monotonic y variation with x was problematic. Splitting the upper and lower surfaces into different splines prevented leading edge smoothness, and fixing this removed the LE and TE position constraint. Instead, we decided to reduce the number of spline `knots'; this also helped to smooth the pressure distribution and reduce oscillations in $m$.
 
-Curvature visualisation was also added, which made it possible to quickly judge the effect of geometry changes on $c_p$. To examine the curvature about the leading edge, a keyboard shortcut could increase the width of the screen.
+Curvature visualisation was also added, which made it possible to quickly judge the effect of geometry changes on $c_p$. To examine the curvature at the leading edge, a keyboard shortcut increases the width of the screen.
 
 \begin{figure}[H]
     \centering
