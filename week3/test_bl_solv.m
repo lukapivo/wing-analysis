@@ -20,7 +20,7 @@ plot(x,blthet,'-',x,theta,'x')
 xlabel('x/L')
 ylabel('\theta')
 legend('Blasius','blsolv')
-set(gcf,'units', 'centimeters','position',[0,0,16,10])
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/bl_valid','epsc')
 
 figure(2);
