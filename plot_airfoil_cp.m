@@ -64,7 +64,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('NACA0012', 'Location','south')
+legend('NACA0012', 'Location','north')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_NACA0012','epsc2')
 
@@ -110,7 +110,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('NACA0012', 'LLL01', 'Location','south')
+legend('NACA0012', 'LLL01', 'Location','north')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL01','epsc2')
 
@@ -503,7 +503,7 @@ plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
 
-legend('NACA0012','Location','south')
+legend('NACA0012','Location','north')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_NACA0012_7deg','epsc2')
 
