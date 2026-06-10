@@ -487,7 +487,7 @@ load(caseref);
 figure(11);
 box on 
 hold on
-plot(xs, cp, 'b');
+plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
 xlabel('s');
 ylabel('c_p');
@@ -499,8 +499,8 @@ cpl = cp(length(su)+1:end);
 
 ax_cp = gca;
 
-plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
-plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
+plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
 
 legend('NACA0012','Location','south')
