@@ -46,9 +46,9 @@ show_ref=0;
 
 pathin=[pwd,'/Geometry/'];
 [filein,pathin]=uigetfile([pathin '*.surf']);
-y=load([pathin,filein]);
-x=y(2:end-1,1);
-y=y(2:end-1,2);
+ydat=load([pathin,filein]);
+x=ydat(2:end-1,1);
+y=ydat(2:end-1,2);
 x_ref = zeros(size(x));
 y_ref = zeros(size(y));
 L=length(x);
@@ -78,7 +78,7 @@ h=figure('units','normalized',...
     'WindowButtonUpFcn',@Up,...
     'DeleteFcn',@figDelete);
 a=axes('position',[.10,.10,.87,.87]);
-[xs ys] = splinefit([1;x;1],[0;y;0],0);
+[xs ys] = splinefit([1;x;1],[ydat(1,2);y;ydat(end,2)],0);
 plot(xs,ys,'k', ...
      [1;x],[0;y],'.k', ...
      'markersize',13,'markerfacecolor','k');
@@ -98,7 +98,7 @@ uicontrol('style','text','Fontsize',10, ...
             ddy = gradient(dy);
 
             kappa = (dx.*ddy - dy.*ddx) ./ (dx.^2 + dy.^2).^(1.5);
-            scale = 0.005; 
+            scale = 0.02; 
             comb_length = kappa * scale;
 
             nx = -dy ./ sqrt(dx.^2 + dy.^2);
@@ -112,7 +112,7 @@ uicontrol('style','text','Fontsize',10, ...
 
 
     function plot_all(x, y)
-        [xs ys] = splinefit([1;x;1],[0;y;0],0);
+        [xs ys] = splinefit([1;x;1],[ydat(1,2);y;ydat(end,2)],0);
         try delete(t);end;
         plot(xs,ys,'k', ...
             [1;x],[0;y],'.k', ...
@@ -159,7 +159,7 @@ uicontrol('style','text','Fontsize',10, ...
         case 'normal'
             %%% Add a knot if left-click is close to aerofoil contour:
             if V2>min(1e-4,mindist2)
-                [xs ys] = splinefit([1;x;1],[0;y;0],1);
+                [xs ys] = splinefit([1;x;1],[ydat(1,2);y;ydat(end,2)],1);
                 ppk = 100; % needs to be the same in 'splinefit.m'
                 [V2 Is]=min((xs-p(1)).^2+(ys-p(3)).^2);
                 if V2<1e-4
@@ -237,7 +237,7 @@ uicontrol('style','text','Fontsize',10, ...
                 Ybk=y;
             %%% 's' save into a .surf file:
             case 's'
-                dataout=[[1;x;1],[0;y;0]];
+                dataout=[[1;x;1],[ydat(1,2);y;ydat(end,2)]];
                 [fileout,pathout]=uiputfile([pathin '*.surf']);
                 save([pathout fileout],'dataout','-ascii')
             %%% 'b' backup configuration
@@ -438,7 +438,7 @@ uicontrol('style','text','Fontsize',10, ...
         case 'normal'
             %%% Add a knot if left-click is close to aerofoil contour:
             if V2>min(1e-6,mindist2)
-                [xs ys] = splinefit([1;x;1],[0;y;0],1);
+                [xs ys] = splinefit([1;x;1],[ydat(1,2);y;ydat(end,2)],1);
                 ppk = 100; % needs to be the same in 'splinefit.m'
                 [V2 Is]=min((xs-p(1)).^2+(ys-p(3)).^2);
                 if V2<1e-6
