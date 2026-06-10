@@ -24,41 +24,15 @@ for i = 1:nc
     end
 end
 
-
-% Slow Fourier Transform (check if fast will do)
-function [cn] = ftp(nc, mc, eiw, dwc, P)
-    cn = zeros(mc+1);
-    for m=1:mc+1
-        zsum = 0+0j;
-        for i=2:nc-1
-            zsum = zsum + P(i)*eiw(i,m);
-        end
-        cn(m) = (0.5*(P(1)*eiw(1,m) + P(nc)*eiw(nc,m)) +zsum)*dwc/pi;
-    end
-    cn(1) = 0.5 * cn(1);
-end
-
-% Inverse-transform to get P and Q
-function [piq] = piqsum(nc, mc, eiw, cn)
-    piq = zeros(nc);
-    for i=1:nc
-        zsum = 0 + 0j;
-        for m = 1:mc+1
-            zsum = zsum +cn(m)*conj(eiw(i,m));
-        end
-        piq(i) = zsum;
-    end
-end
-
 % Seed
-caseref = "Data/LLL08b_3.2.mat";
+caseref = "Data/naca0012_2.mat";
 load(caseref);
 
-alpha_d = 3.2; % deg
+alpha_d = 2; % deg
 alpha = deg2rad(alpha_d);
 
 % Convert to v/vinf
-v1 = [sqrt(1-cp(1:length(su))), sqrt(1-cp(length(su)+1:end))];
+v1 = [sqrt(1-cp(1:length(su))), -sqrt(1-cp(length(su)+1:end))];
 
 % Put onto circle
 phi1 = [acos(2*xs(1:length(su)-2)-1), 2*pi-acos(2*xs(length(su)-1:end)-1)];
@@ -67,15 +41,32 @@ phi1 = [acos(2*xs(1:length(su)-2)-1), 2*pi-acos(2*xs(length(su)-1:end)-1)];
 N = nc;
 phi = linspace(0, 2*pi, nc);
 v = interp1(phi1, v1, phi, 'spline');
-xs2 = interp1(phi1, xs, phi, 'spline');
-ys2 = interp1(phi1, ys, phi, 'spline');
 
+
+%%% SCINIT
 agte = (atan2(xs(end), -ys(end)) - atan2(xs(1), -ys(1)))/pi - 1.0;
+ag0 = atan2( xs(1) , -ys(1) );
+qim0 = ag0 + 0.5*pi*(1.0+agte);
+
+dxte = xs(1) - xs(end);
+dyte = ys(1) - ys(end);
+dzte = dxte + dyte*1j;
+
+xle = min(xs);
+yle = ys(xs==xle);
+zleold = xle + yle * 1j;
+chordx = 0.5*(xs(1)+xs(end)) - xle;
+chordy = 0.5*(ys(1)+ys(end)) - yle;
+chordz = chordx + 1j * chordy;
+
+xs = interp1(phi1, xs, phi, 'spline');
+ys = interp1(phi1, ys, phi, 'spline');
+
 
 %%% Cncalc
 % Find LE
-le_idx = find(xs2==min(xs2));
-x_le = xs2(le_idx);
+le_idx = find(xs==min(xs));
+x_le = xs(le_idx);
 wcle = phi(le_idx);
 
 alfcir = 0.5*(wcle - pi);
@@ -112,8 +103,11 @@ P(end) = 3*P(nc-1) - 3*P(nc-2) + P(nc-3);
 
 cn = ftp(nc, mc, eiw, dwc, P);
 
+cn(1) = 0+1j* imag(cn(1));
+
 piq = piqsum(nc, mc, eiw, cn);
 Q = imag(piq);
+
 
 % Mapgen
 dx = xs(2) - xs(1);
@@ -123,37 +117,47 @@ qimoff = qim0 - imag(cn(1));
 cn(1) = cn(1) + qimoff * 1j;
 
 piq = piqsum(nc, mc, eiw, cn);
+[zc sc zc_cn] = zccalc(eiw, nc, phi, agte, dwc, mct, piq);
+[cn, zc, sc, zc_cn] = zcnorm(nc, mct, chordz, zleold, zc, sc, zc_cn, cn);
 
-% P = - log(abs(v) ./ (2*abs(cos(phi/2)-alpha)));
-% P2 = zeros(size(P));
-% 
-% Q = zeros(size(phi));
-% 
-% for n = 0:(2*N-1)
-%     Qn = 0;
-%     for i = 0:N-1
-%         P1 = mod(n+1+2*i, 2*N);
-%         P2 = mod(n-1-2*n,2*N);
-% 
-%         Qn = Qn + (P(P1+1)-P(P2+1))*cot((2*i+1)*pi/(2*N));
-%     end
-%     Q(n+1) = 1/(2*N) * Qn;
-% end
+for i=0:1000
+    residual = zc(1) - zc(end);
+    jacobian = zc_cn(1,1) - zc_cn(end,1);
+    if abs(jacobian) < 1e-20
+        1e-20
+        break
+    end
+    dcn = residual / jacobian;
+    cn(1) = cn(1) - dcn;
+
+    piq = piqsum(nc, mc, eiw, cn);
+    [zc sc zc_cn] = zccalc(eiw, nc, phi, agte, dwc, mct, piq);
+    [cn, zc, sc, zc_cn] = zcnorm(nc, mct, chordz, zleold, zc, sc, zc_cn, cn);
+
+    if abs(dcn) < 5e-5
+        5e-5
+        break
+    end
+end
+
+%%% Recalculate specified velocities
+alfcir = alpha - imag(cn(1));
+qspec_values = zeros(nc,1);
+
+for ic=1:nc
+    eppp = exp(-real(piq(ic)));
+    
+    sinw = 2.0*sin(0.5*phi(ic));
+    if sinw > 0 
+        sinwe = sinw^(1-agte);
+    else
+        sinwe = 0;
+    end
+    qspec_values(ic) = 2 * cos(0.5*phi(ic)-alfcir)* sinwe * eppp;
+end
 
 
-
-
-
-dx_dphi = -4 * sin(phi/2) .* abs(cos(phi/2 - alpha)) .*(1./abs(v)).*cos(phi/2 +Q);
-dy_dphi = -4 * sin(phi/2) .* abs(cos(phi/2 - alpha)) .*(1./abs(v)).*sin(phi/2 +Q);
-
-dx_dphi_orig = diff(xs2) ./ diff(phi);
-dy_dphi_orig = diff(ys2) ./ diff(phi);
-
-xs2 = 1+cumtrapz(phi, dx_dphi);
-ys2 = cumtrapz(phi, dy_dphi);
-
-plot(phi, v)
+plot(phi, v, phi, qspec_values)
 
 figure(2);
 plot(phi, P, phi, real(piq), '--')
@@ -162,10 +166,139 @@ figure(3);
 plot(phi, Q)
 
 figure(4);
-plot(phi,dx_dphi, phi(1:length(phi)-1), dx_dphi_orig);
+
+plot(real(zc), imag(zc), xs,ys,'--');
+axis equal
 
 figure(5);
-plot(phi,dy_dphi, phi(1:length(phi)-1), dy_dphi_orig);
+scatter(0:length(cn)-1,log10(abs(cn)),'o');
+% yscale log
 
-figure(6);
-plot(xs2, ys2);
+% Slow Fourier Transform (check if fast will do)
+function [cn] = ftp(nc, mc, eiw, dwc, P)
+cn = zeros(1,mc+1);
+for m=1:mc+1
+    zsum = 0+0j;
+    for i=2:nc-1
+        zsum = zsum + P(i)*eiw(i,m);
+    end
+    cn(m) = (0.5*(P(1)*eiw(1,m) + P(nc)*eiw(nc,m)) +zsum)*dwc/pi;
+end
+cn(1) = 0.5 * cn(1);
+end
+
+% Inverse-transform to get P and Q
+function [piq] = piqsum(nc, mc, eiw, cn)
+piq = zeros(1,nc);
+for i=1:nc
+    zsum = 0 + 0j;
+    for m = 1:mc+1
+        zsum = zsum +cn(m)*conj(eiw(i,m));
+    end
+    piq(i) = zsum;
+end
+end
+
+% Calculate coordinates from p and q
+function [zc, sc, zc_cn] = zccalc(eiw, nc, phi, agte, dwc, mtest, piq)
+    ic = 1;
+    zc = zeros(nc, 1);
+    sc = zeros(nc, 1);
+    zc_cn = zeros(nc, ic);
+    
+    zc(ic) = 4;
+    for m=1:mtest
+        zc_cn(1,m) = 0+0j;
+    end
+    
+    sinw = 2*sin(0.5*phi(ic));
+    sinwe = 0;
+    if sinw > 0
+        sinwe = sinw^(1-agte);
+    end
+    
+    hwc = 0.5*(phi(ic)-pi)*(1+agte) - 0.5*pi;
+    dzdw1 = sinwe * exp(piq(ic) + hwc*1j);
+    
+    for ic=2:nc
+        sinw = 2*sin(0.5*phi(ic));
+        sinwe = 0;
+        if sinw > 0
+            sinwe = sinw^(1-agte);
+        end
+    
+        hwc = 0.5*(phi(ic)-pi)*(1+agte) - 0.5*pi;
+        dzdw2 = sinwe * exp(piq(ic) + hwc*1j);
+    
+        % I think this is just trapezium rule
+        zc(ic) = 0.5*(dzdw1+dzdw2)*dwc + zc(ic-1);
+        dz_piq1 = 0.5*dzdw1*dwc;
+        dz_piq2 = 0.5*dzdw2*dwc;
+    
+        for m=1:mtest
+            zc_cn(ic,m) = dz_piq1 * conj(eiw(ic-1,m+1)) + ...
+                          dz_piq2 * conj(eiw(ic,m+1)) + ...
+                          zc_cn(ic-1,m);
+        end
+    
+        dzdw1 = dzdw2;
+    end
+    
+    % Set arc length
+    sc(1) = 0;
+    for ic=2:nc
+        sc(ic) = sc(ic-1) + abs(zc(ic)-zc(ic-1));
+    end
+    
+    % Normalise arc length
+    for ic=1:nc
+        sc(ic) = sc(ic)/sc(nc);
+    end
+
+end
+
+function [cn, zc, sc, zc_cn] = zcnorm(nc, mtest, chordz, zleold, zc, sc, zc_cn, cn)
+    zte_cn = zeros(size(zc_cn));
+    zle = zlefind(zc);
+    
+
+    % Place leading edge at origin
+    zc = zc - zle;
+    % zte = 0.5*(zc(1) + zc(nc));
+    zte = zc(1);
+    
+    % Set normalizing sensitivities
+    for m=1:mtest
+        zte_cn(m) = 0.5*(zc_cn(1,m) + zc_cn(nc,m));
+    end
+
+    for ic=1:nc
+        zcnew = chordz*zc(ic)/zte;
+        zc_zte = -zcnew/zte;
+        zc(ic) = zcnew;
+        for m=1:mtest
+            zc_cn(ic,m) = chordz*zc_cn(ic,m)/zte + zc_zte*zte_cn(m);
+        end
+    end
+
+    qimoff = -imag(log(chordz/zte));
+    cn(1) = cn(1) - qimoff * 1j;
+
+    zc = zc + zleold;
+end
+
+function [zle] = zlefind(zc)
+    % zte = 0.5*(zc(1)+zc(end));
+    zte = zc(1);
+    % zle = zc(abs(zc-zte)==max(abs(zc-zte)));
+    idx = 1;
+    max = 0;
+    for i=1:length(zc)
+        if abs(zc(i)-zte) > max
+            max = abs(zc(i)-zte);
+            idx =i;
+        end
+    end
+    zle = zc(idx);
+end
+

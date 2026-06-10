@@ -41,12 +41,16 @@ ymax =  .2;
 ymin = -.2;
 c=0;
 full=0;
+has_ref=0;
+show_ref=0;
 
 pathin=[pwd,'/Geometry/'];
 [filein,pathin]=uigetfile([pathin '*.surf']);
 y=load([pathin,filein]);
 x=y(2:end-1,1);
 y=y(2:end-1,2);
+x_ref = zeros(size(x));
+y_ref = zeros(size(y));
 L=length(x);
 I=(x-1).^2+y.^2; I=find(I==max(I)); I=I(1);
 Xbk=x;
@@ -94,7 +98,7 @@ uicontrol('style','text','Fontsize',10, ...
             ddy = gradient(dy);
 
             kappa = (dx.*ddy - dy.*ddx) ./ (dx.^2 + dy.^2).^(1.5);
-            scale = 0.01; 
+            scale = 0.005; 
             comb_length = kappa * scale;
 
             nx = -dy ./ sqrt(dx.^2 + dy.^2);
@@ -113,6 +117,15 @@ uicontrol('style','text','Fontsize',10, ...
         plot(xs,ys,'k', ...
             [1;x],[0;y],'.k', ...
             x(I),y(I),'xk','markersize',13)
+
+        if show_ref
+            hold on
+            [xs_ref ys_ref] = splinefit([1;x_ref;1],[0;y_ref;0],1);
+            plot(xs_ref,ys_ref,'--b', ...
+                [1;x_ref],[0;y_ref],'.--b')
+            hold off
+        end
+
         plot_curvature(xs,ys);
         
         axis equal
@@ -323,6 +336,22 @@ uicontrol('style','text','Fontsize',10, ...
                     full = 1;
                 else
                     full = 0;
+                end
+
+            case 'p'
+                pathin=[pwd,'/Geometry/'];
+                [filein,pathin]=uigetfile([pathin '*.surf']);
+                y_ref=load([pathin,filein]);
+                x_ref=y_ref(2:end-1,1);
+                y_ref=y_ref(2:end-1,2);
+                has_ref = 1;
+                show_ref = 1;
+
+            case 'q'
+                if has_ref==1 && show_ref == 0
+                    show_ref = 1;
+                else
+                    show_ref = 0;
                 end
 
             case 'm'

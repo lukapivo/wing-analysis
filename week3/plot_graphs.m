@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/LLL06.mat";
+caseref = "Data/LLH01_b.mat";
 load(caseref);
 
 % C_L alpha and C_D alpha
@@ -23,5 +23,34 @@ ylabel('C_D');
 figure(3);
 grid on
 plot(alpha, lovdswp);
+xlabel('Angle of Attack (degrees)');
+ylabel('L/D');
+
+caseref = "Data/naca4412_highz.mat";
+load(caseref);
+
+% C_L alpha and C_D alpha
+figure(1);
+hold on
+plot(alpha, clswp);
+plot(alpha, cdswp);
+legend("C_L","C_D");
+xlabel('Angle of Attack (degrees)');
+ylabel('Coefficients');
+title('Lift and Drag Coefficients vs. Angle of Attack');
+hold off;
+
+figure(2);
+hold on
+plot(clswp, cdswp)
+hold off
+xlabel('C_L');
+ylabel('C_D');
+
+figure(3);
+grid on
+hold on
+plot(alpha, lovdswp);
+hold off
 xlabel('Angle of Attack (degrees)');
 ylabel('L/D');

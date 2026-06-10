@@ -2,6 +2,9 @@
 %  calculation.  To alter incidence, edit 'alpha' below.  To alter
 %  Van de Vooren geometry parameters, see vdvfoil.m.
 
+clear
+close all
+
 %  free-stream incidence
 alpha = pi/12;
 
@@ -15,7 +18,7 @@ axis('equal')
 xlabel('x/c')
 ylabel('y/c')
 title('Van de Vooren aerofoil')
-saveas(gfc,'week3/Figures/resstd_airfoil','epsc')
+saveas(gcf,'week3/Figures/resstd_airfoil','epsc')
 
 disp('Starting 100 panel calculation ...')
 np = 100;
@@ -67,29 +70,55 @@ xlabel('x/c')
 ylabel('-c_p')
 title('Van de Vooren cps; varying panel size')
 legend('exact','100pans','200pans','400pans','800pans')
-saveas(gfc,'week3/Figures/resstd_all','epsc')
+saveas(gcf,'week3/Figures/resstd_all','epsc')
 
 figure(3)
 plot(xsin,-cpex,xs1,-cp1,'--')
-legend('exact','100pans')
-saveas(gfc,'week3/Figures/resstd_100','epsc')
+
+
+ax3 = gca;
+zoom_region = [-0.002 27 0.002 28];
+zoom_ax = zoomed_axes(ax3, zoom_region);
+legend(ax3, 'exact','100pans')
+
+
+saveas(gcf,'week3/Figures/resstd_100','epsc')
 
 figure(4)
 plot(xsin,-cpex,xs2,-cp2,'-.')
-legend('exact','200pans')
-saveas(gfc,'week3/Figures/resstd_200','epsc')
+
+
+ax4 = gca;
+zoom_region = [-0.005 27 0.005 32];
+zoom_ax = zoomed_axes(ax4, zoom_region);
+legend(ax4,'exact','200pans')
+
+
+saveas(gcf,'week3/Figures/resstd_200','epsc')
 
 figure(5)
 plot(xsin,-cpex,xs4,-cp4,'-+')
+
+ax5 = gca;
+zoom_region = [-0.005 27 0.005 32];
+zoom_ax = zoomed_axes(ax5, zoom_region);
+
 legend('exact','400pans')
-saveas(gfc,'week3/Figures/resstd_400','epsc')
+
+
+saveas(gcf,'week3/Figures/resstd_400','epsc')
 
 figure(6)
 plot(xsin,-cpex,xs8,-cp8,'-x')
-legend('exact','800pans')
-saveas(gfc,'week3/Figures/resstd_800','epsc')
+
+ax6 = gca;
+zoom_region = [-0.005 27 0.005 28];
+zoom_ax = zoomed_axes(ax6, zoom_region);
+
+legend(ax6, 'exact','800pans')
+saveas(gcf,'week3/Figures/resstd_800','epsc')
 
 figure(7)
 plot(xsin,-cpex)
 legend('exact')
-saveas(gfc,'week3/Figures/resstd_exact','epsc')
+saveas(gcf,'week3/Figures/resstd_exact','epsc')
