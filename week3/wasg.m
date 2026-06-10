@@ -338,7 +338,7 @@ uicontrol('style','text','Fontsize',10, ...
                     full = 0;
                 end
 
-            case 'p'
+            case 'k'
                 pathin=[pwd,'/Geometry/'];
                 [filein,pathin]=uigetfile([pathin '*.surf']);
                 y_ref=load([pathin,filein]);
@@ -403,8 +403,20 @@ uicontrol('style','text','Fontsize',10, ...
                 Lundo = [L, Lundo(1:min(end,max_undo-1))];
                 Iundo = [I, Iundo(1:min(end,max_undo-1))];
                 xredo = []; yredo = []; Lredo = []; Iredo = [];
-
-
+            case 'p'
+                % Temporarily hide the UI control
+                uih = findobj(h, 'Type', 'uicontrol');
+                if ~isempty(uih), set(uih, 'Visible', 'off'); drawnow; end
+                
+                % Ensure output folder exists
+                if ~exist('week3/Figures', 'dir'), mkdir('week3/Figures'); end
+                
+                % Use exportgraphics – produces crisp vector graphics, no cropping
+                exportgraphics(gcf, 'week3/Figures/curvature.eps', 'ContentType', 'vector');
+                
+                % Restore UI
+                if ~isempty(uih), set(uih, 'Visible', 'on'); drawnow; end
+                disp('Saved as vector EPS (exportgraphics).');
             case 'leftarrow'
                 x(I)=max([x(I)-delta,xmin]);
             case 'rightarrow'
@@ -591,6 +603,7 @@ uicontrol('style','text','Fontsize',10, ...
                     xredo=xredo(:,2:end);
                     yredo=yredo(:,2:end);
                 end
+
             case 'z'
                 close(hZ)
                 set(h,'WindowKeyPressFcn',@Key,...

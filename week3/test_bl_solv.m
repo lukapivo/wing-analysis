@@ -17,13 +17,15 @@ if int~=0
 end
 
 plot(x,blthet,'-',x,theta,'x')
-xlabel('x')
+xlabel('x/L')
 ylabel('\theta')
 legend('Blasius','blsolv')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
+saveas(gcf,'week3/Figures/bl_valid','epsc')
 
 figure(2);
 plot(x,delstar./theta,'-')
 xlabel('x')
 ylabel('H')
-% legend('Blasius','blsolv')
+%legend('Blasius','blsolv')
 
