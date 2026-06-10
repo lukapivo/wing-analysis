@@ -164,7 +164,8 @@ Large number of questions on p30 of the handout to discuss here.
 
 This section presents airfoil design iterations aimed at maximising the lift‑to‑drag ratio (L/D). L/D is a measure of aerodynamic efficiency: for a given range, a higher L/D reduces fuel consumption. While the section L/D does not equal the complete aircraft’s L/D (which includes fuselage, tail, and interference drag), it provides an upper bound. Therefore, maximising L/D over the relevant operating conditions is an important goal of airfoil design.
 
-Each $c_p$ plot uses the following symbols: NT, Natural Transition; LS, Laminar Separation; TR, Turbulent Reattachment; TS, Turbulent Separation.
+$c_p$ plots are shown for each iteration at $5^{\circ}$ incidence for comparison, a flight typical value that did not cause stall.
+Each uses the following symbols: NT, Natural Transition; LS, Laminar Separation; TR, Turbulent Reattachment; TS, Turbulent Separation.
 
 \subsection{Low Re design: $5 \cdot 10^5$}
 
@@ -185,11 +186,11 @@ The design starting point was the NACA 0012 airfoil described in \ref{sec:naca},
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_NACA0012}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for NACA 0012.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for NACA 0012.}
     \label{fig:NACA0012}
 \end{figure}
 
-The pressure distribution at $7.6^{\circ}$ shows a large suction peak with a strong adverse pressure gradient, causing early laminar separation and turbulent reattachment. Although the flow over the lower surface remains laminar and turbulent separation occurs close to the trailing edge, significant gains can be made by maintaining laminar flow over the upper surface. 
+The pressure distribution shows a large suction peak with a strong adverse pressure gradient, causing early laminar separation and turbulent reattachment. Although the flow over the lower surface remains laminar and turbulent separation occurs close to the trailing edge, significant gains can be made by maintaining laminar flow over the upper surface. 
 
 \subsubsection{LLL01}
 
@@ -208,7 +209,7 @@ The thickness was increased to 15\% to reduce the severity of the suction peak, 
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL01}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for LLL01.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL01.}
     \label{fig:LLL01}
 \end{figure}
 
@@ -231,7 +232,7 @@ Since there is a visible `laminar bucket' region on the $C_D- C_L$ curve that is
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL02}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for LLL02.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL02.}
     \label{fig:LLL02}
 \end{figure}
 
@@ -252,7 +253,7 @@ In order to reduce the adverse pressure gradient after the leading edge, the max
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL03}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for LLL03.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL03.}
     \label{fig:LLL03}
 \end{figure}
 
@@ -275,7 +276,7 @@ The next progression was to increase the camber to 4\%, with the maximum point a
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL04}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for LLL04.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL04.}
     \label{fig:LLL04}
 \end{figure}
 
@@ -298,7 +299,7 @@ Further L/D improvements are reached by increasing camber to  7\%, with a maximu
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL05}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for LLL05.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL05.}
     \label{fig:LLL05}
 \end{figure}
 
@@ -317,7 +318,7 @@ At this stage, we started to manipulate the geometry manually using the `wasg' t
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL06}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for LLL06.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL06.}
     \label{fig:LLL06}
 \end{figure}
 
@@ -338,13 +339,15 @@ The priority in this stage was to smooth the leading edge portion of the $c_p$ p
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL07}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for LLL07.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL07.}
     \label{fig:LLL07}
 \end{figure}
 
 \subsubsection{LLL08}
 
-After geometry manipulation at the upper trailing edge, natural transition was achieved. However, turbulent separation also started earlier, with L/D = 112.7 at $3.1^{\circ}$ and $C_L = 1.39$. At this 
+After geometry manipulation at the upper trailing edge, natural transition was achieved at its maximum L/D operating point. However, turbulent separation also started earlier, with L/D = 112.7 at $3.1^{\circ}$ and $C_L = 1.39$. 
+
+The range of incidences at which L/D is optimum is also small, and $5^{\circ}$ lies outside of it. At $3^{\circ}$, the $c_p$ plot looks better, with natural transition on the upper surface. 
 
 \begin{figure}[H]
     \centering
@@ -357,7 +360,7 @@ After geometry manipulation at the upper trailing edge, natural transition was a
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL08}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot for LLL08.}
+        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL08.}
     \label{fig:LLL08}
 \end{figure}
 
