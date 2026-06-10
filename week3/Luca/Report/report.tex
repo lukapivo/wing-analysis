@@ -189,29 +189,29 @@ The design starting point was the NACA 0012 airfoil, which has a maximum lift-to
     \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for NACA0012.}
     \label{fig:NACA0012_1}
         \end{figure}
+
+Transition occurs early on the upper surface, close to the suction peak. This is due to the strong adverse pressure gradient, which destabilises the laminar boundary layer and amplifies Tollmien–Schlichting waves. 
     
     \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/cdcl_NACA0012.eps}
+        \includegraphics[width=\linewidth]{../../Figures/cp_NACA0012_7deg.eps}
     \end{minipage}
     \hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_NACA0012.eps}
     \end{minipage}
-        \caption{$c_p$ plot ($3^{\circ}$) and L/D curves for NACA0012.}
+        \caption{$c_p$ plot ($7^{\circ}$) and L/D curves for NACA0012.}
     \label{fig:NACA0012_2}
 \end{figure}
 
-The pressure distribution shows a large suction peak with a strong adverse pressure gradient, causing early laminar separation and turbulent reattachment. Although the flow over the lower surface remains laminar and turbulent separation occurs close to the trailing edge, significant gains can be made by maintaining laminar flow over the upper surface. 
+At higher angles of attack, a laminar bubble forms in a similar location. In either case, the flow over the majority of the upper surface is turbulent. Preventing this requires careful shaping of the $c_p$ distribution to reduce unfavourable pressure gradients.
 
 \subsubsection{LLL01}
 
-** Currently all diagrams shown at 1deg incidence
-
-The thickness was increased to 15\% to reduce the severity of the suction peak, creating a NACA 0015 equivalent airfoil: LLL01.
+The airfoil thickness was increased to 15\% to reduce the severity of the suction peak, creating a NACA 0015 equivalent airfoil: LLL01. This has a slightly lower maximum lift-to-drag ratio than the NACA 0012: 53.3 at $4.9^{\circ}$ and $C_L = 0.605$.
 
 \begin{figure}[H]
     \centering
@@ -227,6 +227,8 @@ The thickness was increased to 15\% to reduce the severity of the suction peak, 
     \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL01.}
     \label{fig:LLL01_1}
         \end{figure}
+
+
     
     \begin{figure}[H]
     \centering
@@ -243,7 +245,7 @@ The thickness was increased to 15\% to reduce the severity of the suction peak, 
     \label{fig:LLL01_2}
 \end{figure}
 
-The Lift to Drag ratio is slightly lower than for the NACA 0012: 53.3 at $4.9^{\circ}$). The magnitude of the suction peak is reduced, however the post suction peak adverse pressure gradient is still sufficiently high to cause early separation (at comparable incidence).  
+The magnitude of the suction peak is reduced, however the post suction peak adverse pressure gradient is still sufficiently high to cause early separation (at comparable incidence).  
 
 Since there is a visible `laminar bucket' region on the $C_D- C_L$ curve that is centered at zero incidence, improvements in L/D can be made by increasing the camber. 
 
