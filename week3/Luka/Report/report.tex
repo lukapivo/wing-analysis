@@ -143,6 +143,22 @@ At a Reynolds number as low as \num{5e5}, it is possible to retain laminar flow 
 
 Since there is no substantial downside of a strong favourable pressure gradient, and, for a given amount of drag, we should want the lowest $c_p$ value achievable over the widest possible range of positions on the upper surface of the airfoil, it is desirable to reach the minimum $c_p$ very close to the nose of the airfoil, then remain at constant $c_p$ for a substantial fraction of the chord length, and then, to reach the trailing edge with minimum instantaneous adverse pressure gradient magnitude, by linear increase in $c_p$. Between these two sections, there is a ``transition ramp'' where the two are joined smoothly; for low Reynolds numbers the properties of this ramp can have a significant impact, as they determine whether transition will occur naturally or by laminar separation with turbulent reattachment. This is similar reasoning to that used to produce the NACA 6- and 7-series airfoils \cite{naca6seriessummary}, and many other modern laminar airfoils.
 \subsection{High Speed}
+Start from NACA4412
+134 at 5.7
+\subsubsection{LLH01}
+Want to reduce suction peak to slightly delay transition (increase width of peak by increase LE radius by factor of 2, interpolating over first 10\%).
+
+136.7 at 6.8
+\subsubsection{LLH02}
+Angle of attack kind of unreasonable; would prefer smaller design angle of attack, so increase camber to 7\%. Conveniently also removes much of the suction peak, delaying separation, although the maximum is limited by the slight peak that remains.
+
+This has made the bottom worse though.
+137.8 at 3.6.
+
+\subsubsection{LLH03}
+Tweak curve near nose to avoid peak entirely - increases lift somewhat and so shifts best L/D to 139 at 1.7.
+
+\subsubsection{}
 \subsection{Inverse Design}
 \section{Optimal Sections}
 \section{Physical Processes}

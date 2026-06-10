@@ -35,46 +35,41 @@
 
 \maketitle
 
-Steps:
-** All graphs need replacing, currently just screen grabs.
-
 ** Summary **
 
 \section{Introduction}
 
 \section{Discussion of model}
-Brief description of the model
-
-\subsection{Limitations}\label{sec:limit}
-
-The pressure distribution is calculated entirely from inviscid potential, through a Bernouilli relation with the circulation-derived surface velocities. In reality, the boundary layer displacement thickness affects the outer flow curvature, however no feedback from the boundary layer calculations is implemented. This means that the variation of lift with boundary layer progression (and subsequent stall) is not captured. The effect of laminar separation bubbles on the pressure distribution is also not analysed.
+**Brief description of the model
 
 A stagnation point in the trailing edge inviscid flow causes a strong adverse pressure gradient not found empirically. Therefore, it is not enforced in the model. Instead, the extrapolated velocities above and below the leading edge are averaged, to give a more realistic result.
 
+\subsection{Limitations}\label{sec:limit}
+
+The pressure distribution is calculated entirely from inviscid potential, through a Bernouilli relation with the circulation-derived surface velocities. In reality, the boundary layer displacement thickness affects the outer flow curvature, however no feedback from the boundary layer calculations is implemented. This means that the variation of lift with boundary layer progression (and subsequent stall) is not captured. The effect of laminar separation bubbles on the pressure distribution is also not included.
+
 The modelling of transition is also unsophisticated, relying on a simple empirical criterion (Eppler and Somers) that uses only local flow properties. A more physically robust approach is the $e^{n}$ method, which is based on linear stability theory: it tracks the growth of small disturbances (Tollmien–Schlichting waves) as they travel downstream and assumes that transition occurs once these disturbances have amplified by a factor of $e^{n}$. The critical $n$ value depends on the initial turbulence of the flow, typically $n=9$ for wind-tunnel conditions. 
 
-The Thwaites' method is used for laminar flow, which describes the boundary layer shape using a single parameter `m'. However, a two parameter method, such as Head's method \cite{boundarylayersyoung} would be more appropriate. The current method is sensitive to curvature changes and behaves poorly in adverse pressure gradients \cite{oneparameterbad}.
+The Thwaites' method is used for laminar flow, which describes the boundary layer shape using a single parameter `m'. However, a two parameter method, such as Head's method \cite{boundarylayersyoung} would be more appropriate. The *current model* is sensitive to curvature changes and behaves poorly in adverse pressure gradients \cite{oneparameterbad}. It also requires that flow in a laminar separation bubble transitions immediately, as it is not possible to model a separated region using the single-parameter laminar model. However, the position of transition within the bubble has a significant effect on the reattachment position, especially in low Reynolds flow \cite{lowspeeddesign}. Therefore, information is lost by assuming that it occurs at laminar separation.
 
-The flow in a laminar separation bubble is considered to transition immediately, as it is not possible to model a separated region using the single-parameter laminar model. However, the position of transition within the bubble has a significant effect on the reattachment position, especially in low Reynolds flow \cite{lowspeeddesign}.
-
-There is no modelling of compressibility, therefore the model is only applicable below Mach 0.3. For the high Reynolds number design case, $Re =2 \cdot 10^7$, this requires a very large aircraft.
+Compressibility effects are not included, therefore the model is only applicable below Mach 0.3. For the high Reynolds number design case ($Re =2 \cdot 10^7$) this requires a very large aircraft.
 
 \subsection{Comparison with XFoil}
 
-Xfoil is an example of an industry-standard panel method solver. Due to its coupled viscous-inviscid calculations, use of the $e^n$ method for transition tests, two-parameter laminar model and improved treatment of laminar separation bubbles \cite{xfoil}, Xfoil overcomes many of the limitations of our model. Boundary layer growth is accounted for using sources, stall is modelled, and compressibility corrections improve accuracy at higher Mach numbers. It is especially useful for inverse design: the determination of the airfoil shape that would produce a given pressure or velocity distribution.
+Xfoil is an example of an industry-standard panel method solver. Due to its coupled viscous-inviscid calculations, use of the $e^n$ method for transition tests, two-parameter laminar model and improved treatment of laminar separation bubbles \cite{xfoil}, Xfoil overcomes many of the limitations of our model. Boundary layer growth is accounted for using sources, stall is modelled, and compressibility corrections improve accuracy at higher Mach numbers. It can therefore provide a comparison for model results, although its most useful feature is inverse design: the determination of the airfoil shape that produces a given pressure or velocity distribution.
 
 \subsection{Improvements to \texttt{wasg}}\label{sec:wasg}
 
 Initial attempts to use \texttt{wasg} were challenging, as any `bumpiness' introduced by spline manipulation triggered laminar separation. 
 
-A least-squares spline tool was implemented to resolve this, however the non-monotonic y variation with x was problematic. Splitting the upper and lower surfaces into different splines prevented leading edge smoothness, and fixing this removed the LE and TE position constraint. Instead, we decided to reduce the number of spline `knots'; this also helped to smooth the pressure distribution and reduce oscillations in $m$.
+A least-squares spline tool was implemented to resolve this, however the non-monotonic y-x variation was problematic. Splitting the upper and lower surfaces into different splines prevented leading edge smoothness, and fixing this removed the leading and trailing edge position constraints. As an alternative, we reduced the number of spline `knots' to increase smoothness; this also helped to smooth the pressure distribution and reduce oscillations in the shape parameter $m$.
 
-Curvature visualisation was also added, which made it possible to quickly judge the effect of geometry changes on $c_p$. To examine the curvature at the leading edge, a keyboard shortcut increases the width of the screen.
+Curvature visualisation was added as a feature, which made it possible to quickly judge the effect of geometry changes on $c_p$. The scale of this was variable, allowing visualisation of subtle variation such as in Fig. \ref{fig:LLL06}. To examine the curvature at the leading edge, a keyboard shortcut increased the width of the screen.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{../../Figures/curvature.eps}
-    \caption{Curvature display of LLL05 in `wasg'.}
+    \caption{Curvature display of LLL05 in \texttt{wasg}.}
     \label{fig:curvature}
 \end{figure}
 
@@ -83,17 +78,17 @@ Curvature visualisation was also added, which made it possible to quickly judge 
 
 \subsection{Panel number resolution}
 
-To test the variation of solution fidelity with panel number, results for Van de Vooren airfoil were compared. This airfoil geometry is obtained from conformal mapping of a cylinder, therefore an exact analytical solution exists.
+To test the solution fidelity with different panel counts, pressure distributions for a Van de Vooren airfoil were computed. This airfoil geometry is obtained from conformal mapping of a cylinder, therefore an exact analytical solution exists for comparison.
 
-This exact solution is plotted against the model output for various panel counts. The model is most inaccurate close to the suction peak where there is a large adverse pressure gradient. This inaccuracy is more pronounced for the 'thin' section than the 'thick', as the adverse pressure gradient experienced is higher. For panel counts larger than 400, the model output matches the exact solution sufficiently well; therefore, future investigations** will use 400 panels.
+This exact solution is plotted against the model output for various discretisation levels. Low panel counts are most inaccurate close to the suction peak where there is a large adverse pressure gradient. This inaccuracy is more pronounced for the `thin' section than the `thick', as the adverse pressure gradient experienced is stronger. For panel counts larger than 400, the model output matches the exact solution sufficiently well; therefore, 400 panels is chosen for future analysis.
 
-However, these results highlight a disadvantage of the model. Rather than using evenly spaced panels, it would be advantageous to increase the density close to the leading edge, where a higher resolution has a larger effect. This would allow a lower overall panel count while preserving accuracy, and is implemented in other, industry standard, panel method solvers.
+However, these results highlight a weakness of the model. Rather than using evenly spaced panels, it would be advantageous to increase the density close to the leading edge, where a higher resolution is more important. This would enable a lower total panel count without reducing accuracy, thereby improving computation speeds. This approach is already implemented in other industry-standard panel method solvers.
 
 **Plots for both thin and thick**
 
 \subsection{Boundary layer validation}
 
-The boundary layer solver is validated through comparison with the exact Blasius solution, valid for laminar flow in a zero pressure gradient. Until natural transition, which occurs at $\text{x/L} = 0.38$, the calculated momentum thickness ($\theta$ value) matches closely with Blasius.
+The boundary layer solver is validated through comparison with the exact Blasius solution, valid for flat plate laminar flow in a zero pressure gradient. Until natural transition, which occurs at $\text{x/L} = 0.38$, the calculated momentum thickness ($\theta$) matches closely with Blasius.
 
 \begin{figure}[H]
     \centering
@@ -104,7 +99,7 @@ The boundary layer solver is validated through comparison with the exact Blasius
 
 \subsection{Comparison with NACA 0012 and NACA 4412 foils}\label{sec:naca}
 
-Further validation is completed using two standard NACA airfoils at $Re = 3 \cdot 10^6$: 0012 and 4412. Experimental data was digitised from \cite{theoryofwingsections}.
+Further validation is completed using standard airfoils at $Re = 3 \cdot 10^6$: NACA 0012 and NACA 4412. Experimental data is digitised from \cite{theoryofwingsections}.
 
 \begin{figure}[H]
     \centering
@@ -167,15 +162,17 @@ Large number of questions on p30 of the handout to discuss here.
 
 \section{High L/D airfoil design}
 
-Aim is high L/D, brief why, what are the considerations and trade-offs in trying to achieve this.
+This section presents airfoil design iterations aimed at maximising the lift‑to‑drag ratio (L/D). L/D is a measure of aerodynamic efficiency: for a given range, a higher L/D reduces fuel consumption. While the section L/D does not equal the complete aircraft’s L/D (which includes fuselage, tail, and interference drag), it provides an upper bound. Therefore, maximising L/D over the relevant operating conditions is an important goal of airfoil design.
 
-\subsection{Low Re design: 5e5}
+Each $c_p$ plot uses the following symbols: NT, Natural Transition; LS, Laminar Separation; TR, Turbulent Reattachment; TS, Turbulent Separation.
 
-Typical gliders operating at this Re, drones etc **
+\subsection{Low Re design: $5 \cdot 10^5$}
+
+An airfoil section is optimised for L/D performance at $Re=5 \cdot 10^5$, corresponding to a small glider. At this low Reynolds number, flow will typically be laminar and sensitive to surface imperfections, separating easily. However, if laminar separation can be prevented, L/D gains are made due to the lower drag of a laminar boundary layer \cite{barnard2004aircraft}. Therefore, attached laminar flow over the majority of the airfoil is desirable. However, laminar airfoils tend to have small incidence ranges with separation occuring suddenly \cite{barnard2004aircraft}.
 
 \subsubsection{NACA 0012}
 
-The starting point for this design was the NACA 0012 airfoil described in \ref{sec:naca}, which has a maximum L/D of 58.8 at $7.6^{\circ}$ incidence and $C_L = 0.915$. 
+The design starting point was the NACA 0012 airfoil described in \ref{sec:naca}, which has a maximum L/D of 58.8 at $7.6^{\circ}$ incidence and $C_L = 0.915$. 
 
 \begin{figure}[H]
     \centering
@@ -186,13 +183,13 @@ The starting point for this design was the NACA 0012 airfoil described in \ref{s
     \hfill
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/}
+        \includegraphics[width=\linewidth]{../../Figures/cp_NACA0012}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for NACA 0012.}
-    \label{fig:}
+    \label{fig:NACA0012}
 \end{figure}
 
-The pressure distribution at $7.6^{\circ}$ shows a strong adverse pressure gradient after the suction peak, with an early laminar separation and turbulent reattachment to form a laminar bubble. Although the flow over the lower surface remains laminar and turbulent separation occurs close to the trailing edge, significant gains can be made by maintaining laminar flow over the upper surface. ** Source?
+The pressure distribution at $7.6^{\circ}$ shows a large suction peak with a strong adverse pressure gradient, causing early laminar separation and turbulent reattachment. Although the flow over the lower surface remains laminar and turbulent separation occurs close to the trailing edge, significant gains can be made by maintaining laminar flow over the upper surface. 
 
 \subsubsection{LLL01}
 
@@ -212,7 +209,7 @@ The thickness was increased to 15\% to reduce the severity of the suction peak, 
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL01}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for LLL01.}
-    \label{fig:}
+    \label{fig:LLL01}
 \end{figure}
 
 The Lift to Drag ratio is slightly lower than for the NACA 0012: 53.3 at $4.9^{\circ}$). The magnitude of the suction peak is reduced, however the post suction peak adverse pressure gradient is still sufficiently high to cause early separation (at comparable incidence).  
@@ -235,7 +232,7 @@ Since there is a visible `laminar bucket' region on the $C_D- C_L$ curve that is
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL02}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for LLL02.}
-    \label{fig:}
+    \label{fig:LLL02}
 \end{figure}
 
 The `laminar bucket' is visibly shifted to positive $C_L$, however laminar separation remains early on the upper surface. 
@@ -256,7 +253,7 @@ In order to reduce the adverse pressure gradient after the leading edge, the max
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL03}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for LLL03.}
-    \label{fig:}
+    \label{fig:LLL03}
 \end{figure}
 
 At the incidence at which L/D is maximised ($6^{\circ}$, with L/D = 84.3 and $C_L=0.996$), laminar separation on the upper surface is delayed. 
@@ -279,7 +276,7 @@ The next progression was to increase the camber to 4\%, with the maximum point a
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL04}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for LLL04.}
-    \label{fig:}
+    \label{fig:LLL04}
 \end{figure}
 
 The $c_p$ distribution is gradually improving and the upper laminar separation point moving rearwards, leading to an increased L/D of 91.4 at $5.6^{\circ}$, $C_L=1.26$.
@@ -302,7 +299,7 @@ Further L/D improvements are reached by increasing camber to  7\%, with a maximu
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL05}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for LLL05.}
-    \label{fig:}
+    \label{fig:LLL05}
 \end{figure}
 
 \subsubsection{LLL06}
@@ -321,7 +318,7 @@ At this stage, we started to manipulate the geometry manually using the `wasg' t
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL06}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for LLL06.}
-    \label{fig:}
+    \label{fig:LLL06}
 \end{figure}
 
 The aim of geometry changes was to delay separation on the lower surface by smoothing the curvature near the trailing edge. This was achieved, however L/D only increased to 101.3 at $2.9^{\circ}$ and $C_L = 1.34$.
@@ -342,7 +339,7 @@ The priority in this stage was to smooth the leading edge portion of the $c_p$ p
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL07}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for LLL07.}
-    \label{fig:}
+    \label{fig:LLL07}
 \end{figure}
 
 \subsubsection{LLL08}
@@ -361,10 +358,10 @@ After geometry manipulation at the upper trailing edge, natural transition was a
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL08}
     \end{minipage}
         \caption{Airfoil shape and $c_p$ plot for LLL08.}
-    \label{fig:}
+    \label{fig:LLL08}
 \end{figure}
 
-\subsection{High Re design: 2e7}
+\subsection{High Re design: $2 \cdot 10^7$}
 
 Not accounting for compressibility, therefore would need to be a large plane to operate at this Re and remain accurate.
 
@@ -403,6 +400,8 @@ NACA 6618 was designed inversely to have as flat an upper pressure distribution 
 ---------------
 
 Ncrit- 'disturbance' already in the flow e.g. roughness, disturbed flow. typical wind tunnel is 9
+
+\printbibliography
 
 \begin{figure}[H]
     \centering
@@ -529,5 +528,5 @@ LLL01 at 7.6deg L/D 50.11, CL 0.937
 \end{figure}
 
 
-\printbibliography
+
 \end{document}
