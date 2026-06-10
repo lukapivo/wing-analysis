@@ -92,7 +92,7 @@ The boundary layer solver is validated through comparison with the exact Blasius
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../../Figures/bl_valid.eps}
+    \includegraphics[width=0.4\linewidth]{../../Figures/bl_valid.eps}
     \caption{Comparison with the exact Blasius solution.}
     \label{fig:bl_valid}
 \end{figure}
@@ -186,9 +186,12 @@ The design starting point was the NACA 0012 airfoil described in \ref{sec:naca},
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_NACA0012}
     \end{minipage}
-        \vspace{0.5cm}  % optional vertical spacing between rows
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for NACA0012.}
+    \label{fig:NACA0012_1}
+        \end{figure}
     
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cdcl_NACA0012.eps}
@@ -198,8 +201,8 @@ The design starting point was the NACA 0012 airfoil described in \ref{sec:naca},
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_NACA0012.eps}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for NACA 0012.}
-    \label{fig:NACA0012}
+        \caption{$C_D-C_L$ and L/D curves for NACA0012.}
+    \label{fig:NACA0012_2}
 \end{figure}
 
 The pressure distribution shows a large suction peak with a strong adverse pressure gradient, causing early laminar separation and turbulent reattachment. Although the flow over the lower surface remains laminar and turbulent separation occurs close to the trailing edge, significant gains can be made by maintaining laminar flow over the upper surface. 
@@ -221,9 +224,12 @@ The thickness was increased to 15\% to reduce the severity of the suction peak, 
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL01}
     \end{minipage}
-        \vspace{0.5cm}  % optional vertical spacing between rows
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL01.}
+    \label{fig:LLL01_1}
+        \end{figure}
     
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL01.eps}
@@ -233,8 +239,8 @@ The thickness was increased to 15\% to reduce the severity of the suction peak, 
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLL01.eps}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL01.}
-    \label{fig:LLL01}
+        \caption{$C_D-C_L$ and L/D curves for LLL01.}
+    \label{fig:LLL01_2}
 \end{figure}
 
 The Lift to Drag ratio is slightly lower than for the NACA 0012: 53.3 at $4.9^{\circ}$). The magnitude of the suction peak is reduced, however the post suction peak adverse pressure gradient is still sufficiently high to cause early separation (at comparable incidence).  
@@ -247,7 +253,6 @@ Since there is a visible `laminar bucket' region on the $C_D- C_L$ curve that is
 
 \begin{figure}[H]
     \centering
-    % First row
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/LLL02.eps}
@@ -257,10 +262,12 @@ Since there is a visible `laminar bucket' region on the $C_D- C_L$ curve that is
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL02}
     \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL02.}
+    \label{fig:LLL02_1}
+        \end{figure}
     
-    \vspace{0.5cm}  % optional vertical spacing between rows
-    
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL02.eps}
@@ -270,9 +277,8 @@ Since there is a visible `laminar bucket' region on the $C_D- C_L$ curve that is
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLL02.eps}
     \end{minipage}
-    
-    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL02 (top row), and additional plots (bottom row).}
-    \label{fig:LLL02}
+        \caption{$C_D-C_L$ and L/D curves for LLL02.}
+    \label{fig:LLL02_2}
 \end{figure}
 
 The `laminar bucket' is visibly shifted to positive $C_L$, however laminar separation remains early on the upper surface. 
@@ -292,9 +298,12 @@ In order to reduce the adverse pressure gradient after the leading edge, the max
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL03}
     \end{minipage}
-        \vspace{0.5cm}  % optional vertical spacing between rows
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL03.}
+    \label{fig:LLL03_1}
+        \end{figure}
     
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL03.eps}
@@ -304,8 +313,8 @@ In order to reduce the adverse pressure gradient after the leading edge, the max
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLL03.eps}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL03.}
-    \label{fig:LLL03}
+        \caption{$C_D-C_L$ and L/D curves for LLL03.}
+    \label{fig:LLL03_2}
 \end{figure}
 
 At the incidence at which L/D is maximised ($6^{\circ}$, with L/D = 84.3 and $C_L=0.996$), laminar separation on the upper surface is delayed. 
@@ -327,9 +336,12 @@ The next progression was to increase the camber to 4\%, with the maximum point a
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL04}
     \end{minipage}
-        \vspace{0.5cm}  % optional vertical spacing between rows
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL04.}
+    \label{fig:LLL04_1}
+        \end{figure}
     
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL04.eps}
@@ -339,8 +351,8 @@ The next progression was to increase the camber to 4\%, with the maximum point a
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLL04.eps}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL04.}
-    \label{fig:LLL04}
+        \caption{$C_D-C_L$ and L/D curves for LLL04.}
+    \label{fig:LLL04_2}
 \end{figure}
 
 The $c_p$ distribution is gradually improving and the upper laminar separation point moving rearwards, leading to an increased L/D of 91.4 at $5.6^{\circ}$, $C_L=1.26$.
@@ -362,9 +374,12 @@ Further L/D improvements are reached by increasing camber to  7\%, with a maximu
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL05}
     \end{minipage}
-        \vspace{0.5cm}  % optional vertical spacing between rows
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL05.}
+    \label{fig:LLL05_1}
+        \end{figure}
     
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL05.eps}
@@ -374,8 +389,8 @@ Further L/D improvements are reached by increasing camber to  7\%, with a maximu
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLL05.eps}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL05.}
-    \label{fig:LLL05}
+        \caption{$C_D-C_L$ and L/D curves for LLL05.}
+    \label{fig:LLL05_2}
 \end{figure}
 
 \subsubsection{LLL06}
@@ -393,9 +408,12 @@ At this stage, we started to manipulate the geometry manually using the `wasg' t
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL06}
     \end{minipage}
-        \vspace{0.5cm}  % optional vertical spacing between rows
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL06.}
+    \label{fig:LLL06_1}
+        \end{figure}
     
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL06.eps}
@@ -405,8 +423,8 @@ At this stage, we started to manipulate the geometry manually using the `wasg' t
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLL06.eps}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL06.}
-    \label{fig:LLL06}
+        \caption{$C_D-C_L$ and L/D curves for LLL06.}
+    \label{fig:LLL06_2}
 \end{figure}
 
 The aim of geometry changes was to delay separation on the lower surface by smoothing the curvature near the trailing edge. This was achieved, however L/D only increased to 101.3 at $2.9^{\circ}$ and $C_L = 1.34$.
@@ -426,9 +444,12 @@ The priority in this stage was to smooth the leading edge portion of the $c_p$ p
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL07}
     \end{minipage}
-        \vspace{0.5cm}  % optional vertical spacing between rows
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL07.}
+    \label{fig:LLL07_1}
+        \end{figure}
     
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL07.eps}
@@ -438,8 +459,8 @@ The priority in this stage was to smooth the leading edge portion of the $c_p$ p
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLL07.eps}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL07.}
-    \label{fig:LLL07}
+        \caption{$C_D-C_L$ and L/D curves for LLL07.}
+    \label{fig:LLL07_2}
 \end{figure}
 
 \subsubsection{LLL08}
@@ -459,20 +480,23 @@ The range of incidences at which L/D is optimum is also small, and $5^{\circ}$ l
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLL08}
     \end{minipage}
-        \vspace{0.5cm}  % optional vertical spacing between rows
+    \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL08.}
+    \label{fig:LLL08_1}
+        \end{figure}
     
-    % Second row
+    \begin{figure}[H]
+    \centering
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL08.eps}
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLL08_3deg.eps}
     \end{minipage}
     \hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLL08.eps}
     \end{minipage}
-        \caption{Airfoil shape and $c_p$ plot ($5^{\circ}$) for LLL08.}
-    \label{fig:LLL08}
+        \caption{$c_p$ plot ($3^{\circ}$) and L/D curves for LLL08.}
+    \label{fig:LLL08_2}
 \end{figure}
 
 \subsection{High Re design: $2 \cdot 10^7$}
