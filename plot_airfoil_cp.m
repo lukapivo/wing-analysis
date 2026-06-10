@@ -424,3 +424,51 @@ set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL08','epsc2')
 
 
+
+caseref = "Data/LLL07b_3.mat";
+load(caseref);
+
+figure(10);
+box on 
+hold on
+plot(xs, cp, 'b');
+set(gca, 'Ydir', 'reverse')
+xlabel('s');
+ylabel('c_p');
+
+xsu = flip(xs(1:length(su)));
+cpu = flip(cp(1:length(su)));
+xsl = xs(length(su)+1:end);
+cpl = cp(length(su)+1:end);
+
+ax_cp = gca;
+
+plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
+
+caseref = "Data/LLL08b_3.mat";
+load(caseref);
+
+
+figure(10);
+box on 
+hold on
+plot(xs, cp, 'r');
+set(gca, 'Ydir', 'reverse')
+xlabel('s');
+ylabel('c_p');
+
+xsu = flip(xs(1:length(su)));
+cpu = flip(cp(1:length(su)));
+xsl = xs(length(su)+1:end);
+cpl = cp(length(su)+1:end);
+
+ax_cp = gca;
+
+plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
+
+legend('LLL07', 'LLL08','Location','south')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
+saveas(gcf,'week3/Figures/cp_LLL08_3deg','epsc2')
+
