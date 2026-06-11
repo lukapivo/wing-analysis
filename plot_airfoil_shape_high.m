@@ -133,7 +133,7 @@ plot(x5, y5, '--');
 plot(x6, y6);
 xlabel('x/c');
 ylabel('y/c');
-legend('LLH04a', 'LLH04a')
+legend('LLH04', 'LLH04a')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/LLH04a','epsc2')
 hold off;
