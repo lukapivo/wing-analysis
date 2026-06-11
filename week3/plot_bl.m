@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/final_LLH04_7.9.mat";
+caseref = "Data/final_LLH04_low_7.9.mat";
 load(caseref);
 
 function [] = plot_points(int, ils, itr, its, ax1, x, thetas, color)

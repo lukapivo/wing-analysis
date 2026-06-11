@@ -464,3 +464,31 @@ legend('NACA0012','Location','north')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_NACA0012_7deg','epsc2')
 
+
+caseref = "Data/final_LLH04_low_5.mat";
+load(caseref);
+
+figure(12);
+box on 
+hold on
+plot(xs, cp, 'r');
+set(gca, 'Ydir', 'reverse')
+xlabel('x/c');
+ylabel('c_p');
+
+xsu = flip(xs(1:length(su)));
+cpu = flip(cp(1:length(su)));
+xsl = xs(length(su)+1:end);
+cpl = cp(length(su)+1:end);
+
+ax_cp = gca;
+
+plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
+
+
+legend('LLH04','Location','north')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
+saveas(gcf,'week3/Figures/cp_LLH04_low','epsc2')
+
+

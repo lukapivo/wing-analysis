@@ -151,6 +151,33 @@ ylabel('L/D');
 legend('LLH04a', 'Location','northwest')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/ld_LLH04a','epsc2')
+
+caseref = "Data/LLL08b6_high.mat";
+load(caseref);
+
+figure(13);
+grid on
+box on
+plot(clswp, cdswp)
+xlabel('C_L');
+ylabel('C_D');
+
+legend('LLL08', 'Location','north')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
+saveas(gcf,'week3/Figures/cdcl_LLL08_low','epsc2')
+
+figure(14);
+grid on
+box on
+plot(alpha, lovdswp);
+xlabel('\alpha (deg)');
+ylabel('L/D');
+
+legend('LLL08', 'Location','northwest')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
+saveas(gcf,'week3/Figures/ld_LLL08_low','epsc2')
+
+
 % 
 % caseref = "Data/LLL06b.mat";
 % load(caseref);
