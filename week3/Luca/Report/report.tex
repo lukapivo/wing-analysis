@@ -190,7 +190,7 @@ For a symmetric airfoil, the drag coefficient is symmetric about zero incidence 
 This section presents airfoil design iterations aimed at maximising the lift‑to‑drag ratio (\(L/D\)). \(L/D\) is a measure of aerodynamic efficiency: for a given range, a higher \(L/D\) reduces fuel consumption. While the section \(L/D\) does not equal the complete aircraft’s \(L/D\) (which includes fuselage, tail, and interference drag), it provides an upper bound. Therefore, maximising \(L/D\) over the relevant operating conditions is an important goal of airfoil design.
 
 $c_p$ plots are shown for each iteration at $\alpha=5^{\circ}$ incidence for comparison, a flight typical value that did not cause stall.
-Each uses the following symbols: NT, Natural Transition; LS, Laminar Separation; TR, Turbulent Reattachment; TS, Turbulent Separation.
+Each uses the following symbols: $\bullet$, Natural Transition; $\Delta$, Laminar Separation; $\square$, Turbulent Reattachment; x, Turbulent Separation.
 
 \subsection{Low Re design: $5 \cdot 10^5$}
 
@@ -694,9 +694,42 @@ The \(L/D\) curve is not smooth, but shows a sharp drop at $\alpha=7.9^{\circ}$,
         \caption{$C_D-C_L$ and \(L/D\) curves for LLH04.}
     \label{fig:LLH04_2}
 \end{figure}
-\subsubsection{LLH05 (Inverse Design)}
+\subsubsection{LLH04a- Inverse Design}
 
 Further improvements from LLH04 would focus on improving the surface waviness, leading to a drag reduction close to the peak $L/D$. It was not possible to reduce waviness sufficiently using \texttt{wasg} to delay transition, however inverse design was used to see which section would achieve the desired pressure distribution. The result is LLHI.
+
+------------
+
+The performance is already quite good; further possible improvement is mostly in improving the off-peak performance. Just above the peak in incidence there is a large increase in drag, due to earlier natural transition due to the formation of a sharp suction peak. The decrease just below the peak in incidence is due to the waviness of the pressure surface. Both of these can most easily be adjusted through use of an inverse design tool, which can be directed to spread out the suction peak and reduce the adverse pressure gradient on the pressure surface. These requirements can only be met exactly at one incidence, so there is some small compromise to the peak $L/D$ in order to achieve more consistent behaviour. Figures \ref{fig:LLH04a_1} and \ref{fig:LLH04a_2} show the results from adjusting the pressure distribution with the Xfoil inverse design tool. The peak $L/D$ is reduced to 163, but the drop-off is much smoother
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH04a.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH04a}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH04a.}
+    \label{fig:LLH04a_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH04a.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH04a.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH04a.}
+    \label{fig:LLH04a_2}
+\end{figure}
 
 
 \subsubsection{Physical interpretation}
@@ -706,32 +739,6 @@ Further improvements from LLH04 would focus on improving the surface waviness, l
 A smooth manufacturing finish is important for both airfoils. As attached laminar flow is highly sensitive to surface roughness \cite{boundarylayersyoung}, any design seeking to delay transition or laminar separation must be manufactured precisely, with a high standard of surface finish. This also needs to be maintained under operational conditions; insect fouling, for example, is a concern for gliders \cite{barnard2004aircraft}.
 
 Thick airfoils have higher torsional rigidity and bending stiffness, helping to avoid aeroelastic flutter – a potentially destructive oscillation of the wing \cite{aeroelasticity}. Thick sections also provide internal volume for fuel tanks, a practical necessity for many aircraft. In addition, sharp trailing edges present manufacturing challenges; they are difficult to fabricate accurately using conventional methods, and are prone to damage during handling and operation \cite{barnard2004aircraft}.
-
-
-\section{Notes:}
-
-(5) INcluding direct copy paste, needs rewording
-
-Laminar boundary layers produce less skin friction drag, but more inclined to separate
-
-Leading edge vs trailing edge separation, leading edge radius
-
-Kutta condition only after the starting vortex is shed- circulation and lift- just interesting
-
-Thin sections better for laminar flow, model aircraft often use turbulators
-
-Transition depends on Re and roughness, needs to be manufactured to a precise profile, with a high standard of surface finish (more on this in chap 14). Also need to mainitain it in operational conditions.
-
-NACA 6-series good for remaining laminar, need to operate in the CD 'bucket' region. Moving the position of maximum thickness rearward reduces min CD, but narrows the range of angle of attack over which low-drag laminar flow can be maintained. It also reduces the maximum lift coefficient that can be obtained. Reducing the thickness-to-chord ratio has a similar effect.
-
-THicker airfoils have a larger range of low-drag operating conditions (wider bucket) with a higher max cl, at the expense of a slightly higher min CD. Can use spars to reduce weight.
-
-Only apply to 2D sections as induced drag etc not considered.
-
-NACA 6618 was designed inversely to have as flat an upper pressure distribution as possible, to allow laminar flow to be maintained. 
-
----------------
-
 
 \printbibliography
 
