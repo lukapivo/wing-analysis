@@ -72,7 +72,7 @@ saveas(gcf,'week3/Figures/cp_NACA4412','epsc2')
 figure(2);
 box on 
 hold on
-plot(xs, cp, 'b');
+plot(xs, cp, 'b--');
 set(gca, 'Ydir', 'reverse')
 xlabel('x/c');
 ylabel('c_p');
@@ -118,7 +118,7 @@ saveas(gcf,'week3/Figures/cp_LLH01','epsc2')
 figure(3);
 box on 
 hold on
-plot(xs, cp, 'b');
+plot(xs, cp, 'b--');
 set(gca, 'Ydir', 'reverse')
 xlabel('x/c');
 ylabel('c_p');
@@ -162,7 +162,7 @@ saveas(gcf,'week3/Figures/cp_LLH02','epsc2')
 figure(4);
 box on 
 hold on
-plot(xs, cp, 'b');
+plot(xs, cp, 'b--');
 set(gca, 'Ydir', 'reverse')
 xlabel('x/c');
 ylabel('c_p');
@@ -206,7 +206,7 @@ saveas(gcf,'week3/Figures/cp_LLH03','epsc2')
 figure(5);
 box on 
 hold on
-plot(xs, cp, 'b');
+plot(xs, cp, 'b--');
 set(gca, 'Ydir', 'reverse')
 xlabel('x/c');
 ylabel('c_p');
@@ -250,7 +250,7 @@ saveas(gcf,'week3/Figures/cp_LLH04','epsc2')
 figure(6);
 box on 
 hold on
-plot(xs, cp, 'b');
+plot(xs, cp, 'b--');
 set(gca, 'Ydir', 'reverse')
 xlabel('x/c');
 ylabel('c_p');
@@ -294,7 +294,7 @@ saveas(gcf,'week3/Figures/cp_LLH04a','epsc2')
 % figure(7);
 % box on 
 % hold on
-% plot(xs, cp, 'b');
+% plot(xs, cp, 'b--');
 % set(gca, 'Ydir', 'reverse')
 % xlabel('x/c');
 % ylabel('c_p');
@@ -338,7 +338,7 @@ saveas(gcf,'week3/Figures/cp_LLH04a','epsc2')
 % figure(8);
 % box on 
 % hold on
-% plot(xs, cp, 'b');
+% plot(xs, cp, 'b--');
 % set(gca, 'Ydir', 'reverse')
 % xlabel('x/c');
 % ylabel('c_p');
@@ -382,7 +382,7 @@ saveas(gcf,'week3/Figures/cp_LLH04a','epsc2')
 % figure(9);
 % box on 
 % hold on
-% plot(xs, cp, 'b');
+% plot(xs, cp, 'b--');
 % set(gca, 'Ydir', 'reverse')
 % xlabel('x/c');
 % ylabel('c_p');
@@ -437,7 +437,7 @@ saveas(gcf,'week3/Figures/cp_LLH04a','epsc2')
 % figure(10);
 % box on 
 % hold on
-% plot(xs, cp, 'b');
+% plot(xs, cp, 'b--');
 % set(gca, 'Ydir', 'reverse')
 % xlabel('x/c');
 % ylabel('c_p');
@@ -486,7 +486,7 @@ load(caseref);
 figure(7);
 box on 
 hold on
-plot(xs, cp, 'b');
+plot(xs, cp, 'b--');
 set(gca, 'Ydir', 'reverse')
 xlabel('x/c');
 ylabel('c_p');
