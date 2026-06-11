@@ -400,20 +400,20 @@ Further \(L/D\) improvements are reached by increasing camber to  7\%, with a ma
 
 % The geometry changes (Fig.~\ref{fig:LLL06_1}) were subtle, focusing on smoothing the lower‑surface curvature. Laminar separation was delayed, however \(L/D\) only reached 101.3 at $\alpha=2.9^{\circ}$ ($C_L = 1.34$). The small gain may be because the lower surface contributes much less to the momentum thickness than the upper surface; further improvement would requires upper surface modifications.
     
-    \begin{figure}[H]
-    \centering
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL06.eps}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Figures/ld_LLL06.eps}
-    \end{minipage}
-        \caption{$C_D-C_L$ and \(L/D\) curves for LLL06.}
-    \label{fig:LLL06_2}
-\end{figure}
+%     \begin{figure}[H]
+%     \centering
+%     \begin{minipage}{0.49\textwidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{../../Figures/cdcl_LLL06.eps}
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}{0.49\textwidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{../../Figures/ld_LLL06.eps}
+%     \end{minipage}
+%         \caption{$C_D-C_L$ and \(L/D\) curves for LLL06.}
+%     \label{fig:LLL06_2}
+% \end{figure}
 
 \subsubsection{LLL07}
 
@@ -508,10 +508,53 @@ Start with 4412
 Want to reduce suction peak to slightly delay transition (increase width of peak by increase LE radius by factor of 2, interpolating over first 10\%).
 
 Messed around with interpolation region, then tried adding camber and curve tweaks. The bottom just did not benefit at all from the large curvature.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH01.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH01}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH01.}
+    \label{fig:LLH01_1}
+\end{figure}
+    
+% \begin{figure}[H]
+%     \centering
+%     \begin{minipage}{0.49\textwidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{../../Figures/cp_LLL08_3deg.eps}
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}{0.49\textwidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{../../Figures/ld_LLL08.eps}
+%     \end{minipage}
+%         \caption{$c_p$ plot ($\alpha=3^{\circ}$) and \(L/D\) curves for LLL08.}
+%     \label{fig:LLL08_2}
+% \end{figure}
 
 \subsubsection{LLH01\_e or possibly f}
-Decerase upper surface curvature only, keeping bottom more or less the same.
+Decrease upper surface curvature only, keeping bottom more or less the same.
 145.6 at \qty{6.8}{\degree}.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH02.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH02}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH02.}
+    \label{fig:LLH02_1}
+\end{figure}
 
 \subsubsection{LLH02\_e}
 (Intermediate is available if this isn't long enough).
@@ -520,8 +563,36 @@ About 80\% of the boundary layer growth is in the final 10\% of the airfoil. The
 Hence, the curvature of the rear half of the upper surface was reduced, with even some slight reflex added. Minor modifications to the lower surface formed a compatible trailing edge. This did result in a slightly steeper adverse pressure gradient overall, but the turbulent boundary layer was more resistant to this than a shorter very intense section.
 
 Max L/D 152.1 at 6.9 degrees
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH03.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH03}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH03.}
+    \label{fig:LLH03_1}
+\end{figure}
 \subsubsection{LLH04\_e\_low}
 The clearest avenue for further improvement is increase the pressure on the lower surface, by adding concave curvature to the pressure surface. Most easily done by adjusting only the camber line - tried increasing camber from 4.5 up to 6.5 (with intermediates that weren't as good).
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH04.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH04}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH03.}
+    \label{fig:LLH04_1}
+\end{figure}
 \subsubsection{LLH05\_e and Inverse}
 Tried tweaking pressure surface to avoid the adverse pressure gradient that causes early transition at incidences just below peak L/D. Not really possible to make smooth enough with the direct editing tools available, so do inverse design ***.
 
