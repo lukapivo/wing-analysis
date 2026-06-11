@@ -247,49 +247,49 @@ legend('LLH03', 'LLH04','Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLH04','epsc2')
 
-% figure(6);
-% box on 
-% hold on
-% plot(xs, cp, 'b');
-% set(gca, 'Ydir', 'reverse')
-% xlabel('x/c');
-% ylabel('c_p');
-% 
-% xsu = flip(xs(1:length(su)));
-% cpu = flip(cp(1:length(su)));
-% xsl = xs(length(su)+1:end);
-% cpl = cp(length(su)+1:end);
-% 
-% ax_cp = gca;
-% 
-% plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
-% plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
+figure(6);
+box on 
+hold on
+plot(xs, cp, 'b');
+set(gca, 'Ydir', 'reverse')
+xlabel('x/c');
+ylabel('c_p');
 
-% caseref = "Data/LLL05_5.mat";
-% load(caseref);
-% 
-% 
-% figure(6);
-% box on 
-% hold on
-% plot(xs, cp, 'r');
-% set(gca, 'Ydir', 'reverse')
-% xlabel('x/c');
-% ylabel('c_p');
-% 
-% xsu = flip(xs(1:length(su)));
-% cpu = flip(cp(1:length(su)));
-% xsl = xs(length(su)+1:end);
-% cpl = cp(length(su)+1:end);
-% 
-% ax_cp = gca;
-% 
-% plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
-% plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
-% 
-% legend('LLL04', 'LLL05','Location','south')
-% set(gcf,'units', 'centimeters','position',[0,0,8,5])
-% saveas(gcf,'week3/Figures/cp_LLL05','epsc2')
+xsu = flip(xs(1:length(su)));
+cpu = flip(cp(1:length(su)));
+xsl = xs(length(su)+1:end);
+cpl = cp(length(su)+1:end);
+
+ax_cp = gca;
+
+plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
+
+caseref = "Data/final_LLH05_5.mat";
+load(caseref);
+
+
+figure(6);
+box on 
+hold on
+plot(xs, cp, 'r');
+set(gca, 'Ydir', 'reverse')
+xlabel('x/c');
+ylabel('c_p');
+
+xsu = flip(xs(1:length(su)));
+cpu = flip(cp(1:length(su)));
+xsl = xs(length(su)+1:end);
+cpl = cp(length(su)+1:end);
+
+ax_cp = gca;
+
+plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
+plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
+
+legend('LLH04', 'LLH04a','Location','south')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
+saveas(gcf,'week3/Figures/cp_LLH04a','epsc2')
 % 
 % figure(7);
 % box on 
@@ -483,7 +483,7 @@ saveas(gcf,'week3/Figures/cp_LLH04','epsc2')
 % 
 caseref = "Data/NACA4412_7.8.mat";
 load(caseref);
-figure(6);
+figure(7);
 box on 
 hold on
 plot(xs, cp, 'b');
@@ -506,7 +506,7 @@ caseref = "Data/final_LLH01_7.8.mat";
 load(caseref);
 
 
-figure(6);
+figure(7);
 box on 
 hold on
 plot(xs, cp, 'r');

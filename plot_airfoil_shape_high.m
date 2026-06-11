@@ -16,8 +16,8 @@ load(caseref);
 caseref = "Geometry/final_LLH04.surf";
 load(caseref);
 % 
-% caseref = "Geometry/LLL05.surf";
-% load(caseref);
+caseref = "Geometry/final_LLH05.surf";
+load(caseref);
 % 
 % caseref = "Geometry/LLL06b.surf";
 % load(caseref);
@@ -43,9 +43,9 @@ y4 = final_LLH03(:, 2);
 x5 = final_LLH04(:, 1);
 y5 = final_LLH04(:, 2);
 
-% x6 = LLL05(:, 1);
-% y6 = LLL05(:, 2);
-% [xs6 ys6] = splinefit([1;x6(2:end-1);1],[0;y6(2:end-1);0],0);
+x6 = final_LLH05(:, 1);
+y6 = final_LLH05(:, 2);
+[xs6 ys6] = splinefit([1;x6(2:end-1);1],[0;y6(2:end-1);0],0);
 % 
 % x7 = LLL06b(:, 1);
 % y7 = LLL06b(:, 2);
@@ -123,6 +123,19 @@ ylabel('y/c');
 legend('LLH03', 'LLH04')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/LLH04','epsc2')
+hold off;
+
+figure(6);
+axis equal
+box on
+hold on
+plot(x5, y5, '--');
+plot(x6, y6);
+xlabel('x/c');
+ylabel('y/c');
+legend('LLH04a', 'LLH04a')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
+saveas(gcf,'week3/Figures/LLH04a','epsc2')
 hold off;
 
 % figure(6);
