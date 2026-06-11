@@ -1,7 +1,8 @@
 %  Script for use in studying resolution requirements of panel method 
 %  calculation.  To alter incidence, edit 'alpha' below.  To alter
 %  Van de Vooren geometry parameters, see vdvfoil.m.
-
+clear
+close all
 %  free-stream incidence
 alpha = pi/12;
 
@@ -72,26 +73,32 @@ saveas(gcf,'week3/Figures/resstd_all','epsc')
 figure(3)
 plot(xsin,-cpex,xs1,-cp1,'--')
 
-ax = axes();
-zoom_region = [0 0 1 1];
-zoom_ax = zoomed_axes(ax, zoom_region);
 
-legend('exact','100pans')
+ax = gca;
+zoom_ax = zoomed_axes(ax, [-0.01 25 0.01 28]);
+legend(ax,'exact','100pans')
+
 saveas(gcf,'week3/Figures/resstd_100','epsc')
 
 figure(4)
 plot(xsin,-cpex,xs2,-cp2,'-.')
-legend('exact','200pans')
+ax = gca;
+zoom_ax = zoomed_axes(ax, [-0.01 25 0.01 32]);
+legend(ax,'exact','200pans')
 saveas(gcf,'week3/Figures/resstd_200','epsc')
 
 figure(5)
 plot(xsin,-cpex,xs4,-cp4,'-+')
-legend('exact','400pans')
+ax = gca;
+zoom_ax = zoomed_axes(ax, [-0.01 25 0.01 30]);
+legend(ax,'exact','400pans')
 saveas(gcf,'week3/Figures/resstd_400','epsc')
 
 figure(6)
 plot(xsin,-cpex,xs8,-cp8,'-x')
-legend('exact','800pans')
+ax = gca;
+zoom_ax = zoomed_axes(ax, [-0.01 25 0.01 28]);
+legend(ax,'exact','800pans')
 saveas(gcf,'week3/Figures/resstd_800','epsc')
 
 figure(7)

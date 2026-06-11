@@ -1,7 +1,7 @@
 clear
 close all
 
-caseref = "Data/LLH04_e.mat";
+caseref = "Data/final_LLH05.mat";
 load(caseref);
 
 % C_L alpha and C_D alpha
@@ -26,7 +26,7 @@ plot(alpha, lovdswp);
 xlabel('Angle of Attack (degrees)');
 ylabel('L/D');
 
-caseref = "Data/LLH05_e.mat";
+caseref = "Data/final_LLH04.mat";
 load(caseref);
 
 % C_L alpha and C_D alpha
