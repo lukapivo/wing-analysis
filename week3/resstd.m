@@ -16,6 +16,7 @@ axis('equal')
 xlabel('x/c')
 ylabel('y/c')
 title('Van de Vooren aerofoil')
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/resstd_airfoil','epsc')
 
 disp('Starting 100 panel calculation ...')
@@ -63,6 +64,7 @@ xs8 = xs;
 cp8 = 1 - gams.^2;
 
 figure(2)
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
 plot(xsin,-cpex,xs1,-cp1,'--',xs2,-cp2,'-.',xs4,-cp4,'-+',xs8,-cp8,'-x')
 xlabel('x/c')
 ylabel('-c_p')
@@ -71,37 +73,46 @@ legend('exact','100pans','200pans','400pans','800pans')
 saveas(gcf,'week3/Figures/resstd_all','epsc')
 
 figure(3)
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
 plot(xsin,-cpex,xs1,-cp1,'--')
 
 
 ax = gca;
 zoom_ax = zoomed_axes(ax, [-0.01 25 0.01 28]);
+zoom_ax.Position = [0.318, 0.378, 0.258, 0.272];
 legend(ax,'exact','100pans')
 
 saveas(gcf,'week3/Figures/resstd_100','epsc')
 
 figure(4)
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
 plot(xsin,-cpex,xs2,-cp2,'-.')
 ax = gca;
 zoom_ax = zoomed_axes(ax, [-0.01 25 0.01 32]);
+zoom_ax.Position = [0.318, 0.378, 0.258, 0.272];
 legend(ax,'exact','200pans')
 saveas(gcf,'week3/Figures/resstd_200','epsc')
 
 figure(5)
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
 plot(xsin,-cpex,xs4,-cp4,'-+')
 ax = gca;
 zoom_ax = zoomed_axes(ax, [-0.01 25 0.01 30]);
+zoom_ax.Position = [0.318, 0.378, 0.258, 0.272];
 legend(ax,'exact','400pans')
 saveas(gcf,'week3/Figures/resstd_400','epsc')
 
 figure(6)
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
 plot(xsin,-cpex,xs8,-cp8,'-x')
 ax = gca;
 zoom_ax = zoomed_axes(ax, [-0.01 25 0.01 28]);
+zoom_ax.Position = [0.318, 0.378, 0.258, 0.272];
 legend(ax,'exact','800pans')
 saveas(gcf,'week3/Figures/resstd_800','epsc')
 
 figure(7)
+set(gcf,'units', 'centimeters','position',[0,0,8,5])
 plot(xsin,-cpex)
 legend('exact')
 saveas(gcf,'week3/Figures/resstd_exact','epsc')

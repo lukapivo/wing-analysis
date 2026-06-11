@@ -84,7 +84,30 @@ This exact solution is plotted against the model output for various discretisati
 
 However, these results highlight a weakness of the model. Rather than using evenly spaced panels, it would be advantageous to increase the density close to the leading edge, where a higher resolution is more important. This would enable a lower total panel count without reducing accuracy, thereby improving computation speeds. This approach is already implemented in other industry-standard panel method solvers.
 
-**Plots for both thin and thick**
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_100.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_200.eps}
+    \end{minipage}
+    \vspace{0.5cm}
+        \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_400.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_800.eps}
+    \end{minipage}
+    \caption{Van de Vooren airfoil discretised and exact solutions.}
+    \label{fig:panel_num}
+        \end{figure}
 
 \subsection{Boundary layer validation}
 

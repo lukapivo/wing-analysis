@@ -50,25 +50,31 @@
 
 
 \begin{document}
-
+\includepdf[pages={1,2}]{coversheet_wing_final.pdf}
+\setcounter{page}{1}
 \maketitle
 
 \section{Introduction}
-\section{Model Validity}
-\subsection{Panel Count}
-\subsection{NACA Foil Comparison}
+\section{Model Limitations} \label{sec:limitations}
+
 \subsection{Viscous Coupling}
 The assumption that a boundary layer always remains much thinner than the section under study is not always valid - by the trailing edge of an airfoil, at low Reynolds numbers, the displacement thickness can be on the order of \qty{1}{\percent} of the chord, which is of similar order to 
 \subsection{Transition Modelling}
-The natural transition model used is not physically based, but instead empirical. Given that the turbulent portion of the boundary layer, in general, contributes substantially more than the laminar section to the profile drag, accurately assessing the transition point is very important for drag prediction accuracy. A more accurate method would be to use a form of the $e^n$ model, which considers the boundary layer to have transitioned when the present Tollmien-Schilling waves reach a disturbance amplification factor of $e^{n_\mathrm{crit}}$, where $n_\mathrm{crit}$ is user-set and dependent on the expected conditions of the incoming freestream flow (a more turbulent freestream will have larger disturbances that could be amplified to cause transition, and so require a lower $n_\mathrm{crit}$; for an undisturbed flow, $n_\mathrm{crit} \approx 11$, for a typical wind tunnel flow $n_\mathrm{crit} \approx 9$) \cite{boundarylayersyoung}. 
+The natural transition model used is not physically based, but instead empirical. Given that the turbulent portion of the boundary layer, in general, contributes substantially more than the laminar section to the profile drag, accurately assessing the transition point is very important for drag prediction accuracy. A more accurate method would be to use a form of the $e^n$ model, which considers the boundary layer to have transitioned when the present Tollmien-Schilling waves reach a disturbance amplification factor of $e^{n_\mathrm{crit}}$, where $n_\mathrm{crit}$ is set dependent on the expected conditions of the incoming freestream flow (a more turbulent freestream will have larger disturbances that could be amplified to cause transition, and so require a lower $n_\mathrm{crit}$; for an undisturbed flow, $n_\mathrm{crit} \approx 11$, for a typical wind tunnel flow $n_\mathrm{crit} \approx 9$) \cite{boundarylayersyoung}. 
 \subsection{Laminar Separation Bubbles}
-Our current treatment of laminar separation bubbles considers them to be no different to attached turbulent flow. This is a dubious assumption, especially given the importance of laminar separation bubble contributions to drag on a mostly laminar airfoil \cite{lowspeeddesign}. This necessitates accurate modelling in order to give good results at low speeds.
+Our current treatment of laminar separation bubbles considers them to be no different to attached turbulent flow. This is a dubious assumption, especially given the importance of laminar separation bubble contributions to drag on a mostly laminar airfoil \cite{lowspeeddesign}. This necessitates accurate modelling in order to give good results at low speeds. Since the Thwaites method uses a single shape parameter to describe boundary layer evolution, it cannot adequately represent separated flows \cite{oneparameterbad}, so there is no alternative without changing the laminar solution method to an (at minimum) two equation method.
 \subsection{Turbulent Separation}
-Due to the lack of inviscid to viscous coupling, the modelling of turbulent separation is fundamentally inaccurate, as there is no impact on the inviscid lift coefficient, meaning that the stall behaviour seen in real airfoils is completely absent. 
+Due to the lack of viscous to inviscid coupling, the modelling of turbulent separation is fundamentally inaccurate, as there is no impact on the inviscid lift coefficient, meaning that the stall behaviour seen in real airfoils is completely absent. 
 
-This effect also accounts for the abscence of very strong adverse pressure gradient near the trailing edge, as the finite thickness of the wake means that the outer flow does not stagnate, as it does not come to a sharp point. This particular effect is handled explicitly by the model, but there is no further.
+This effect also accounts for the absence of a very strong adverse pressure gradient near the trailing edge, as the finite thickness of the wake means that the outer flow does not stagnate, as it does not come to a sharp point. This particular effect is handled explicitly by the model, but there is no further.
+\section{Model Validation}
+\subsection{Panel Count}
+The harshest test of the panel method is the thin van der Vooren airfoil at \qty{15}{\degree} incidence; the thick aerofoil and zero incidence cases give much less sharp suction peaks that are not so difficult to resolve. Only the thin case at incidence is shown, as the panel counts perform at least as well in the other cases.
+
+While 800 panels does clearly give the best result, those for 400 panels are already adequate, and given the $\mathcal{O}\left(n^3\right)$ matrix inversions required, the substantially greater computation time is not worth the accuracy increment.
+
+Better results could very likely be obtained by using non-uniform panel lengths (which our code was adapted to support), to allow clustering around the leading and trailing edges, where there tend to be difficult-to-resolve large pressure gradients, while not wasting computational effort on midpoints. This non-uniform panelling (among other differences) allows Xfoil to obtain good quality results with only 150 or so panels \cite{xfoil}. 
 \subsection{NACA Airfoil Comparison}
-Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwingsections}.
 \begin{figure}[H]
     \centering
     \begin{minipage}{8cm}
@@ -80,7 +86,7 @@ Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwings
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca4412_clalpha.eps}
     \end{minipage}
-    \caption{$C_L - \alpha$ curves}
+    \caption{$C_L - \alpha$ curves \cite{theoryofwingsections}}
     \label{fig:cl alpha}
 \end{figure}
 \begin{figure}[H]
@@ -94,7 +100,7 @@ Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwings
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca4412_cdalpha.eps}
     \end{minipage}
-        \caption{$C_D - \alpha$ curves}
+        \caption{$C_D - \alpha$ curves \cite{theoryofwingsections}}
     \label{fig:cd alpha}
 \end{figure}
 
@@ -109,7 +115,7 @@ Airfoil experimental taken is due to Abbott and von Doenhoff \cite{theoryofwings
         \centering
         \includegraphics[width=\linewidth]{../../Figures/naca4412_clcd.eps}
     \end{minipage}
-        \caption{$C_D - C_L$ curves}
+        \caption{$C_D - C_L$ curves \cite{theoryofwingsections}}
     \label{fig:cl cd}
 \end{figure}
 \subsubsection{$C_L - \alpha$}
@@ -145,7 +151,9 @@ High $C_L/C_D$ is achieved at the edge of the ``laminar bucket '', i.e. the maxi
 \end{figure}
 The WASG tool was modified with the ability to determine the local curvature at any point on the airfoil, shown as a curvature comb. This proved very necessary due to the sensitivity of the boundary model to very small changes in the rate of change of curvature around the airfoil. Since the cubic splines used to construct the profile are only $C^2$ continuous, explicit care had to be taken to ensure that spline-induced curvature variation did not cause premature laminar separation.
 
-This was much more of an issue at low Reynolds numbers, as the turbulent boundary layer present at higher Reynolds numbers was much more resistant to curvature variations. This sensitivity does however indicate that the performance of the low speed laminar section would in reality be very sensitive to surface imperfections, as even very small variations caused substantial variations in $m$ and hence premature separation.
+This was more of an issue for the low-speed design, as the high-speed design already undergoes natural transition quite early, and the subsequent turbulent boundary layer is much more resistant to curvature variations. This sensitivity does however indicate that the performance of the low speed laminar section would in reality be very sensitive to surface waviness and poor surface finish, as even very small variations caused substantial variations in $m$ and hence premature separation.
+
+*** Plot of $m$
 \subsection{Inverse Design}
 Inverse design methods are broadly split into those based on conformal mappings of flow around a cylinder and those based on panel methods. In principle one can specify a known set of velocities (and hence $\gamma$ values) at panel edges, rather than the panel locations, and then construct a set of equations to determine the necessary edge coordinates. This problem is non-linear, unlike the forwards problem solved in our inviscid panel solver, but this can be solved effectively with Newton iteration \cite{xfoil}. This is most useful where some parts of the airfoil geometry need to be directly specified.
 
@@ -157,7 +165,7 @@ A conformal mapping method can either vary the shape of the (slightly perturbed)
 At a Reynolds number as low as \num{5e5}, it is possible to retain laminar flow over a substantial fraction of the airfoil. In order to take advantage of the slow growth of the laminar boundary layer, it is desirable to delay the presence of any adverse pressure gradients that might destabilise the laminar boundary layer to as far to the rear of the airfoil as possible.
 
 Since there is no substantial downside of a strong favourable pressure gradient, and, for a given amount of drag, we should want the lowest $c_p$ value achievable over the widest possible range of positions on the upper surface of the airfoil, it is desirable to reach the minimum $c_p$ very close to the nose of the airfoil, then remain at constant $c_p$ for a substantial fraction of the chord length, and then, to reach the trailing edge with minimum instantaneous adverse pressure gradient magnitude, by linear increase in $c_p$. Between these two sections, there is a ``transition ramp'' where the two are joined smoothly; for low Reynolds numbers the properties of this ramp can have a significant impact, as they determine whether transition will occur naturally or by laminar separation with turbulent reattachment. This is similar reasoning to that used to produce the NACA 6- and 7-series airfoils \cite{naca6seriessummary}, and many other modern laminar airfoils.
-\subsection{NACA0012}
+\subsubsection{NACA0012}
 Starting point. Max L/D is 58.826 at 7.6 deg at Cl = 0.9145
 \begin{figure}[H]
     \centering
@@ -487,27 +495,59 @@ After modifying the upper trailing‑edge geometry, natural transition was achie
 \end{figure}
 
 Beyond this point, manual improvements could not be made using \texttt{wasg}; small changes in curvature caused early laminar or turbulent separation. Ideally, turbulent separation would not occur before the trailing edge on either surface, however this was difficult to implement manually.
-\subsection{High Speed First Attempt}
-Start from NACA4412
-134 at 5.7
+% \subsection{High Speed First Attempt}
+% Start from NACA4412
+% 134 at 5.7
+% \subsubsection{LLH01}
+% Want to reduce suction peak to slightly delay transition (increase width of peak by increase LE radius by factor of 2, interpolating over first 10\%).
+
+% 136.7 at 6.8
+% \subsubsection{LLH02}
+% Angle of attack kind of unreasonable; would prefer smaller design angle of attack, so increase camber to 7\%. Conveniently also removes much of the suction peak, delaying separation, although the maximum is limited by the slight peak that remains.
+
+% This has made the bottom worse though.
+% 137.8 at 3.6.
+% \subsubsection{LLH03}
+% Tweak curve near nose to avoid peak entirely - increases lift somewhat and so shifts best L/D to 139 at 1.7.
+
+\subsection{High Speed}
+At 
+\subsubsection{NACA 4412}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/NACA4412.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_NACA4412}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=5^{\circ}$) for NACA 4412.}
+    \label{fig:NACA4412_1}
+\end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_NACA4412.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_NACA0012.eps}
+    \end{minipage}
+        \caption{$c_p$ plot ($\alpha=7^{\circ}$) and \(L/D\) curves for NACA0012.}
+    \label{fig:NACA0012_2}
+\end{figure}
 \subsubsection{LLH01}
-Want to reduce suction peak to slightly delay transition (increase width of peak by increase LE radius by factor of 2, interpolating over first 10\%).
+%LLH01_b
+Widening the suction peak would desirably increase lift, and delay transition at high incidences where the 4412 peak is very sharp. Here this was attempted by increasing the leading-edge radius by a factor of 2 (modifying the leading \qty{10}{\percent} of the airfoil) using XFLR5. This resulted in small improvement to lift, but brough natural transition forwards, and so led to very small overall improvement. As expected, the high-incidence performance was improved more, with maximum $L/D$ of 136.6 at \qty{7.8}{\degree} incidence.
 
-136.7 at 6.8
-\subsubsection{LLH02}
-Angle of attack kind of unreasonable; would prefer smaller design angle of attack, so increase camber to 7\%. Conveniently also removes much of the suction peak, delaying separation, although the maximum is limited by the slight peak that remains.
+This was, however, a dead end for substantial further improvement, as camber tweaks and direct spline knot manipulation improved the upper surface behaviour somewhat, by reducing the post-suction peak adverse pressure gradient enough to delay separation, but simultaneous harming the lower surface performance so much as to only be a tiny improvement.
 
-This has made the bottom worse though.
-137.8 at 3.6.
-\subsubsection{LLH03}
-Tweak curve near nose to avoid peak entirely - increases lift somewhat and so shifts best L/D to 139 at 1.7.
-
-\subsection{High Speed Final}
-Start with 4412
-\subsubsection{LLH01\_b}
-Want to reduce suction peak to slightly delay transition (increase width of peak by increase LE radius by factor of 2, interpolating over first 10\%).
-
-Messed around with interpolation region, then tried adding camber and curve tweaks. The bottom just did not benefit at all from the large curvature.
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -522,23 +562,7 @@ Messed around with interpolation region, then tried adding camber and curve twea
     \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH01.}
     \label{fig:LLH01_1}
 \end{figure}
-    
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Figures/LLL07.eps}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.49\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Figures/cp_LLL07}
-    \end{minipage}
-    \caption{Airfoil shape and $c_p$ plot ($\alpha=5^{\circ}$) for LLL07.}
-    \label{fig:LLL07_1}
-        \end{figure}
 
-    
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -550,13 +574,13 @@ Messed around with interpolation region, then tried adding camber and curve twea
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLH01.eps}
     \end{minipage}
-        \caption{$C_D-C_L$ and \(L/D\) curves for LLL07.}
-    \label{fig:LLL07_2}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH01.}
+    \label{fig:LLH01_2}
 \end{figure}
 
-\subsubsection{LLH01\_e or possibly f}
-Decrease upper surface curvature only, keeping bottom more or less the same.
-145.6 at \qty{6.8}{\degree}.
+\subsubsection{LLH02}
+% LLH01\_e
+To improve further, the change was reverted, and instead only the suction surface curvature was reduced, keeping the lower surface effectively identical to the 4412. This allowed much less upper surface curvature than in LLH01, leading to a much gentler suction peak and slightly delayed separation (harmed by spline-induced waviness). Performance improved to a maximum $L/D$ of 145.6 at \qty{6.8}{\degree} incidence.
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -572,13 +596,28 @@ Decrease upper surface curvature only, keeping bottom more or less the same.
     \label{fig:LLH02_1}
 \end{figure}
 
-\subsubsection{LLH02\_e}
-(Intermediate is available if this isn't long enough).
-About 80\% of the boundary layer growth is in the final 10\% of the airfoil. There's basically no amount of lift that can be coming from here to warrant the adverse pressure gradient.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH02.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH02.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH02.}
+    \label{fig:LLH02_2}
+\end{figure}
 
-Hence, the curvature of the rear half of the upper surface was reduced, with even some slight reflex added. Minor modifications to the lower surface formed a compatible trailing edge. This did result in a slightly steeper adverse pressure gradient overall, but the turbulent boundary layer was more resistant to this than a shorter very intense section.
+\subsubsection{LLH03}
+% LLH02\_e
+The final \qty{10}{\percent} of the chord accounts for about \qty{80}{\percent} of the momentum thickness growth on the upper surface of the LLH02 section. Therefore, the drag benefit of reducing this adverse pressure gradient is certainly worth some small sacrifice in lift.
 
-Max L/D 152.1 at 6.9 degrees
+Hence, the curvature of the rear half of the upper surface was reduced, with some slight reflex added. Minor modifications to the lower surface formed a compatible trailing edge. This did result in a slightly steeper adverse pressure gradient overall, but the turbulent boundary layer was more resistant to this than a shorter very intense section at the trailing edge. Improvements to $c_p$ distribution smoothness also allowed a very slightly later natural transition on the upper surface, but this had no appreciable effect on the drag.
+
+Max $L/D$ of 152.1 at $\alpha=\qty{6.9}{\degree}$
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -593,8 +632,26 @@ Max L/D 152.1 at 6.9 degrees
     \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH03.}
     \label{fig:LLH03_1}
 \end{figure}
-\subsubsection{LLH04\_e\_low}
-The clearest avenue for further improvement is increase the pressure on the lower surface, by adding concave curvature to the pressure surface. Most easily done by adjusting only the camber line - tried increasing camber from 4.5 up to 6.5 (with intermediates that weren't as good).
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH03.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH03.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH03.}
+    \label{fig:LLH03_2}
+\end{figure}
+\subsubsection{LLH04}
+% LLH04\_e\_low
+The clearest avenue for further improvement is to increase the pressure on the lower surface, by adding concave curvature to the pressure surface. To avoid causing early natural transition on the pressure surface, this concave surface must avoid waviness. This was most easily achieved done by adjusting only the camber line using XFLR5; camber was increased from \qty{4.5}{\percent} in several steps, with \qty{6.5}{\percent} giving the best performance.
+
+This still did not yield a perfectly smooth pressure surface, with the adverse pressure gradient present around \qty{20}{\percent} chord due to waviness causing early transition up until just before the peak $L/D$, where increasing incidence gives an entirely favourable pressure gradient.
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -609,13 +666,34 @@ The clearest avenue for further improvement is increase the pressure on the lowe
     \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH03.}
     \label{fig:LLH04_1}
 \end{figure}
-\subsubsection{LLH05\_e and Inverse}
-Tried tweaking pressure surface to avoid the adverse pressure gradient that causes early transition at incidences just below peak L/D. Not really possible to make smooth enough with the direct editing tools available, so do inverse design ***.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH04.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH04.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH04.}
+    \label{fig:LLH04_2}
+\end{figure}
+\subsubsection{LLH05 (Inverse Design)}
+The performance is already quite good; further improvement is likely mostly down to improving pressure surface waviness, which might lead to a drag reduction over the incidence range just below peak $L/D$, and perhaps slightly increase the peak. It was not possible to make the surface smooth enough to completely avoid the early transition using \texttt{wasg} or XFLR5's direct editor, so this seems a good avenue for inverse design, as the desired pressure distribution (albeit less wavy) is already known.
 
 \section{Optimal Sections}
 \section{Physical Processes}
 \section{Result Reliability}
-Not
+
+\subsection{Compressibility}
+In order for the high Reynolds number case not to have significant compressibility effects at a plausible cruise Mach number, 
+\subsection{Practical Considerations}
+Regardless of the accuracy and validity of the performance results, aerofoils must meet other practical constraints. They must be manufacturable: the low-speed aerofoil needs a low-waviness and smooth surface finish to maintain laminar flow, which may not be suitable for all mnaufacturing techniques, and the high-speed aerofoil has a difficult to manufacture very thing trailing edge.
+
+The thicknesses may also pose a challenge. The aerofoil must be sufficiently strong and stiff to resist regular bending and torsion loads, and must be stiff enough to give suitably high aeroelastic divergence and flutter speeds \cite{aeroelasticity}. Moreover, in civil transports, the section must be able to accommodate a ``wet wing'' fuel tank. These constraints all encourage a thicker section than we might otherwise select.
 
 \printbibliography
 
