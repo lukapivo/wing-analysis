@@ -51,7 +51,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -64,7 +64,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('NACA 4412', 'Location','north')
+legend('NACA 4412', 'Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_NACA4412','epsc2')
 
@@ -74,7 +74,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -97,7 +97,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -110,7 +110,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('NACA 4412', 'LLH01', 'Location','north')
+legend('NACA 4412', 'LLH01', 'Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLH01','epsc2')
 
@@ -120,7 +120,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -142,7 +142,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -155,7 +155,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLH01', 'LLH02','Location','south')
+legend('LLH01', 'LLH02','Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLH02','epsc2')
 
@@ -164,7 +164,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -186,7 +186,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -199,7 +199,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLH02', 'LLH03','Location','south')
+legend('LLH02', 'LLH03','Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLH03','epsc2')
 
@@ -208,7 +208,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -230,7 +230,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -243,16 +243,16 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLH03', 'LLH04','Location','south')
+legend('LLH03', 'LLH04','Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
+saveas(gcf,'week3/Figures/cp_LLH04','epsc2')
 
 % figure(6);
 % box on 
 % hold on
 % plot(xs, cp, 'b');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -274,7 +274,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'r');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -296,7 +296,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'b');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -318,7 +318,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'r');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -340,7 +340,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'b');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -362,7 +362,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'r');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -384,7 +384,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'b');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -406,7 +406,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'r');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -439,7 +439,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'b');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -461,7 +461,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'r');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));
@@ -489,7 +489,7 @@ saveas(gcf,'week3/Figures/cp_LLL04','epsc2')
 % hold on
 % plot(xs, cp, 'r');
 % set(gca, 'Ydir', 'reverse')
-% xlabel('s');
+% xlabel('x/c');
 % ylabel('c_p');
 % 
 % xsu = flip(xs(1:length(su)));

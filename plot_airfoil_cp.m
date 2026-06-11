@@ -51,7 +51,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -74,7 +74,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -97,7 +97,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -120,7 +120,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -142,7 +142,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -164,7 +164,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -186,7 +186,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -208,7 +208,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -230,7 +230,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -252,7 +252,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -274,7 +274,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -296,7 +296,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -318,7 +318,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -340,7 +340,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -362,7 +362,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -384,7 +384,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -406,7 +406,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -439,7 +439,7 @@ box on
 hold on
 plot(xs, cp, 'b');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -461,7 +461,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
@@ -489,7 +489,7 @@ box on
 hold on
 plot(xs, cp, 'r');
 set(gca, 'Ydir', 'reverse')
-xlabel('s');
+xlabel('x/c');
 ylabel('c_p');
 
 xsu = flip(xs(1:length(su)));
