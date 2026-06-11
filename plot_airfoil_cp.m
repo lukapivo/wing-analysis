@@ -291,50 +291,6 @@ legend('LLL04', 'LLL05','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL05','epsc2')
 
-figure(7);
-box on 
-hold on
-plot(xs, cp, 'b');
-set(gca, 'Ydir', 'reverse')
-xlabel('x/c');
-ylabel('c_p');
-
-xsu = flip(xs(1:length(su)));
-cpu = flip(cp(1:length(su)));
-xsl = xs(length(su)+1:end);
-cpl = cp(length(su)+1:end);
-
-ax_cp = gca;
-
-plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
-plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
-
-caseref = "Data/LLL06b_5.mat";
-load(caseref);
-
-
-figure(7);
-box on 
-hold on
-plot(xs, cp, 'r');
-set(gca, 'Ydir', 'reverse')
-xlabel('x/c');
-ylabel('c_p');
-
-xsu = flip(xs(1:length(su)));
-cpu = flip(cp(1:length(su)));
-xsl = xs(length(su)+1:end);
-cpl = cp(length(su)+1:end);
-
-ax_cp = gca;
-
-plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
-plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
-
-legend('LLL05', 'LLL06','Location','south')
-set(gcf,'units', 'centimeters','position',[0,0,8,5])
-saveas(gcf,'week3/Figures/cp_LLL06','epsc2')
-
 figure(8);
 box on 
 hold on
@@ -352,6 +308,7 @@ ax_cp = gca;
 
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'b');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'b');
+
 
 caseref = "Data/LLL07b_5.mat";
 load(caseref);
@@ -375,7 +332,7 @@ ax_cp = gca;
 plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
-legend('LLL06', 'LLL07','Location','south')
+legend('LLL05', 'LLL07','Location','south')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLL07','epsc2')
 

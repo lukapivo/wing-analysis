@@ -155,11 +155,11 @@ figure(8);
 axis equal
 box on
 hold on
-plot(xs7, ys7, '--');
+plot(xs6, ys6, '--');
 plot(xs8, ys8);
 xlabel('x/c');
 ylabel('y/c');
-legend('LLL06', 'LLL07')
+legend('LLL05', 'LLL07')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/LLL07','epsc2')
 hold off;
