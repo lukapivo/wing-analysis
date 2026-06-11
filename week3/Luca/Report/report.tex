@@ -38,12 +38,7 @@
 
 ** Summary **
 
-\section{Introduction}
-
 \section{Discussion of model}
-**Brief description of the model
-
-A stagnation point in the trailing edge inviscid flow causes a strong adverse pressure gradient not found empirically. Therefore, it is not enforced in the model. Instead, the extrapolated velocities above and below the leading edge are averaged, to give a more realistic result.
 
 \subsection{Limitations}\label{sec:limit}
 
@@ -140,7 +135,6 @@ Further validation is completed using standard airfoils at $Re = 3 \cdot 10^6$: 
     \label{fig:cl alpha}
 \end{figure}
 
-*Need to check that these have answered all the qs* 
 
 Figure~\ref{fig:cl alpha} shows the variation in lift over typical incidence angles for both airfoils. Both curves start approximately linearly; however, the experimental lift curve decreases at higher incidences due to turbulent separation. Turbulent separation yields a region of nearly constant pressure on the surface, which reduces the pressure difference between the upper and lower surfaces and therefore causes a loss in lift. As noted in Section~\ref{sec:limit}, our inviscid panel method does not include boundary layer feedback, so the computed $C_L$ continues to rise nearly linearly beyond the stall angle.
 
@@ -186,7 +180,7 @@ For a symmetric airfoil, the drag coefficient is symmetric about zero incidence 
 
 ** Need a summary of the validity of the model here **
 
-\section{High L/D airfoil design}
+\section{High L/D airfoil design} \label{sec:design}
 
 This section presents airfoil design iterations aimed at maximising the lift‑to‑drag ratio (\(L/D\)). \(L/D\) is a measure of aerodynamic efficiency: for a given range, a higher \(L/D\) reduces fuel consumption. While the section \(L/D\) does not equal the complete aircraft’s \(L/D\) (which includes fuselage, tail, and interference drag), it provides an upper bound. Therefore, maximising \(L/D\) over the relevant operating conditions is an important goal of airfoil design.
 
@@ -734,11 +728,29 @@ LLH04a ends up with a lower maximum \(L/D\) of 163, however the \(L/D\) curve is
 
 \subsubsection{Physical interpretation}
 
+\subsection{Optimised sections at different Re}
+
 \subsection{Other design considerations}
 
 A smooth manufacturing finish is important for both airfoils. As attached laminar flow is highly sensitive to surface roughness \cite{boundarylayersyoung}, any design seeking to delay transition or laminar separation must be manufactured precisely, with a high standard of surface finish. This also needs to be maintained under operational conditions; insect fouling, for example, is a concern for gliders \cite{barnard2004aircraft}.
 
 Thick airfoils have higher torsional rigidity and bending stiffness, helping to avoid aeroelastic flutter – a potentially destructive oscillation of the wing \cite{aeroelasticity}. Thick sections also provide internal volume for fuel tanks, a practical necessity for many aircraft. In addition, sharp trailing edges present manufacturing challenges; they are difficult to fabricate accurately using conventional methods, and are prone to damage during handling and operation \cite{barnard2004aircraft}.
+
+\subsection{Inverse design}
+
+A common alternative to the design approach in Section \ref{sec:design} is inverse design, which produces an airfoil shape from the desired pressure or velocity distribution.
+
+Inverse design methods have two main categories: those based on conformal mappings of cylinder flow and those based on panel methods.
+
+------------------------------------------------
+
+**Inverse design methods are broadly split into those based on conformal mappings of flow around a cylinder and those based on panel methods. In principle one can specify a known set of velocities (and hence $\gamma$ values) at panel edges, rather than the panel locations, and then construct a set of equations to determine the necessary edge coordinates. This problem is non-linear, unlike the forwards problem solved in our inviscid panel solver, but this can be solved effectively with Newton iteration \cite{xfoil}. This is most useful where some parts of the airfoil geometry need to be directly specified.
+
+The conformal mapping-based methods are generally easier to use when such constraints are not present. The basic conformal mapping formulation due originally to Lighthill \cite{lighthill} and refined by Eppler and Somers \cite{epplerandsomers} is widely implemented (by Xfoil, PROFOIL, and by our own implementation in MATLAB). It is outlined below.
+
+A conformal mapping method can either vary the shape of the (slightly perturbed) cylinder (in the manner of Theodorsen, though this is not an inverse method ***, or the Joukowsky airfoils), or the conformal mapping function itself can be altered, subject to certain constraints in order to produce a closed airfoil. **
+
+
 
 \printbibliography
 
