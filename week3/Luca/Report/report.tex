@@ -80,7 +80,7 @@ Curvature visualisation was added as a feature, which made it possible to quickl
 
 To test the solution fidelity with different panel counts, pressure distributions for a Van de Vooren airfoil were computed. This airfoil geometry is obtained from conformal mapping of a cylinder, therefore an exact analytical solution exists for comparison.
 
-This exact solution is plotted against the model output for various discretisation levels. Low panel counts are most inaccurate close to the suction peak where there is a large adverse pressure gradient. This inaccuracy is more pronounced for the `thin' section than the `thick', as the adverse pressure gradient experienced is stronger. For panel counts larger than 400, the model output matches the exact solution sufficiently well; therefore, 400 panels is chosen for future analysis.
+This exact solution is plotted against the model output for various discretisation levels. Low panel counts are most inaccurate close to the suction peak where there is a large adverse pressure gradient. This inaccuracy is more pronounced for the `thin' section than the `thick', as the adverse pressure gradient experienced is stronger. It is also increased at higher incidence due to the larger suction peak. Plots for a thin airfoil at incidence are shown in Fig. \ref{fig:panel_num}. For panel counts larger than 400, the model output matches the exact solution sufficiently well; therefore, 400 panels is chosen for future analysis.
 
 However, these results highlight a weakness of the model. Rather than using evenly spaced panels, it would be advantageous to increase the density close to the leading edge, where a higher resolution is more important. This would enable a lower total panel count without reducing accuracy, thereby improving computation speeds. This approach is already implemented in other industry-standard panel method solvers.
 
@@ -88,14 +88,24 @@ However, these results highlight a weakness of the model. Rather than using even
     \centering
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/.eps}
+        \includegraphics[width=\linewidth]{../../Figures/resstd_100.eps}
     \end{minipage}
     \hfill
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/}
+        \includegraphics[width=\linewidth]{../../Figures/resstd_200.eps}
     \end{minipage}
-    \caption{}
+    \vspace{0.5cm}
+        \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_400.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_800.eps}
+    \end{minipage}
+    \caption{Thin Van de Vooren airfoil discretised and exact $c_p$ solutions: $\alpha = \pi/12$.}
     \label{fig:panel_num}
         \end{figure}
 
@@ -175,7 +185,7 @@ For a symmetric airfoil, the drag coefficient is symmetric about zero incidence 
 
 ** Need a summary of the validity of the model here **
 
-\section{High airfoil design}
+\section{High L/D airfoil design}
 
 This section presents airfoil design iterations aimed at maximising the lift‑to‑drag ratio (\(L/D\)). \(L/D\) is a measure of aerodynamic efficiency: for a given range, a higher \(L/D\) reduces fuel consumption. While the section \(L/D\) does not equal the complete aircraft’s \(L/D\) (which includes fuselage, tail, and interference drag), it provides an upper bound. Therefore, maximising \(L/D\) over the relevant operating conditions is an important goal of airfoil design.
 
@@ -539,7 +549,191 @@ The sudden drops in \(L/D\) at specific angles are caused by the abrupt upstream
 
 \subsection{High Re design: $2 \cdot 10^7$}
 
-For high Reynolds number flow, the goal is to delay natural transition and turbulent separation. Both processes significantly increase the momentum thickness, and therefore the airfoil drag. Turbulent separation also reduces lift (stall), however this effect is not included in the model.
+For high Reynolds number flow, the goal is to delay natural transition and turbulent separation. Turbulent boundary layers, especially when separated, experience a higher momentum thickness growth rate than laminar, which increases drag. Turbulent separation also reduces lift (stall), however this effect is not included in the model. The formation of a laminar separation bubble is not likely.
+
+\subsubsection{NACA 4412}
+
+The starting point for the design was the NACA 4412, a standard cambered airfoil. At $Re = 2 \cdot 10^7$, the maximum \(L/D\) is higher than for the same airfoil at $Re = 5 \cdot 10^5$. As discussed in Section \ref{sec:naca}, the NACA 4412 $C_D-C_L$ curves are Re dependent, with lower drag at higher Reynolds numbers. In our model, lift is independent of Re; therefore, the maximum \(L/D\) value is higher. In reality, lift also increases with Re for the NACA 4412, though only at high incidences during stall.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/NACA4412.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_NACA4412}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=5^{\circ}$) for NACA 4412.}
+    \label{fig:NACA4412_1}
+\end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_NACA4412.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_NACA4412.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for NACA 4412.}
+    \label{fig:NACA0012_2}
+\end{figure}
+\subsubsection{LLH01}
+
+The first iteration, LLH01, was created by increasing the leading-edge radius by 100\%. The result was a small improvement in lift, though the earlier transition on upper and lower surfaces increased drag proportionally, yielding a maximum $L/D$ of 136.6 at $\alpha=7.8^{\circ}$ ($C_L=1.44$). However, LLH01 has better performance at higher incidences due to the widened suction peak, smoothing the \(L/D\) curve.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH01.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH01}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=5^{\circ}$) for LLH01.}
+    \label{fig:LLH01_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH01_7.8.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH01.eps}
+    \end{minipage}
+        \caption{$c_p$ plot ($\alpha=7.8^{\circ}$) and \(L/D\) curves for LLH01.}
+    \label{fig:LLH01_2}
+\end{figure}
+
+Further progress could not be made from here, however. Adjusting the camber and the spline knots delayed separation on the upper surface by reducing the post-suction peak adverse pressure gradient. However, the lower surface performance was reduced simultaneously, resulting in minimal improvements.
+
+\subsubsection{LLH02}
+% LLH01\_e
+
+Instead, the airfoil was reverted back to the NACA 4412, and the lower surface kept unchanged. The upper surface curvature was reduced, yielding a gentler suction peak and slightly delayed transition. Performance improved to a maximum $L/D$ of 146 at $\alpha = 6.9^{\circ}$ ($C_L=1.353$). There is potential to delay transition further by reducing the $c_p$ waviness, which is caused by the splines. 
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH02.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH02}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH02.}
+    \label{fig:LLH02_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH02.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH02.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH02.}
+    \label{fig:LLH02_2}
+\end{figure}
+
+\subsubsection{LLH03}
+
+For LLH02, the final 10 \% of the chord was responsible for the 80 \% of the momentum thickness growth. Therefore, reducing the adverse pressure gradient on this section was a priority for drag reduction. To achieve this, the curvature over the rear half of the airfoil was reduced, and a gentle reflex added. Small curvature changes were required at the lower trailing edge to maintain a positive pressure difference there. 
+
+The resulting maximum \(L/D\) was 152.1 at $\alpha=6.9 ^{\circ}$ ($C_L=1.33$).
+
+
+
+This did result in a slightly steeper adverse pressure gradient overall, but the turbulent boundary layer was more resistant to this than a shorter very intense section at the trailing edge. Improvements to $c_p$ distribution smoothness also allowed a very slightly later natural transition on the upper surface, but this had no appreciable effect on the drag.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH03.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH03}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH03.}
+    \label{fig:LLH03_1}
+\end{figure}
+
+The resulting $c_p$ distribution does have a steeper adverse pressure gradient over the majority of the airfoil, however
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH03.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH03.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH03.}
+    \label{fig:LLH03_2}
+\end{figure}
+\subsubsection{LLH04}
+% LLH04\_e\_low
+The clearest avenue for further improvement is to increase the pressure on the lower surface, by adding concave curvature to the pressure surface. To avoid causing early natural transition on the pressure surface, this concave surface must avoid waviness. This was most easily achieved done by adjusting only the camber line using XFLR5; camber was increased from \qty{4.5}{\percent} in several steps, with \qty{6.5}{\percent} giving the best performance.
+
+This still did not yield a perfectly smooth pressure surface, with the adverse pressure gradient present around \qty{20}{\percent} chord due to waviness causing early transition up until just before the peak $L/D$, where increasing incidence gives an entirely favourable pressure gradient.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH04.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH04}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH03.}
+    \label{fig:LLH04_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH04.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH04.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH04.}
+    \label{fig:LLH04_2}
+\end{figure}
+\subsubsection{LLH05 (Inverse Design)}
+The performance is already quite good; further improvement is likely mostly down to improving pressure surface waviness, which might lead to a drag reduction over the incidence range just below peak $L/D$, and perhaps slightly increase the peak. It was not possible to make the surface smooth enough to completely avoid the early transition using \texttt{wasg} or XFLR5's direct editor, so this seems a good avenue for inverse design, as the desired pressure distribution (albeit less wavy) is already known.
+
+---------------------------------------------------------------
 
 \subsubsection{Physical interpretation}
 
@@ -576,130 +770,6 @@ NACA 6618 was designed inversely to have as flat an upper pressure distribution 
 
 
 \printbibliography
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/CL CD LLL01.jpeg}
-    \caption{NACA0012}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/0012 LD ratio.jpeg}
-    \caption{NACA0012. Max \(L/D\) = 58.82 at 7.6deg. Corresponding CL = 0.9145}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/0012 cp 7.6deg.png}
-    \caption{NACA0012. cp at max angle of attack- early separation, turbulent attached over most of the chord.}
-    \label{fig:placeholder}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/cp LLL01 4.9.jpeg}
-    \caption{NACA0015. 4.9 deg (max \(L/D\)), \(L/D\) 53.3, CL 0.605, so this is actually worse than NACA0012}
-    \label{fig:placeholder}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/cp LLL01 7.6deg.jpeg}
-    \caption{NACA0015.}
-    \label{fig:placeholder}
-\end{figure}
-
-LLL01 at 7.6deg \(L/D\) 50.11, CL 0.937  
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/CL CD LLL01.jpeg}
-    \caption{NACA0015.}
-    \label{fig:placeholder}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/CL CD LLL02.jpeg}
-    \caption{LLL02}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL02 cp 6.1deg.jpeg}
-    \caption{LLL02}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/cp 6deg LLL03.jpeg}
-    \caption{LLL03 at 6deg}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL03 CD CL.jpeg}
-    \caption{}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LD ratio LLL03.jpeg}
-    \caption{this is for 400 panels. jump shown in \(L/D\), seems to be caused by the `wiggly' m plot. point of laminar separation suddenly jumps towards the leading edge. Less of a jump if you decrease splines however still there }
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LD LLL04.jpeg}
-    \caption{LLL04 with 800 panels. with 400 is looked like the jump in LLL03}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL04 LD ratio.jpeg}
-    \caption{LLL04}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL04 5.6deg cp.jpeg}
-    \caption{LLL04. 5.6deg cp}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL05 cp 2.3deg.jpeg}
-    \caption{LLL05}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL05 L D ratio.jpeg}
-    \caption{LLL05}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL05 L D.jpeg}
-    \caption{LLL05}
-    \label{fig:placeholder}
-\end{figure}
 
 
 
