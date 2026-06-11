@@ -184,7 +184,12 @@ Inverse design methods are broadly split into those based on conformal mappings 
 
 The conformal mapping-based methods are generally easier to use when such constraints are not present. The basic conformal mapping formulation due originally to Lighthill \cite{lighthill} and refined by Eppler and Somers \cite{epplerandsomers} is widely implemented (by Xfoil, PROFOIL, and by our own implementation in MATLAB). It is outlined below.
 
-A conformal mapping method can either vary the shape of the (slightly perturbed) cylinder (in the manner of Theodorsen, though this is not an inverse method ***, or the Joukowsky airfoils), or the conformal mapping function itself can be altered, subject to certain constraints in order to produce a closed airfoil. 
+A conformal mapping method can either vary the shape of the (slightly perturbed) cylinder (in the manner of Theodorsen \cite{lighthill}), or the conformal mapping function itself can be altered, subject to certain constraints in order to produce a closed airfoil (known as the Lighthill constraints). 
+
+This mapping function is defined as:
+\[
+\ln \frac{\dd{z}}{\dd{\zeta}} = \ln \left(1 - \frac{1}{\zeta}\right) + \sum_{m=0}^\infty \left(a_m+j b_m\right)\zeta^{-m}
+\]
 \section{Optimisation}
 \subsection{Low Speed}
 At a Reynolds number as low as \num{5e5}, it is possible to retain laminar flow over a substantial fraction of the airfoil. In order to take advantage of the slow growth of the laminar boundary layer, it is desirable to delay the presence of any adverse pressure gradients that might destabilise the laminar boundary layer to as far to the rear of the airfoil as possible.
@@ -356,7 +361,7 @@ The camber was increased further from \qty{2}{\percent} to \qty{4}{\percent}, wi
 \end{figure}
 
 \subsubsection{LLL05}
-The suction peak was made flatter by further increasing camber to \qty{7}{\percent}. This did not appreciably change the laminar separation points, as it gave only a very moderate favourable pressure gradient, but does increase lift. This gave a maximum \(L/D\) of 100.4 at $\alpha=2.3^{\circ}$ ($C_L = 1.28$).
+The suction peak was made flatter by further increasing camber to \qty{7}{\percent}. This did not appreciably change the laminar separation points, as it gave only a very moderate favourable pressure gradient, but the flatter $c_p$ curve does increase lift. This gave a maximum \(L/D\) of 100.4 at $\alpha=2.3^{\circ}$ ($C_L = 1.28$).
 
 \begin{figure}[H]
     \centering
@@ -425,8 +430,9 @@ The suction peak was made flatter by further increasing camber to \qty{7}{\perce
 % \end{figure}
 
 \subsubsection{LLL07}
+LLL06 has been combined with LLL07; both steps focused on reducing the number of spline knots in order to decrease waviness, and then manually adjusting knot positions with \texttt{wasg} to give as continous curvature as possible on the pressure surface and leading edge (using the curve comb tool we added).
 
-For this iteration, the priority was to smooth the leading edge portion of the $c_p$ plot. This was achieved, with little difference in maximum \(L/D\): 104.3 at $\alpha=4.6^{\circ}$ ($C_L=1.57$).
+This successfully shifted laminar separation slightly further back on the suction surface, and much further back on the pressure surface. The $L/D$ effect was small, giving a maximum \(L/D\) of 104.3 at $\alpha=4.6^{\circ}$ ($C_L=1.57$). The increase in incidence at this point is evident when comparing Figs. \ref{fig:LLL05_2} and \ref{fig:LLL07_2}, as an $m$ oscillation induced premature laminar separation was evidently avoided by reducing the waviness.
 
 \begin{figure}[H]
     \centering
@@ -459,11 +465,9 @@ For this iteration, the priority was to smooth the leading edge portion of the $
     \label{fig:LLL07_2}
 \end{figure}
 
-The small gain in \(L/D\) is attributed to a slight delay in upper surface laminar separation. Curvature smoothing has also reduced oscillations in the Thwaites parameter $m$, resulting in a smoother \(L/D\) curve. Consequently, LLL07 has a more stable operating point than LLL04, with fewer sudden efficiency drops.
-
 \subsubsection{LLL08}
-
-After modifying the upper trailing‑edge geometry, natural transition was achieved at the maximum \(L/D\) operating point. However, turbulent separation began earlier than LLL07, limiting \(L/D\) to 112.7 at \(\alpha = 3.1^\circ\) (\(C_L = 1.39\)). A sudden drop in \(L/D\) occurs at \(\alpha = 3.1^\circ\), where a laminar separation bubble reappears. This illustrates that often increasing \(L/D\) reduces the stable operating range. 
+The transition ramp was modified to a somewhat unconventional shape on the $c_p$ plot in order to ensure natural transition occurs at maximum $L/D$. However, this also increased the subsequent adverse pressure gradient, causing earlier turbulent separation. In a model that accounts for the effect of separation on the external flow, this would like experience gradual lift loss.
+The maximum \(L/D\) is 112.7 at \(\alpha = 3.1^\circ\) (\(C_L = 1.39\)). There is a sudden drop in \(L/D\) at \(\alpha = 3.1^\circ\), where a laminar separation bubble reappears (as seen in Fig.~\ref{fig:LLL08_1}). This matches the claim in \cite{naca6seriessummary} that design for too extensive regions of laminar flow can result in earlier turbulent separation. In practical terms LLL07 would likely be a more reasonable choice, but our model does not penalise LLL08 adequately.
 
 \begin{figure}[H]
     \centering
@@ -494,8 +498,6 @@ After modifying the upper trailing‑edge geometry, natural transition was achie
         \caption{$c_p$ plot ($\alpha=3^{\circ}$) and \(L/D\) curves for LLL08.}
     \label{fig:LLL08_2}
 \end{figure}
-
-Beyond this point, manual improvements could not be made using \texttt{wasg}; small changes in curvature caused early laminar or turbulent separation. Ideally, turbulent separation would not occur before the trailing edge on either surface, however this was difficult to implement manually.
 % \subsection{High Speed First Attempt}
 % Start from NACA4412
 % 134 at 5.7
@@ -717,6 +719,36 @@ The performance is already quite good; further possible improvement is mostly in
 \end{figure}
 
 \section{Optimal Sections}
+\subsection{Performance in Oppposite Conditions}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH04a.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH04a}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH04a.}
+    \label{fig:LLH04a_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH04a.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH04a.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH04a.}
+    \label{fig:LLH04a_2}
+\end{figure}
 \section{Physical Processes}
 \section{Result Reliability}
 
