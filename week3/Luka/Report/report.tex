@@ -191,7 +191,7 @@ At a Reynolds number as low as \num{5e5}, it is possible to retain laminar flow 
 
 Since there is no substantial downside of a strong favourable pressure gradient, and, for a given amount of drag, we should want the lowest $c_p$ value achievable over the widest possible range of positions on the upper surface of the airfoil, it is desirable to reach the minimum $c_p$ very close to the nose of the airfoil, then remain at constant $c_p$ for a substantial fraction of the chord length, and then, to reach the trailing edge with minimum instantaneous adverse pressure gradient magnitude, by linear increase in $c_p$. Between these two sections, there is a ``transition ramp'' where the two are joined smoothly; for low Reynolds numbers the properties of this ramp can have a significant impact, as they determine whether transition will occur naturally or by laminar separation with turbulent reattachment. This is similar reasoning to that used to produce the NACA 6- and 7-series airfoils \cite{naca6seriessummary}, and many other modern laminar airfoils.
 \subsubsection{NACA0012}
-Starting point. Max L/D is 58.826 at 7.6 deg at Cl = 0.9145
+So as not to bias towards an existing laminar design as starting with a 6- or 7-series airfoil would, the NACA 0012 was the starting point, with a maximum $L/D$ is 58.826 at \qty{7.6}{\degree} at $C_L = 0.9145$.
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -571,7 +571,7 @@ At
 %LLH01_b
 Widening the suction peak would desirably increase lift, and delay transition at high incidences, where the 4412 suction peak is very sharp. Here this was attempted by increasing the leading-edge radius by a factor of 2 (modifying the leading \qty{10}{\percent} of the airfoil) using XFLR5. This resulted in small improvement to lift, but brought natural transition forwards, and so led to very small overall improvement. As expected, the high-incidence performance was improved more, with maximum $L/D$ of 136.6 at \qty{7.8}{\degree} incidence ($C_L=1.44$).
 
-This was, however, a dead end for substantial further improvement, as camber tweaks and direct spline knot manipulation improved the upper surface behaviour somewhat, by reducing the post-suction peak adverse pressure gradient enough to delay separation, but simultaneous harming the lower surface performance so much as to only be a tiny improvement.
+This was, however, a dead end for substantial further improvement. Camber tweaks and direct spline knot manipulation improved the upper surface behaviour somewhat, by reducing the post-suction peak adverse pressure gradient enough to delay separation, but this simultaneously harmed the lower surface performance. The resulting improvements were very small, only reaching a maximum of 138 after several iterations.
 
 \begin{figure}[H]
     \centering
@@ -605,7 +605,7 @@ This was, however, a dead end for substantial further improvement, as camber twe
 
 \subsubsection{LLH02}
 % LLH01\_e
-To improve further, the change was reverted, and instead only the suction surface curvature was reduced, keeping the lower surface effectively identical to the 4412. This allowed much less upper surface curvature than in LLH01, leading to a much gentler suction peak and slightly delayed separation (harmed by spline-induced waviness). Performance improved to a maximum $L/D$ of 146 at \qty{6.9}{\degree} incidence ($C_L=1.35$).
+To improve further, the change was reverted, and instead only the suction surface curvature was reduced, keeping the lower surface effectively identical to the 4412. This allowed a larger reduction in suction surface curvature than in LLH01, leading to a much gentler suction peak and slightly delayed transition (harmed by spline-induced waviness). Performance improved to a maximum $L/D$ of 146 at \qty{6.9}{\degree} incidence ($C_L=1.35$). The dropoff after the peak is due to the transition point moving even further forward, due to the formation of a sharp suction peak.
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -674,7 +674,7 @@ This resulted in a maximum $L/D$ of 152.1 at $\alpha=\qty{6.9}{\degree}$ ($C_L=1
 \end{figure}
 \subsubsection{LLH04}
 % LLH04\_e\_low
-The clearest avenue for further improvement is to increase the pressure on the lower surface, by adding concave curvature to the pressure surface. To avoid causing early natural transition on the pressure surface, this concave surface must avoid waviness. This was most easily achieved done by adjusting only the camber line using XFLR5; camber was increased from \qty{4.5}{\percent} in several steps, with \qty{6.5}{\percent} giving the best performance.
+The clearest avenue for further improvement was to increase the pressure on the lower surface, by adding concave curvature to the pressure surface. To avoid causing early natural transition on the pressure surface, this concave surface must avoid waviness. This was most easily achieved done by adjusting only the camber line using XFLR5; camber was increased from \qty{4.5}{\percent} in several steps, with \qty{6.5}{\percent} giving the best performance.
 
 This still did not yield a perfectly smooth pressure surface, with the adverse pressure gradient present around \qty{20}{\percent} chord due to waviness causing early transition up until just before the peak $L/D$, where increasing incidence gives an entirely favourable pressure gradient.
 
@@ -690,7 +690,7 @@ This gave a final maximum $L/D$ of 168 at \qty{5.8}{\degree} incidence ($C_L = 1
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLH04}
     \end{minipage}
-    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH03.}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH04.}
     \label{fig:LLH04_1}
 \end{figure}
 
@@ -708,8 +708,37 @@ This gave a final maximum $L/D$ of 168 at \qty{5.8}{\degree} incidence ($C_L = 1
         \caption{$C_D-C_L$ and \(L/D\) curves for LLH04.}
     \label{fig:LLH04_2}
 \end{figure}
-\subsubsection{Inverse Design}
+\subsubsection{LLH04a (Inverse Design)}
 The performance is already quite good; further possible improvement is mostly in improving the off-peak performance. Just above the peak in incidence there is a large increase in drag, due to earlier natural transition due to the formation of a sharp suction peak. The decrease just below the peak in incidence is due to the waviness of the pressure surface. Both of these can most easily be adjusted through use of an inverse design tool, which can be directed to spread out the suction peak and reduce the adverse pressure gradient on the pressure surface. These requirements can only be met exactly at one incidence, so there is some small compromise to the peak $L/D$ in order to achieve more consistent behaviour.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/LLH04a.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH04a}
+    \end{minipage}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH04a.}
+    \label{fig:LLH04a_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH04a.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH04a.eps}
+    \end{minipage}
+        \caption{$C_D-C_L$ and \(L/D\) curves for LLH04a.}
+    \label{fig:LLH04_2}
+\end{figure}
 
 \section{Optimal Sections}
 \section{Physical Processes}
