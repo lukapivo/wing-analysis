@@ -586,12 +586,9 @@ The starting point for the design was the NACA 4412, a standard cambered airfoil
 \end{figure}
 \subsubsection{LLH01}
 
-The first iteration, LLH01, was created by increasing the leading-edge radius by 200\%. The result was a small improvement in lift, though the earlier transition on upper and lower surfaces increased drag proportionally, yielding a maximum $L/D$ of 136.6 at $\alpha=7.8^{\circ}$ ($C_L=1.44$). However, the performance is improved at higher incidences where the suction peak is widened, delaying transition and smoothing the \(L/D\) curve.
+The first iteration, LLH01, was created by increasing the leading-edge radius by 100\%. The result was a small improvement in lift, though the earlier transition on upper and lower surfaces increased drag proportionally, yielding a maximum $L/D$ of 136.6 at $\alpha=7.8^{\circ}$ ($C_L=1.44$). However, LLH01 has better performance at higher incidences due to the widened suction peak, smoothing the \(L/D\) curve.
 
-
-Widening the suction peak would desirably increase lift, and delay transition at high incidences where the 4412 peak is very sharp. Here this was attempted by increasing the leading-edge radius by a factor of 2 (modifying the leading \qty{10}{\percent} of the airfoil) using XFLR5. This resulted in small improvement to lift, but brough natural transition forwards, and so led to very small overall improvement. As expected, the high-incidence performance was improved more, with maximum $L/D$ of 136.6 at \qty{7.8}{\degree} incidence ($C_L=1.44$).
-
-This was, however, a dead end for substantial further improvement, as camber tweaks and direct spline knot manipulation improved the upper surface behaviour somewhat, by reducing the post-suction peak adverse pressure gradient enough to delay separation, but simultaneous harming the lower surface performance so much as to only be a tiny improvement.
+Further progress could not be made from here, however. Adjusting the camber and the spline knots delayed separation on the upper surface by reducing the post-suction peak adverse pressure gradient. However, the lower surface performance was reduced simultaneously, resulting in minimal improvements.
 
 \begin{figure}[H]
     \centering
@@ -612,19 +609,24 @@ This was, however, a dead end for substantial further improvement, as camber twe
     \centering
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/cp_LLH01_7.eps}
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH01_7.8.eps}
     \end{minipage}
     \hfill
     \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Figures/ld_LLH01.eps}
     \end{minipage}
-        \caption{$c_p$ plot ($\alpha=5^{\circ}$) and \(L/D\) curves for LLH01.}
+        \caption{$c_p$ plot ($\alpha=7.8^{\circ}$) and \(L/D\) curves for LLH01.}
     \label{fig:LLH01_2}
 \end{figure}
 
 \subsubsection{LLH02}
 % LLH01\_e
+
+To prevent the 
+
+
+
 To improve further, the change was reverted, and instead only the suction surface curvature was reduced, keeping the lower surface effectively identical to the 4412. This allowed much less upper surface curvature than in LLH01, leading to a much gentler suction peak and slightly delayed separation (harmed by spline-induced waviness). Performance improved to a maximum $L/D$ of 146 at \qty{6.9}{\degree} incidence ($C_L=1.353$).
 \begin{figure}[H]
     \centering
@@ -766,130 +768,6 @@ NACA 6618 was designed inversely to have as flat an upper pressure distribution 
 
 
 \printbibliography
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/CL CD LLL01.jpeg}
-    \caption{NACA0012}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/0012 LD ratio.jpeg}
-    \caption{NACA0012. Max \(L/D\) = 58.82 at 7.6deg. Corresponding CL = 0.9145}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/0012 cp 7.6deg.png}
-    \caption{NACA0012. cp at max angle of attack- early separation, turbulent attached over most of the chord.}
-    \label{fig:placeholder}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/cp LLL01 4.9.jpeg}
-    \caption{NACA0015. 4.9 deg (max \(L/D\)), \(L/D\) 53.3, CL 0.605, so this is actually worse than NACA0012}
-    \label{fig:placeholder}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/cp LLL01 7.6deg.jpeg}
-    \caption{NACA0015.}
-    \label{fig:placeholder}
-\end{figure}
-
-LLL01 at 7.6deg \(L/D\) 50.11, CL 0.937  
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/CL CD LLL01.jpeg}
-    \caption{NACA0015.}
-    \label{fig:placeholder}
-\end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/CL CD LLL02.jpeg}
-    \caption{LLL02}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL02 cp 6.1deg.jpeg}
-    \caption{LLL02}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/cp 6deg LLL03.jpeg}
-    \caption{LLL03 at 6deg}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL03 CD CL.jpeg}
-    \caption{}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LD ratio LLL03.jpeg}
-    \caption{this is for 400 panels. jump shown in \(L/D\), seems to be caused by the `wiggly' m plot. point of laminar separation suddenly jumps towards the leading edge. Less of a jump if you decrease splines however still there }
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LD LLL04.jpeg}
-    \caption{LLL04 with 800 panels. with 400 is looked like the jump in LLL03}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL04 LD ratio.jpeg}
-    \caption{LLL04}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL04 5.6deg cp.jpeg}
-    \caption{LLL04. 5.6deg cp}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL05 cp 2.3deg.jpeg}
-    \caption{LLL05}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL05 L D ratio.jpeg}
-    \caption{LLL05}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{../Screenshotted plots/LLL05 L D.jpeg}
-    \caption{LLL05}
-    \label{fig:placeholder}
-\end{figure}
 
 
 
