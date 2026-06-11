@@ -71,9 +71,34 @@ This effect also accounts for the absence of a very strong adverse pressure grad
 \subsection{Panel Count}
 The harshest test of the panel method is the thin van der Vooren airfoil at \qty{15}{\degree} incidence; the thick aerofoil and zero incidence cases give much less sharp suction peaks that are not so difficult to resolve. Only the thin case at incidence is shown, as the panel counts perform at least as well in the other cases.
 
-While 800 panels does clearly give the best result, those for 400 panels are already adequate, and given the $\mathcal{O}\left(n^3\right)$ matrix inversions required, the substantially greater computation time is not worth the accuracy increment.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_100.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_200.eps}
+    \end{minipage}
+    \vspace{0.5cm}
+        \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_400.eps}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Figures/resstd_800.eps}
+    \end{minipage}
+    \caption{Thin Van de Vooren airfoil discretised and exact $c_p$ solutions: $\alpha = \pi/12$.}
+    \label{fig:panel_num}
+\end{figure}
 
-Better results could very likely be obtained by using non-uniform panel lengths (which our code was adapted to support), to allow clustering around the leading and trailing edges, where there tend to be difficult-to-resolve large pressure gradients, while not wasting computational effort on midpoints. This non-uniform panelling (among other differences) allows Xfoil to obtain good quality results with only 150 or so panels \cite{xfoil}. 
+While, in Fig.~\ref{fig:panel_num}, 800 panels does clearly give the best result, those for 400 panels are already adequate, and given the $\mathcal{O}\left(n^3\right)$ matrix inversions required, the substantially greater computation time is not worth the accuracy increment.
+
+Better results could very likely be obtained by using non-uniform panel spacing (which our code was adapted to support, given a suitable panelling method), to allow clustering around the leading and trailing edges, where there tend to be difficult-to-resolve large pressure gradients, while not wasting computational effort on points near the middle of the section experience only gentle gradients. This non-uniform panelling (among other differences) allows Xfoil to obtain good quality results with only 150 or so panels \cite{xfoil}. 
 \subsection{NACA Airfoil Comparison}
 \begin{figure}[H]
     \centering
@@ -532,19 +557,19 @@ At
     \centering
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/cp_NACA4412.eps}
+        \includegraphics[width=\linewidth]{../../Figures/cdcl_NACA4412.eps}
     \end{minipage}
     \hfill
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/ld_NACA0012.eps}
+        \includegraphics[width=\linewidth]{../../Figures/ld_NACA4412.eps}
     \end{minipage}
-        \caption{$c_p$ plot ($\alpha=7^{\circ}$) and \(L/D\) curves for NACA0012.}
-    \label{fig:NACA0012_2}
+        \caption{$C_D-C_L$ and \(L/D\) curves for NACA4412.}
+    \label{fig:NACA4412_2}
 \end{figure}
 \subsubsection{LLH01}
 %LLH01_b
-Widening the suction peak would desirably increase lift, and delay transition at high incidences where the 4412 peak is very sharp. Here this was attempted by increasing the leading-edge radius by a factor of 2 (modifying the leading \qty{10}{\percent} of the airfoil) using XFLR5. This resulted in small improvement to lift, but brough natural transition forwards, and so led to very small overall improvement. As expected, the high-incidence performance was improved more, with maximum $L/D$ of 136.6 at \qty{7.8}{\degree} incidence.
+Widening the suction peak would desirably increase lift, and delay transition at high incidences, where the 4412 suction peak is very sharp. Here this was attempted by increasing the leading-edge radius by a factor of 2 (modifying the leading \qty{10}{\percent} of the airfoil) using XFLR5. This resulted in small improvement to lift, but brought natural transition forwards, and so led to very small overall improvement. As expected, the high-incidence performance was improved more, with maximum $L/D$ of 136.6 at \qty{7.8}{\degree} incidence ($C_L=1.44$).
 
 This was, however, a dead end for substantial further improvement, as camber tweaks and direct spline knot manipulation improved the upper surface behaviour somewhat, by reducing the post-suction peak adverse pressure gradient enough to delay separation, but simultaneous harming the lower surface performance so much as to only be a tiny improvement.
 
@@ -580,7 +605,7 @@ This was, however, a dead end for substantial further improvement, as camber twe
 
 \subsubsection{LLH02}
 % LLH01\_e
-To improve further, the change was reverted, and instead only the suction surface curvature was reduced, keeping the lower surface effectively identical to the 4412. This allowed much less upper surface curvature than in LLH01, leading to a much gentler suction peak and slightly delayed separation (harmed by spline-induced waviness). Performance improved to a maximum $L/D$ of 145.6 at \qty{6.8}{\degree} incidence.
+To improve further, the change was reverted, and instead only the suction surface curvature was reduced, keeping the lower surface effectively identical to the 4412. This allowed much less upper surface curvature than in LLH01, leading to a much gentler suction peak and slightly delayed separation (harmed by spline-induced waviness). Performance improved to a maximum $L/D$ of 146 at \qty{6.9}{\degree} incidence ($C_L=1.35$).
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -617,7 +642,7 @@ The final \qty{10}{\percent} of the chord accounts for about \qty{80}{\percent} 
 
 Hence, the curvature of the rear half of the upper surface was reduced, with some slight reflex added. Minor modifications to the lower surface formed a compatible trailing edge. This did result in a slightly steeper adverse pressure gradient overall, but the turbulent boundary layer was more resistant to this than a shorter very intense section at the trailing edge. Improvements to $c_p$ distribution smoothness also allowed a very slightly later natural transition on the upper surface, but this had no appreciable effect on the drag.
 
-Max $L/D$ of 152.1 at $\alpha=\qty{6.9}{\degree}$
+This resulted in a maximum $L/D$ of 152.1 at $\alpha=\qty{6.9}{\degree}$ ($C_L=1.33$).
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -652,6 +677,8 @@ Max $L/D$ of 152.1 at $\alpha=\qty{6.9}{\degree}$
 The clearest avenue for further improvement is to increase the pressure on the lower surface, by adding concave curvature to the pressure surface. To avoid causing early natural transition on the pressure surface, this concave surface must avoid waviness. This was most easily achieved done by adjusting only the camber line using XFLR5; camber was increased from \qty{4.5}{\percent} in several steps, with \qty{6.5}{\percent} giving the best performance.
 
 This still did not yield a perfectly smooth pressure surface, with the adverse pressure gradient present around \qty{20}{\percent} chord due to waviness causing early transition up until just before the peak $L/D$, where increasing incidence gives an entirely favourable pressure gradient.
+
+This gave a final maximum $L/D$ of 168 at \qty{5.8}{\degree} incidence ($C_L = 1.425$).
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -681,8 +708,8 @@ This still did not yield a perfectly smooth pressure surface, with the adverse p
         \caption{$C_D-C_L$ and \(L/D\) curves for LLH04.}
     \label{fig:LLH04_2}
 \end{figure}
-\subsubsection{LLH05 (Inverse Design)}
-The performance is already quite good; further improvement is likely mostly down to improving pressure surface waviness, which might lead to a drag reduction over the incidence range just below peak $L/D$, and perhaps slightly increase the peak. It was not possible to make the surface smooth enough to completely avoid the early transition using \texttt{wasg} or XFLR5's direct editor, so this seems a good avenue for inverse design, as the desired pressure distribution (albeit less wavy) is already known.
+\subsubsection{Inverse Design}
+The performance is already quite good; further possible improvement is mostly in improving the off-peak performance. Just above the peak in incidence there is a large increase in drag, due to earlier natural transition due to the formation of a sharp suction peak. The decrease just below the peak in incidence is due to the waviness of the pressure surface. Both of these can most easily be adjusted through use of an inverse design tool, which can be directed to spread out the suction peak and reduce the adverse pressure gradient on the pressure surface. These requirements can only be met exactly at one incidence, so there is some small compromise to the peak $L/D$ in order to achieve more consistent behaviour.
 
 \section{Optimal Sections}
 \section{Physical Processes}
@@ -691,9 +718,9 @@ The performance is already quite good; further improvement is likely mostly down
 \subsection{Compressibility}
 In order for the high Reynolds number case not to have significant compressibility effects at a plausible cruise Mach number, 
 \subsection{Practical Considerations}
-Regardless of the accuracy and validity of the performance results, aerofoils must meet other practical constraints. They must be manufacturable: the low-speed aerofoil needs a low-waviness and smooth surface finish to maintain laminar flow, which may not be suitable for all mnaufacturing techniques, and the high-speed aerofoil has a difficult to manufacture very thing trailing edge.
+Regardless of the accuracy and validity of the performance results, aerofoils must meet other practical constraints. They must be manufacturable: the low-speed aerofoil needs a low-waviness and smooth surface finish to maintain laminar flow, which may not be suitable for all manufacturing techniques\footnote{Abbott and von Doenhoff suggest conventional sheet metal manufacturing techniques were not adequate for retaining laminar flow at all\cite{theoryofwingsections}, however there has been substantial development in this area since 1945.}, and the high-speed aerofoil has a difficult to manufacture very thing trailing edge.
 
-The thicknesses may also pose a challenge. The aerofoil must be sufficiently strong and stiff to resist regular bending and torsion loads, and must be stiff enough to give suitably high aeroelastic divergence and flutter speeds \cite{aeroelasticity}. Moreover, in civil transports, the section must be able to accommodate a ``wet wing'' fuel tank. These constraints all encourage a thicker section than we might otherwise select.
+The thicknesses may also pose a challenge. The aerofoil must be sufficiently strong and stiff to resist regular bending and torsion loads, and must be stiff enough to give suitably high aeroelastic divergence and flutter speeds \cite{aeroelasticity}. Moreover, in civil transports, the section must be able to accommodate a ``wet wing'' fuel tank \cite{aircraftdesign}. These constraints all encourage a thicker section than we might select for aerodynamic reasons.
 
 \printbibliography
 
