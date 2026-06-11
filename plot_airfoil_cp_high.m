@@ -526,7 +526,7 @@ plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
 legend('LLL08', 'Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-saveas(gcf,'week3/Figures/cp_LLL08_high.eps','epsc2')
+saveas(gcf,'week3/Figures/cp_final_LLH01_7.8.eps','epsc2')
 
 caseref = "Data/final_LLH01_7.8.mat";
 load(caseref);
