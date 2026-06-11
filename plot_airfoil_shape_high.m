@@ -65,6 +65,8 @@ axis equal
 box on
 hold on
 plot(x1, y1);
+xlabel('x/c');
+ylabel('y/c');
 legend('NACA 4412')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/NACA4412','epsc2')
@@ -76,6 +78,8 @@ box on
 hold on
 plot(x1, y1, '--');
 plot(x2, y2);
+xlabel('x/c');
+ylabel('y/c');
 legend('NACA 4412', 'LLH01')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/LLH01','epsc2')
@@ -87,6 +91,8 @@ box on
 hold on
 plot(x2, y2, '--');
 plot(x3, y3);
+xlabel('x/c');
+ylabel('y/c');
 legend('LLH01', 'LLH02')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/LLH02','epsc2')
@@ -99,6 +105,8 @@ box on
 hold on
 plot(x3, y3, '--');
 plot(x4, y4);
+xlabel('x/c');
+ylabel('y/c');
 legend('LLH02', 'LLH03')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/LLH03','epsc2')
@@ -110,6 +118,8 @@ box on
 hold on
 plot(x4, y4, '--');
 plot(x5, y5);
+xlabel('x/c');
+ylabel('y/c');
 legend('LLH03', 'LLH04')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/LLH04','epsc2')
