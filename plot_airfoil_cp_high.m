@@ -526,4 +526,4 @@ plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
 legend('NACA 4412', 'LLH01', 'Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
-saveas(gcf,'week3/Figures/cp_LLH01_7.8','epsc2')
+saveas(gcf,'week3/Figures/cp_LLH01_7.8.eps','epsc2')

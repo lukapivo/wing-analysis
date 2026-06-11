@@ -89,11 +89,11 @@ figure(3);
 axis equal
 box on
 hold on
-plot(x2, y2, '--');
+plot(x1, y1, '--');
 plot(x3, y3);
 xlabel('x/c');
 ylabel('y/c');
-legend('LLH01', 'LLH02')
+legend('NACA 4412', 'LLH02')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/LLH02','epsc2')
 hold off;
