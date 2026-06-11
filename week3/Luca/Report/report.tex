@@ -6,6 +6,7 @@
 \usepackage{subcaption}
 \usepackage{mathtools}
 \usepackage{enumitem}
+\usepackage{amssymb}
 \usepackage[backend=biber]{biblatex}
 \addbibresource{../../references/references.bib}
 \usepackage{float}
@@ -676,7 +677,7 @@ The \(L/D\) curve is not smooth, but shows a sharp drop at $\alpha=7.9^{\circ}$,
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLH04}
     \end{minipage}
-    \caption{Airfoil shape and $c_p$ plot ($\alpha=5^{\circ}$) for LLH03.}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=5^{\circ}$) for LLH04.}
     \label{fig:LLH04_1}
 \end{figure}
 
@@ -696,11 +697,10 @@ The \(L/D\) curve is not smooth, but shows a sharp drop at $\alpha=7.9^{\circ}$,
 \end{figure}
 \subsubsection{LLH04a- Inverse Design}
 
-Further improvements from LLH04 would focus on improving the surface waviness, leading to a drag reduction close to the peak $L/D$. It was not possible to reduce waviness sufficiently using \texttt{wasg} to delay transition, however inverse design was used to see which section would achieve the desired pressure distribution. The result is LLHI.
+Further improvements from LLH04 would focus on improving the surface waviness, leading to a drag reduction close to the peak $L/D$. It was not possible to reduce waviness sufficiently using \texttt{wasg} to delay transition, however inverse design was used to see which section would achieve the desired pressure distribution. The result is LLH04a, after direction to widen the suction peak and reduce the adverse pressure gradient on the upper surface. 
 
-------------
+LLH04a ends up with a lower maximum \(L/D\) of 163, however the \(L/D\) curve is smoother, giving it a larger range of stable operating conditions, and a lower drop-off in efficiency.
 
-The performance is already quite good; further possible improvement is mostly in improving the off-peak performance. Just above the peak in incidence there is a large increase in drag, due to earlier natural transition due to the formation of a sharp suction peak. The decrease just below the peak in incidence is due to the waviness of the pressure surface. Both of these can most easily be adjusted through use of an inverse design tool, which can be directed to spread out the suction peak and reduce the adverse pressure gradient on the pressure surface. These requirements can only be met exactly at one incidence, so there is some small compromise to the peak $L/D$ in order to achieve more consistent behaviour. Figures \ref{fig:LLH04a_1} and \ref{fig:LLH04a_2} show the results from adjusting the pressure distribution with the Xfoil inverse design tool. The peak $L/D$ is reduced to 163, but the drop-off is much smoother
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -712,7 +712,7 @@ The performance is already quite good; further possible improvement is mostly in
         \centering
         \includegraphics[width=\linewidth]{../../Figures/cp_LLH04a}
     \end{minipage}
-    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH04a.}
+    \caption{Airfoil shape and $c_p$ plot ($\alpha=5^{\circ}$) for LLH04a.}
     \label{fig:LLH04a_1}
 \end{figure}
 
