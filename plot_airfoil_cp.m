@@ -487,7 +487,7 @@ plot_points(ilnt, ills, iltr, ilts, ax_cp, xsl, cpl, 'r');
 plot_points(iunt, iuls, iutr, iuts, ax_cp, xsu, cpu, 'r');
 
 
-legend('LLH04','Location','north')
+legend('LLH04','Location','northeast')
 set(gcf,'units', 'centimeters','position',[0,0,8,5])
 saveas(gcf,'week3/Figures/cp_LLH04_low','epsc2')
 
