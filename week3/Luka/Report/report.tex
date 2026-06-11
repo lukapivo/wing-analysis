@@ -194,7 +194,7 @@ This mapping function is defined as:
 \subsection{Low Speed}
 At a Reynolds number as low as \num{5e5}, it is possible to retain laminar flow over a substantial fraction of the airfoil. In order to take advantage of the slow growth of the laminar boundary layer, it is desirable to delay the presence of any adverse pressure gradients that might destabilise the laminar boundary layer to as far to the rear of the airfoil as possible.
 
-Since there is no substantial downside of a strong favourable pressure gradient, and, for a given amount of drag, we should want the lowest $c_p$ value achievable over the widest possible range of positions on the upper surface of the airfoil, it is desirable to reach the minimum $c_p$ very close to the nose of the airfoil, then remain at constant $c_p$ for a substantial fraction of the chord length, and then, to reach the trailing edge with minimum instantaneous adverse pressure gradient magnitude, by linear increase in $c_p$. Between these two sections, there is a ``transition ramp'' where the two are joined smoothly; for low Reynolds numbers the properties of this ramp can have a significant impact, as they determine whether transition will occur naturally or by laminar separation with turbulent reattachment. This is similar reasoning to that used to produce the NACA 6- and 7-series airfoils \cite{naca6seriessummary}, and many other modern laminar airfoils.
+Since there is no substantial downside of a strong favourable pressure gradient, and, for a given amount of drag, we should want the lowest $c_p$ value achievable over the widest possible range of positions on the upper surface of the airfoil, it is desirable to reach near-minimum $c_p$ very close to the nose of the airfoil, then remain at constant (or slightly decreasing) $c_p$ for a substantial fraction of the chord length, and then, to reach the trailing edge with a consistent adverse pressure gradient magnitude, by linear increase in $c_p$. Between these two sections, there is a ``transition ramp'' where the two are joined smoothly; for low Reynolds numbers the properties of this ramp can have a significant impact, as they determine whether transition will occur naturally or by laminar separation with turbulent reattachment \cite{lowspeeddesign}. This is similar reasoning to that used to produce the NACA 6- and 7-series airfoils \cite{naca6seriessummary}, and many other modern laminar airfoils.
 \subsubsection{NACA0012}
 So as not to bias towards an existing laminar design as starting with a 6- or 7-series airfoil would, the NACA 0012 was the starting point, with a maximum $L/D$ of 58.83 at \qty{7.6}{\degree} ($C_L = 0.9145$).
 \begin{figure}[H]
@@ -719,41 +719,42 @@ The performance is already quite good; further possible improvement is mostly in
 \end{figure}
 
 \section{Optimal Sections}
-\subsection{Performance in Oppposite Conditions}
+At design Reynolds number, both LLL08 and LLH04 have a peak $L/D$ that drops off rapidly outside a relatively small range of incidences. This is a natural consequence of the 
+\subsection{Performance in Opposite Conditions}
+Figures \ref{fig:LLL08_high} and \ref{fig:LLH04_low} demonstrate that, while LLL08 performs poorly compared to LLH04 at $\mathrm{Re} = \num{20e6}$, its 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/LLH04a.eps}
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLL08_low.eps}
     \end{minipage}
     \hfill
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/cp_LLH04a}
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLL08_high}
     \end{minipage}
-    \caption{Airfoil shape and $c_p$ plot ($\alpha=\qty{5}{\degree}$) for LLH04a.}
-    \label{fig:LLH04a_1}
+    \caption{$L/d-\alpha$ and $c_p$ plot ($\alpha = \qty{5}{\degree}$) for LLL08 at $\mathrm{Re}=\num{20e6}$.}
+    \label{fig:LLL08_high}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/cdcl_LLH04a.eps}
+        \includegraphics[width=\linewidth]{../../Figures/ld_LLH04_low.eps}
     \end{minipage}
     \hfill
     \begin{minipage}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{../../Figures/ld_LLH04a.eps}
+        \includegraphics[width=\linewidth]{../../Figures/cp_LLH04_low}
     \end{minipage}
-        \caption{$C_D-C_L$ and \(L/D\) curves for LLH04a.}
-    \label{fig:LLH04a_2}
+    \caption{$L/d-\alpha$ and $c_p$ plot ($\alpha = \qty{5}{\degree}$) for LLH04 at $\mathrm{Re}=\num{5e5}$.}
+    \label{fig:LLH04_low}
 \end{figure}
-\section{Physical Processes}
 \section{Result Reliability}
 
 \subsection{Compressibility}
-In order for the high Reynolds number case not to have significant compressibility effects at a plausible cruise Mach number, 
+
 \subsection{Practical Considerations}
 Regardless of the accuracy and validity of the performance results, aerofoils must meet other practical constraints. They must be manufacturable: the low-speed aerofoil needs a low-waviness and smooth surface finish to maintain laminar flow, which may not be suitable for all manufacturing techniques\footnote{Abbott and von Doenhoff suggest conventional sheet metal manufacturing techniques were not adequate for retaining laminar flow at all\cite{theoryofwingsections}, however there has been substantial development in this area since 1945.}, and the high-speed aerofoil has a difficult to manufacture very thing trailing edge.
 
